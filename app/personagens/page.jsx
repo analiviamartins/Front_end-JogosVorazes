@@ -3,7 +3,8 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 
-function home(){
+
+function home() {
     const [vorazes, setVorazes] = useState([])
     const [dadosApi, setDadosApi] = useState([]);
     const router = useRouter();
@@ -12,36 +13,45 @@ function home(){
         async function JogosFetch() {
             try {
                 const resposta = await axios.get("/api/vorazes");
-                setVorazes(resposta.data)
-                setDadosApi(resposta.data)
-            } catch(error) {
+                setVorazes(resposta.data.voraze)
+                setDadosApi(resposta.data.voraze)
+            } catch (error) {
                 console.log("error fetching data:", error)
             }
         }
 
         JogosFetch();
 
-    },[]);
+    }, []);
 
     console.log(dadosApi)
-    console.log(vorazes)
-    return(
+    return (
         <div>
             <p>Jogos Vorazes</p>
-            {dadosApi.length ? (
+            {dadosApi ? (
                 vorazes ? (
                     <div>
-                        {dadosApi.map((voraze)=> (
+                        {dadosApi.map((voraze) => (
                             <div key={voraze.id}>
                                 <div>
                                     <p>
-                                        <strong>ID</strong> {voraze.id}
+                                        <strong>Nome</strong> {voraze.nome}
                                     </p>
-                                    <p>
-                                        <strong>Nome:</strong> {voraze.nome}
-                                    </p>
+                                    <img src={voraze.imagem} alt={voraze.nome} />
                                     <p>
                                         <strong>Idade</strong> {voraze.idade}
+                                    </p>
+                                    <p>
+                                        <strong>Distrito</strong> {voraze.distrito}
+                                    </p>
+                                    <p>
+                                        <strong>Gênero</strong> {voraze.genero}
+                                    </p>
+                                    <p>
+                                        <strong>Profissão</strong> {voraze.profissao}
+                                    </p>
+                                    <p>
+                                        <strong>Descrição</strong> {voraze.descricao}
                                     </p>
                                 </div>
 
@@ -51,10 +61,10 @@ function home(){
                 ) : (
                     <p>Carregando...</p>
                 )
-                ) : (
-                    <p>Não há personagens cadastrados</p>
-                )}
-                </div>
-            ) 
-            };       
+            ) : (
+                <p>Não há personagens cadastrados</p>
+            )}
+        </div>
+    )
+};
 export default home;
