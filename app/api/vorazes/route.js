@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 
 import { NextResponse } from "next/server";
 
@@ -6,7 +6,7 @@ const url = process.env.BASE_URL;
 
 export async function GET() {
   try {
-    const resposta = await axios.get(url);
+   const resposta = await axios.get(url);
 
     return NextResponse.json(resposta.data);
   } catch (error) {
@@ -27,3 +27,4 @@ export async function POST(request) {
     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }
+
