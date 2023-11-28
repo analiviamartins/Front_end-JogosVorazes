@@ -72,7 +72,7 @@ function home() {
 
             
             <input
-              value={image}
+              value={url}
               className={style.input} onChange={(e) => setImage(e.target.value)} type="url" placeholder="Link da sua imagem:"/>
             
 
