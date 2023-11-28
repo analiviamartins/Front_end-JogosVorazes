@@ -1,0 +1,43 @@
+
+.carousel {
+  position: relative;
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  width: 33.33%;
+}
+
+.control-btn {
+  position: absolute;
+  top: 50%;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.control-btn:focus {
+  outline: none;
+}
