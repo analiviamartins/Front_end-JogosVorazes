@@ -2,6 +2,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
+import style from "../personagens/personagens.module.css"
 
 
 function home() {
@@ -26,8 +27,10 @@ function home() {
 
     console.log(dadosApi)
     return (
-        <div>
-            <p>Jogos Vorazes</p>
+        <div className={style.body}>
+            <div className={style.titulo}>
+                <img src="/image.png" width={500} height={300}/>
+                </div>
             {dadosApi ? (
                 vorazes ? (
                     <div>
