@@ -10,7 +10,7 @@ const heroisInstancia = new Herois();
 
 function page() {
 
-  const [herois, setHerois] = useState([]);
+  const [persos, setPersos] = useState([]);
   const [apiData, setApiData] = useState(null);
 
   const [player1, setplayer1] = useState(null);
