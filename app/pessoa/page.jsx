@@ -59,16 +59,10 @@ function home() {
             )} 
             <div>
          </div>
-         <div className={style.app} style={tema2}>
-            <h2> Cadastrar </h2>
-            {editButton ? (
-              <h1 className={style.h1}>Editar Informações</h1>
-            ) : (
-              <h1 className={style.h1}>Cadastre-se</h1>
-            )}
-            <input
-              value={name}
-              className={style.input} onChange={(e) => setNome(e.target.value)} type="text" placeholder="Nome:" />
+         <div>
+         <h2> Cadastrar </h2>
+         <input
+         value={nome} className={style.input} onChange={(e) => setNome(e.target.value)} type="text"  placeholder="Nome:"  />
 
             
             <input
