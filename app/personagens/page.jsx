@@ -9,6 +9,20 @@ function home() {
     const [dadosApi, setDadosApi] = useState([]);
     const router = useRouter();
 
+    const deletar = async (id) => {
+        const url = `/api/vorazes/${id}`;
+        try {
+          await axios.delete(url);
+          setDadosApi(dadosApi.filter((voraze) => voraze.id !== id));
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+
+    const update = async (id) => {
+        router.push(`/vorazes/${id}`);
+      };
+
     useEffect(() => {
         async function JogosFetch() {
             try {
