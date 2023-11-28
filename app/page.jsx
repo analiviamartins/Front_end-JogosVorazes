@@ -1,10 +1,18 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import styles from './page.module.css';
 
-export default function Home() {
+function App() {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <div className='escuro'>
+      <div className={styles.container}>
+      <img src="/banner.jpg" alt="Banner" className={styles.banner} width={1263} height={600}/>
+      </div>
+      <div>
+      <h1 className={styles.title}>Olá, mundo!</h1>
+      </div>
+      </div>
+    
+  );
+};
+
+export default App;
+
