@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
@@ -18,18 +18,6 @@ function App() {
       </div>
       <div className={styles.div1}>
         <h1 className={styles.title}>Bem-vindos aos Jogos!</h1>
-=======
-import styles from './page.module.css';
-
-function App() {
-  return (
-    <div >
-      <div className={styles.container}>
-      <img className={styles.image} src="/banner.jpg" alt="Banner" width={1280} height={500}/>
-      </div>
-      <div>
-      <h1 className={styles.title}>Olá, mundo!</h1>
->>>>>>> 43e7f793106b5744673d888ca5d220bb0eb1dafa
       </div>
       <img className={styles.historiaImg} src="/historiaJogos.jpeg" alt="historiaJogos" />
       <div className={styles.separar}>
@@ -59,7 +47,7 @@ function App() {
       <div>
         <Carousel />
       </div>
-    
+    </div>
   );
 };
 
