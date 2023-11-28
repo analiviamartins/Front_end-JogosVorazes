@@ -1,16 +1,21 @@
-
+/* carrosel.module.css */
 .carousel {
   position: relative;
   width: 80%;
   margin: auto;
   overflow: hidden;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
 }
 
 .carousel-images {
   display: flex;
   transition: transform 0.5s ease-in-out;
   flex-direction: column;
-  margin-left: 100px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 100px;
 }
 
 .carousel-image {
@@ -19,15 +24,19 @@
   width: 33.33%;
 }
 
-.control-btn {
-  position: absolute;
-  top: 50%;
-  font-size: 24px;
-  background: none;
+.control-btn.next {
+  right: 10px;
+  background-color: #007bff; /* Cor de fundo azul, você pode ajustar conforme necessário */
+  color: #fff; /* Cor do texto branca */
   border: none;
-  color: #333;
+  border-radius: 5px; /* Borda arredondada */
+  padding: 10px 15px; /* Espaçamento interno */
   cursor: pointer;
-  outline: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.control-btn.next:hover {
+  background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
 }
 
 .prev {
