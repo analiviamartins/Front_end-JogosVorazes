@@ -1,5 +1,4 @@
 import React from 'react';
-import style from './ganhador.module.css';
 
 const Ganhador = ({ isOpen, onClose, winner, player }) => {
     if (!isOpen) {
