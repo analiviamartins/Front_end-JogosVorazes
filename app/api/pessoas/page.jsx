@@ -35,11 +35,14 @@ function home() {
                             <div key={pesso.id}>
                                 <div>
                                     <p><strong> Nome:</strong> {pesso.nome} </p>
-                                    <img src={equip.imagem} alt={pesso.nome} />
+                                    <img src={pesso.url} alt={pesso.nome} />
+                                    
                                     <p><strong>Idade:</strong> {pesso.idade}
                                     </p>
+                                    
                                     <p><strong>Email:</strong> {pesso.email}
                                     </p>
+                                    
                                     <p><strong>Hobby:</strong> {pesso.hobby}
                                     </p>
                                 </div>
