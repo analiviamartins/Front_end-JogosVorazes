@@ -1,12 +1,44 @@
-.body{
-    background-color: rgb(42, 41, 41);
-    color: #ffff;
-}
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
-.titulo{
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
+ .body {
+     background-image: url("/fundo2.jpg");
+     color: white;
+ }
 
+ .titulo {
+     text-align: center;
+     justify-content: center;
+     align-items: center;
+     display: flex;
+ }
+
+ .Nome {
+     color: #daa520;
+     font-family: 'Montserrat', sans-serif;
+     text-align: center;
+ }
+
+ .title {
+     min-height: 100px;
+ }
+
+ .card {
+     margin-top: 5rem;
+     background-color: rgb(68, 65, 65);
+     border-radius: 0.7rem;
+     box-shadow: 0 0 0.625rem #9b771b, 0 0 1.25rem #9b771b, 0 0 1.875rem #9b771b;
+     width: 20%
+ }
+
+ .lista {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 40px;
+     text-align: center;
+     justify-content: center;
+ }
+
+
+    
+  
