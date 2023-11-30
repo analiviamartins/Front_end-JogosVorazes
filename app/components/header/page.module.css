@@ -1,8 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-image: url('https://img.freepik.com/fotos-premium/placa-de-aco-de-metal-preto-e-textura-metalica-em-fundo-escuro-com-superficie-de-material-inoxidavel-de-padrao-brilhante-renderizacao-3d_79161-1694.jpg');
-  background-size: cover; 
+  background-color: gold;
   border-bottom: 1px solid ;
 }
 
@@ -12,7 +11,7 @@
   align-items: center;
   padding: 10px;
   color: white;
-  background-image: url('https://img.freepik.com/vetores-premium/fundo-de-textura-dourada-com-cor-de-malha-de-textura-brilhante-e-suave-para-elemento-de-design-grafico-metalico_120819-2031.jpg');
+  background-color: gold; 
   background-size: 100% 8px;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -31,11 +30,11 @@
 }
 
 .div2 {
-  background-image: url('https://img.freepik.com/vetores-premium/fundo-de-textura-dourada-com-cor-de-malha-de-textura-brilhante-e-suave-para-elemento-de-design-grafico-metalico_120819-2031.jpg');
+  background-color: gold; 
   padding: 10px;
   border-radius: 5px;
 }
 
-.div2 h1 {
+.div2  {
   margin: 0;
 }
