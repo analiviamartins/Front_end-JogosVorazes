@@ -13,16 +13,16 @@ function home() {
     const deletar = async (id) => {
         const url = `/api/vorazes/${id}`;
         try {
-          await axios.delete(url);
-          setDadosApi(dadosApi.filter((voraze) => voraze.id !== id));
+            await axios.delete(url);
+            setDadosApi(dadosApi.filter((voraze) => voraze.id !== id));
         } catch (error) {
-          console.error("Error fetching data:", error);
+            console.error("Error fetching data:", error);
         }
-      };
+    };
 
     const update = async (id) => {
         router.push(`/vorazes/${id}`);
-      };
+    };
 
     useEffect(() => {
         async function JogosFetch() {
@@ -49,44 +49,48 @@ function home() {
                 vorazes ? (
 
                     <div className={style.lista}>
+
                         {dadosApi.map((voraze) => (
-                            
-                                     
                             <div key={voraze.id} className={style.card}>
-                                <div class="flip-card">
-                            <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                
-                                <div className={style.title}>
-                                <h1 className={style.Nome}>
-                                    {voraze.nome}
-                                </h1>
+                                <div className={style.flipcard}>
+                                <div className={style.flipcardInner}>
+                                    <div className={style.flipcardFront}>
+
+                                        <div className={style.title}>
+                                            <h1 className={style.Nome}>
+                                                {voraze.nome}
+                                            </h1>
+                                        </div>
+                                        <img src={voraze.imagem} width={150} height={175} alt={voraze.nome} />
+                                        <div className={style.texto}>
+                                        <p>
+                                            <strong>Idade:</strong> {voraze.idade}
+                                        </p>
+                                        <p>
+                                            <strong>Distrito:</strong> {voraze.distrito}
+                                        </p>
+                                        <p>
+                                            <strong>Gênero:</strong> {voraze.genero}
+                                        </p>
+                                        <p>
+                                            <strong>Profissão:</strong> {voraze.profissao}
+                                        </p>
+                                        </div>
+                                        </div>
+                                    <div className={style.flipcardBack}>
+                                        <p>
+                                            <strong>Descrição:</strong> {voraze.descricao}
+                                        </p>
+                                    </div>
                                 </div>
-                                <img src={voraze.imagem} width={150} height={195} alt={voraze.nome} />
-                                <p>
-                                    <strong>Idade:</strong> {voraze.idade}
-                                </p>
-                                <p>
-                                    <strong>Distrito:</strong> {voraze.distrito}
-                                </p>
-                                <p>
-                                    <strong>Gênero:</strong> {voraze.genero}
-                                </p>
-                                <p>
-                                    <strong>Profissão:</strong> {voraze.profissao}
-                                </p>
-                                </div>
-                                <div class="flip-card-back">
-                                <p>
-                                    <strong>Descrição:</strong> {voraze.descricao}
-                                </p>
                                 </div>
                             </div>
-                            </div>
-                    </div>
+                        
                         ))}
                     </div>
                     
+
+
                 ) : (
                     <p>Carregando...</p>
                 )
@@ -112,6 +116,5 @@ function home() {
 export default home;
 
 
-      
-    
-  
+
+

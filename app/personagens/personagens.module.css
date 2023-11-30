@@ -1,43 +1,99 @@
  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
+ 
  .body {
-     background-image: url("/fundo2.jpg");
-     color: white;
- }
+    background-image: url(/fundo2.jpg);
+  }
+  
+  .titulo {
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  .lista {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .card {
+    margin: 10px;
+    width: 200px;
+    height: 530px;
+    perspective: 1000px;
+    margin-top: 5rem;
+    background-color: rgb(68, 65, 65);
+    border-radius: 0.7rem;
+    box-shadow: 0 0 0.625rem #9b771b, 0 0 1.25rem #9b771b, 0 0 1.875rem #9b771b;
+    width: 25%; 
+    overflow: hidden;
+  }
+  
 
- .titulo {
-     text-align: center;
-     justify-content: center;
-     align-items: center;
-     display: flex;
- }
+  .texto{
+    line-height: 3rem;
+    color: white;
+  }
 
- .Nome {
-     color: #daa520;
-     font-family: 'Montserrat', sans-serif;
-     text-align: center;
- }
+  .title{
+    min-height: 100px;
+  }
 
- .title {
-     min-height: 100px;
- }
+  .Nome {
+    color: #daa520;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding-top: 0.7rem;
+}
 
- .card {
-     margin-top: 5rem;
-     background-color: rgb(68, 65, 65);
-     border-radius: 0.7rem;
-     box-shadow: 0 0 0.625rem #9b771b, 0 0 1.25rem #9b771b, 0 0 1.875rem #9b771b;
-     width: 20%
- }
-
- .lista {
-     width: 100%;
-     display: flex;
-     flex-wrap: wrap;
-     gap: 40px;
-     text-align: center;
-     justify-content: center;
- }
+  
+  .flipcard {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  
+  .flipcard:hover {
+    transform: rotateY(-180deg);
+  }
+  
+  .flipcardInner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    
+  }
+  
+  .flipcardFront,
+  .flipcardBack {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+  }
+  
+  
+  .flipcardBack {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+  }
+  
+  .flipcardFront{
+    transform: rotatey(0deg);
+  }
+ 
+ 
 
 
     
