@@ -37,17 +37,21 @@
 }
 .controlBtn {
   right: 10px;
-  background-color: #000000;
-  color: #fff; 
   border: none;
   border-radius: 5px; 
   padding: 10px 15px; 
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  width: 8rem;
+  height: 20rem;
+  font-size: 5rem;
+  background-color: transparent;
+  color: #daa520;
 }
 
 .controlBtn:hover {
-  background-color: gold; 
+  opacity: 0.5;
+
 }
 
 .prev {
