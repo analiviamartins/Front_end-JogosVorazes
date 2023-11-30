@@ -3,10 +3,14 @@ import Headers from './components/header/page.jsx';
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
 import ParallaxSection from '@/src/ParallaxSection';
+import Header from './components/header/page.jsx';
+import Footer from './components/footer/page.jsx';
 
 function App() {
   return (
-      <div className={styles.divFull}>
+    <div className={styles.tudao2}>
+      <Header />
+      <div className={styles.tudao}>
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
         </div>
@@ -42,7 +46,8 @@ function App() {
         <Carousel />
       </div>
     </div>
-
+    <Footer />
+    </div>
   );
 };
 
