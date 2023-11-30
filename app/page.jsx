@@ -1,10 +1,12 @@
 "use client"
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
+import Header from './components/header/page.jsx';
 
 function App() {
   return (
       <div className={styles.tudao}>
+        <Header />
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
         </div>
