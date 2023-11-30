@@ -1,7 +1,6 @@
 "use client"
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
-import ParallaxSection from '@/src/ParallaxSection';
 import Header from './components/header/page.jsx';
 import Footer from './components/footer/page.jsx';
 
@@ -10,6 +9,7 @@ function App() {
     <div className={styles.tudao2}>
       <Header />
       <div className={styles.tudao}>
+        <Header />
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
         </div>
