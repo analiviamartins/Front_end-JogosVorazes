@@ -1,12 +1,10 @@
-
-import Headers from './components/header/page.jsx';
+"use client"
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
-import ParallaxSection from '@/src/ParallaxSection';
 
 function App() {
   return (
-      <div className={styles.divFull}>
+      <div className={styles.tudao}>
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
         </div>

@@ -25,7 +25,7 @@
 }
 
 .tudao{
-    background-image: url(/public/fundo2.jpg);
+    background-image: url("/fundoOficial.jpg");
     height: 100%;
     background-attachment: fixed;
 }
