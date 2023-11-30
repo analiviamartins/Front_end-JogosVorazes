@@ -1,8 +1,6 @@
-
-import Headers from './components/header/page.jsx';
+"use client"
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
-import ParallaxSection from '@/src/ParallaxSection';
 
 function App() {
   return (
