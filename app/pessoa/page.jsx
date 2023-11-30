@@ -62,7 +62,8 @@ function home() {
          <div>
          <h2> Cadastrar </h2>
          <input
-         value={nome} className={style.input} onChange={(e) => setNome(e.target.value)} type="text"  placeholder="Nome:"  />
+         value={nome} 
+         className={style.input} onChange={(e) => setNome(e.target.value)} type="text"  placeholder="Nome:"  />
 
             
             <input
