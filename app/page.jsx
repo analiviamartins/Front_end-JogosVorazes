@@ -4,7 +4,7 @@ import styles from './page.module.css';
 
 function App() {
   return (
-      <div className={styles.divFull}>
+      <div className={styles.tudao}>
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
         </div>
