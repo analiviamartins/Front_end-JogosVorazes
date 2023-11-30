@@ -7,6 +7,7 @@ import ParallaxSection from '@/src/ParallaxSection';
 function App() {
   return (
     <div className={styles.tudao}>
+
       <div className={styles.divFull}>
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
