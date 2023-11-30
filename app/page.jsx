@@ -9,7 +9,6 @@ function App() {
     <div className={styles.tudao2}>
       <Header />
       <div className={styles.tudao}>
-        <Header />
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
         </div>
