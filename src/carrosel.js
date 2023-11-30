@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import './css/carrosel.module.css';
+import carrosel from './css/carrosel.module.css';
 
 const images = [
   'http://thg-agehotel-oficial.weebly.com/uploads/1/2/8/1/12811829/456730277.jpg',
@@ -38,24 +38,36 @@ const Carousel = () => {
   };
 
   return (
-    <div className="carousel">
-      <button className="control-btn prev" onClick={prevImages}>
+    <>
+
+    <div>
+    <h1 className={carrosel.imgDistritos}>Distritos</h1>
+    </div>
+    
+        <div className={carrosel.carousel}>
+      
+      <button className={carrosel.controlBtn} onClick={prevImages}>
         &lt;
       </button>
-      <div className="carousel-images">
+      <div className={carrosel.carousel-images}>
         {images.slice(currentImageIndex, currentImageIndex + 3).map((image, index) => (
           <img
             key={index}
-            className="carousel-image"
+            className={carrosel.carousel-image}
             src={image}
             alt={`carousel-${currentImageIndex + index}`}
           />
         ))}
       </div>
-      <button className="control-btn next" onClick={nextImages}>
+      <button className={carrosel.controlBtn} onClick={nextImages}>
         &gt;
       </button>
     </div>
+    
+    
+    </>
+
+
   );
 };
 
