@@ -71,42 +71,42 @@ function page() {
 
         vorazesInstancia.addPerso(novoVoraze);
       });
-      setPersos(vorazesInstancia.getPerso())
+      setPersos(vorazesInstancia.getPersos())
     }
   }, [apiData]);
 
   const select5RandomPersos = () => {
     const randomPersos = [];
-    const persos = vorazesInstancia.select5RandomPersos();
-    persos.forEach((perso) => {
-        randomPersos.push(perso);
+    const vorazes = vorazesInstancia.select5RandomPersos();
+    vorazes.forEach((voraze) => {
+        randomPersos.push(voraze);
     }
     );
     return randomPersos;
   }
 
   useEffect(() => {
-    if (persos.length > 0) {
+    if (vorazes.length > 0) {
       const randomPersos = select5RandomPersos();
-      setplayer2Vorazes(randomPersos);
+      setplayer1Vorazes(randomPersos);
     }
-  }, [persos]);
+  }, [vorazes]);
 
   useEffect(() => {
-    if (persos.length > 0) {
+    if (vorazes.length > 0) {
       const randomPersos = select5RandomPersos();
       setplayer2Vorazes(randomPersos);
     }
-  }, [persos]);
+  }, [vorazes]);
 
 
-  function selecionarPerso(player, personagem) {
+  function selecionarPerso(player, voraze) {
     if (player == 'player1') {
-      console.log('selecionar', personagem + player)
-      setplayer1VorazeSelecionado(personagem,);
+      console.log('selecionar', voraze + player)
+      setplayer1VorazeSelecionado(voraze,);
     } else {
-      console.log('selecionar', personagem + player)
-      setplayer1VorazeSelecionado(personagem);
+      console.log('selecionar', voraze + player)
+      setplayer2VorazeSelecionado(voraze);
     }
   }
 
@@ -149,19 +149,19 @@ function page() {
     setplayer2VorazeSelecionado(null);
   }
 
-  const removerCartaPerdedora = (player1VorazeSelecionado, player2VorazeSelecionado) => {
+  const removerCartaPerdedora = (player1VorazeSelecionado, player2VorazeSelecionado, setplayer1Vorazes, setplayer2Vorazes) => {
     const p1Indice = Number(player1VorazeSelecionado.dano + player1VorazeSelecionado.defesa);
     const p2Indice = Number(player2VorazeSelecionado.dano + player2VorazeSelecionado.defesa);
-
-    if (p1Indice == p2Indice) {
-        setplayer1Vorazes(player1Vorazes.filter((perso) => perso.id !== player1VorazeSelecionado.id));
-        setplayer2Vorazes(player2Vorazes.filter((perso) => perso.id !== player2VorazeSelecionado.id));
+  
+    if (p1Indice === p2Indice) {
+      setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+      setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
     } else if (p1Indice > p2Indice) {
-        setplayer2Vorazes(player2Vorazes.filter((perso) => perso.id !== player2VorazeSelecionado.id));
+      setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
     } else {
-        setplayer1Vorazes(player1Vorazes.filter((perso) => perso.id !== player1VorazeSelecionado.id));
+      setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
     }
-  }
+  };
 
   return (
     <>
@@ -173,12 +173,12 @@ function page() {
                 <p>Cartas Player 1 - Pontos: {player1Pontos}</p>
                 <div  className={style.deckPlayers}>
                   {
-                    apiData.map((perso) => (
-                      <div  className={style.herois} key={perso.id}>
-                        <h2>{perso.nome}</h2>
-                        <img className={style.imagem} onClick={() => selecionarPerso('player1', perso)} src={perso.imagem} alt={perso.nome} />
-                        <p>Ataque: {perso.dano}</p>
-                        <p>Defesa: {perso.defesa}</p>
+                    apiData.map((vorazes) => (
+                      <div  className={style.herois} key={vorazes.id}>
+                        <h2>{vorazes.nome}</h2>
+                        <img className={style.imagem} onClick={() => selecionarPerso('player1', vorazes)} src={vorazes.imagem} alt={vorazes.nome} />
+                        <p>Ataque: {vorazes.dano}</p>
+                        <p>Defesa: {vorazes.defesa}</p>
                       </div>
                     ))
                   }
@@ -198,12 +198,12 @@ function page() {
                 <p>Cartas Player 2  - Pontos: {player2Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
-                    apiData.map((perso) => (
-                      <div className={style.herois} key={perso.id}>
-                        <h2>{perso.nome}</h2>
-                        <img  className={style.imagem} onClick={() => selecionarPerso('player2', perso)} src={perso.imagem} alt={perso.nome} width={128} />
-                        <p>Ataque: {perso.dano}</p>
-                        <p>Defesa: {perso.defesa}</p>
+                    apiData.map((voraze) => (
+                      <div className={style.herois} key={voraze.id}>
+                        <h2>{voraze.nome}</h2>
+                        <img  className={style.imagem} onClick={() => selecionarPerso('player2', voraze)} src={voraze.imagem} alt={voraze.nome} width={128} />
+                        <p>Ataque: {voraze.dano}</p>
+                        <p>Defesa: {voraze.defesa}</p>
                       </div>
                     ))
                   }
@@ -243,7 +243,7 @@ function page() {
               <div className={style.herois} key={player2VorazeSelecionado.id}>
                 <h2>{player2VorazeSelecionado.nome}</h2>
                 <img className={style.imagem} src={player2VorazeSelecionado.imagem} alt={player2VorazeSelecionado.nome} width={128} />
-                <p>Ataque: {player2VorazeSelecionado.ataque}</p>
+                <p>Ataque: {player2VorazeSelecionado.dano}</p>
                 <p>Defesa: {player2VorazeSelecionado.defesa}</p>
               </div>
             ) : (
