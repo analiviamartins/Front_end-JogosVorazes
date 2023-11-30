@@ -1,5 +1,3 @@
-
-
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
 import ParallaxSection from '@/src/ParallaxSection';
@@ -48,4 +46,3 @@ function App() {
 };
 
 export default App;
-
