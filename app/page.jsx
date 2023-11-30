@@ -11,10 +11,6 @@ function App() {
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
         </div>
-
-        <div className={styles.parallax}>
-          <ParallaxSection />
-        </div>
       </div>
       <div className={styles.div1}>
         <h1 className={styles.title}>Bem-vindos aos Jogos!</h1>

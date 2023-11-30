@@ -25,16 +25,20 @@
 }
 
 .tudao{
-    background-color: black;
-    color: gold;
+    background-image: url("/fundo2.jpg");
+    height: 100%;
+    background-attachment: fixed;
+}
+.tudao::after{
+    content: '';
+    position: absolute;
+    transform: translateZ(-1px) scale(1.5);
+    background-size: 100%;
+    z-index: -1;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
-
-.main{
-    background-color: black;
-}
 
 .container{
     display: flex;
