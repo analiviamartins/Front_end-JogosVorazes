@@ -6,7 +6,7 @@ const url = process.env.BASE_URL + "/vorazes";
 
 export async function GET() {
   try {
-   const resposta = await axios.get(url);
+    const resposta = await axios.get(url);
 
     return NextResponse.json(resposta.data);
   } catch (error) {
@@ -27,4 +27,5 @@ export async function POST(request) {
     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }
+
 

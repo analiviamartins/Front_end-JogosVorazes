@@ -9,3 +9,4 @@ export class vorazes{
         this.defesa= defesa;
         this.imagem = imagem;
     }}
+    export default vorazes;

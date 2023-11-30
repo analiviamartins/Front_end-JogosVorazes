@@ -35,8 +35,7 @@ export default function UpdateStudent({ params }) {
   }, []);
 
   const atualizarPerso = () => {
-    axios
-      .put(`http://localhost:3000/api/voraze/${id}`, {
+    axios.put(`http://localhost:3000/api/voraze/${id}`, {
         nome: nome,
         idade: idade,
         distrito: distrito,
