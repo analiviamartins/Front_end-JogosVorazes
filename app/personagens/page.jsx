@@ -93,9 +93,22 @@ function home() {
             ) : (
                 <p>Não há personagens cadastrados</p>
             )}
-        </div>
-    )
-};
+        <div className={styles.buttons}>
+        <button
+          className={`${styles.button} ${styles.deleteButton}`}
+          onClick={() => deletar(student.id)}
+        >
+          <FaTrash /> Deletar
+        </button>
+        <button
+          className={`${styles.button} ${styles.editButton}`}
+          onClick={() => update(student.id)}
+        >
+          <FaEdit /> Atualizar
+        </button>
+      </div>
+      </div>
+    )};
 export default home;
 
 
