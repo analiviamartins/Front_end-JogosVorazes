@@ -1,12 +1,13 @@
-/* carrosel.module.css */
 .carousel {
   position: relative;
   width: 80%;
-  margin: auto;
+  margin-top: 5rem;
   overflow: hidden;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
+  margin-left: 8rem;
+
 }
 
 .carousel-images {
@@ -16,6 +17,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 100px;
+  
 }
 
 .carousel-image {
@@ -24,19 +26,27 @@
   width: 33.33%;
 }
 
-.control-btn.next {
+.imgDistritos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem; 
+  font-family: Palatino, URW Palladio L, serif;
+
+}
+.controlBtn {
   right: 10px;
-  background-color: #007bff; /* Cor de fundo azul, você pode ajustar conforme necessário */
-  color: #fff; /* Cor do texto branca */
+  background-color: #000000;
+  color: #fff; 
   border: none;
-  border-radius: 5px; /* Borda arredondada */
-  padding: 10px 15px; /* Espaçamento interno */
+  border-radius: 5px; 
+  padding: 10px 15px; 
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
-.control-btn.next:hover {
-  background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
+.controlBtn:hover {
+  background-color: gold; 
 }
 
 .prev {
