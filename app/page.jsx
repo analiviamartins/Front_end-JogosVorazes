@@ -2,9 +2,12 @@
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
 import Header from './components/header/page.jsx';
+import Footer from './components/footer/page.jsx';
 
 function App() {
   return (
+    <div className={styles.tudao2}>
+      <Header />
       <div className={styles.tudao}>
         <Header />
         <div className={styles.container}>
@@ -42,7 +45,8 @@ function App() {
         <Carousel />
       </div>
     </div>
-
+    <Footer />
+    </div>
   );
 };
 
