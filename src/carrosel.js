@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import carrosel from './css/carrosel.module.css';
+import { FaArrowCircleRight, FaBeer } from "react-icons/fa";
 
 const images = [
   'http://thg-agehotel-oficial.weebly.com/uploads/1/2/8/1/12811829/456730277.jpg',

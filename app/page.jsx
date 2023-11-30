@@ -1,3 +1,5 @@
+
+import Headers from './components/header/page.jsx';
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
 import ParallaxSection from '@/src/ParallaxSection';
@@ -5,7 +7,7 @@ import ParallaxSection from '@/src/ParallaxSection';
 function App() {
   return (
     <div className={styles.tudao}>
-
+      <Headers />
       <div className={styles.divFull}>
         <div className={styles.container}>
           <img className={styles.image} src="/banner.jpg" alt="Banner" />
@@ -47,3 +49,4 @@ function App() {
 };
 
 export default App;
+
