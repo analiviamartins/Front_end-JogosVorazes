@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './page.module.css'
+import PopUp from './PopUp';
 
 const api = axios.create({
   baseURL: "http://localhost:3000",
@@ -15,7 +16,28 @@ export default function Cadaster() {
   const [email, setEmail] = useState("");
   const [hobby, setHobby] = useState("");
   const [pessoas, setPessoas] = useState([]);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popupMessage, setPopUpMessage] = useState("");
+  const [popupType, setPopUpType] = useState("");
   const router = useRouter;
+
+  const add = async (e) => {
+    try {
+      const response = await api.post("/api/pessoas", {nome, url, age, email, hobby });
+       setPessoas({...pessoas, response.data});
+
+       setPopUpMessage("Cadastrado com sucesso!");
+       setPopUpType("successful");
+       setShowPopUp(true); 
+    } catch (error) {
+      console.error("Erro ao se cadastrar");
+      setPopUpMessage("Erro ao se cadastrar")
+      setPopUpType("error");
+      setShowPopUp(true);
+   }
+
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
