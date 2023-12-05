@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './footer.module.css';
-import {BsInstagram} from 'react-icons/bs';
-import { BsFacebook } from 'react-icons/bs';
-import { BsTwitter } from 'react-icons/bs';
-import { BsGithub} from 'react-icons/bs';
+
 
 function Footer() {
   return (
