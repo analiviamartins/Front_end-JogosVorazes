@@ -123,12 +123,32 @@ export default function Cadaster() {
               onChange={(e) => setHobby(e.target.value)}
               required
             />
+            <button
+              className={styles.button}
+              type="button"
+              value={cadasterButton}
+              onClick={() => add()}>
+              Cadastrar
+            </button>
+            <button
+              className={styles.remove}
+              type="button"
+              value={removeButton}
+              onClick={() => deletar()}>
+              Excluir
+              </button>
+            <button
+              className={styles.button}
+              type="button"
+              value={editButton}
+              onClick={() => update()}
+            >
+              Salvar
+            </button>
+            <p>
+              {showPopup && <PopUp message={popupMessage} type={popupType} />}
+            </p>
           </div>
-          <button
-            type="submit"
-            className={`${styles.button} ${styles.submitButton}`}>
-            Cadastrar
-          </button>
         </form>
       </div>
     </div>
