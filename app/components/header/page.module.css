@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20rem;
     height: 6rem;
     background-color: black;
     color: #daa520;
@@ -13,18 +12,34 @@
     font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin-left: -20rem;
 }
 
 .button {
     background-color: #daa520;
     color: black;
     border: none;
-    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin-right: -17rem;
+    padding: 0.5rem 1rem;
+}
+
+@media only screen and (max-width: 450px) {
+    .body {
+        width: 100vw;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        width: 10rem;    
+    }
+
+    .button {
+        margin-right: 0;
+        display: flex;
+        justify-content: center;    
+        flex-direction: column; 
+    }
 }
