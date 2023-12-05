@@ -1,100 +1,136 @@
-'use client'
-import axios from "axios"
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"
+"use client";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import styles from './page.module.css'
 
+const api = axios.create({
+  baseURL: "http://localhost:3000",
+});
 
-function home() {
-    const [pessoa, setPessoa] = useState([])
-    const [dadosApi, setDadosApi] = useState([]);
-    const router = useRouter();
+export default function Cadaster() {
+  const [nome, setNome] = useState("");
+  const [url, setImage] = useState("");
+  const [age, setIdade] = useState("");
+  const [email, setEmail] = useState("");
+  const [hobby, setHobby] = useState("");
+  const [pessoas, setPessoas] = useState([]);
+  const router = useRouter;
 
-    useEffect(() => {
-        async function PessoaFetch() {
-            try {
-                const resposta = await axios.get("/api/pessoa");
-                setPessoa(resposta.data.membros)
-                setDadosApi(resposta.data.membros)
-            } catch (error) {
-                console.log("error fetching data:", error)
-            }
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post("/api/pessoas", { nome, url, age, email, hobby, pessoas });
+      setNome("");
+      setImage("");
+      setIdade("");
+      setEmail("");
+      setHobby("");
+      setPessoas("");
+      router.push(`/pessoas/`);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+  };
 
-        PessoaFetch();
+  useEffect(() => {
+    async function fetchPessoas() {
+      try {
+        const response = await api.get("/api/pessoas");
+        setPessoas(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
 
-    }, []);
+    fetchPessoas();
+  }, []);
 
-    console.log(dadosApi)
-    return (
-        <div>
-            <p>Sobre nós</p>
-            {dadosApi ? (
-                pessoa ? (
-                    <div>
-                        {dadosApi.map((pesso) => (
-                            <div key={pesso.id}>
-                                <div>
-                                    <p><strong> Nome:</strong> {pesso.nome} </p>
-                                    <img src={pesso.url} alt={pesso.nome} />
-                                    
-                                    <p><strong>Idade:</strong> {pesso.idade}
-                                    </p>
-                                    
-                                    <p><strong>Email:</strong> {pesso.email}
-                                    </p>
-                                    
-                                    <p><strong>Hobby:</strong> {pesso.hobby}
-                                    </p>
-                                </div>
-                            <div>
-                        </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <p>Loading...</p>
-                )
-            ) : (
-                <p>Não há pessoas cadastradas</p>
-            )} 
-            <div>
-         </div>
-         <div className={style.app} style={tema2}>
-            <h2> Cadastrar </h2>
-            {editButton ? (
-              <h1 className={style.h1}>Editar Informações</h1>
-            ) : (
-              <h1 className={style.h1}>Cadastre-se</h1>
-            )}
+  return (
+    <div className={styles.container}>
+      <header />
+      <div className={styles.actions}>
+        <a href="./pessoas">
+          <button className={`${styles.button} ${styles.primaryButton}`}>
+            Go Home
+          </button>
+        </a>
+      </div>
+      <div className={styles.pessoasContainer}>
+        <h1 className={styles.mainText}>Cadastre-se</h1>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="nome">
+              Nome:
+            </label>
             <input
-              value={name}
-              className={style.input} onChange={(e) => setNome(e.target.value)} type="text" placeholder="Nome:" />
-
-            
-            <input
-              value={url}
-              className={style.input} onChange={(e) => setImage(e.target.value)} type="url" placeholder="Link da sua imagem:"/>
-            
-
-            <input
-              value={age}
-              className={style.input} onChange={(e) => setIdade(e.target.value)} type="number" placeholder="Idade:"/>
-            
-            
-            <input
-              value={email}
-              className={style.input} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email:" />
-            
-          
-            <input
-              value={hobby}
-              className={style.input} onChange={(e) => setHobby(e.target.value)} type="text" placeholder="Seu hobby:"
+              className={styles.input}
+              type="text"
+              id="nome"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)} 
+              required
             />
-             <button className={style.remove} onClick={() => removePessoa(person)}>Excluir</button>
-             <button className={style.edit} onClick={() => editPessoa(person)}>Editar</button>
           </div>
-        </div>
-    )
-    
-};
-export default home;
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="url">
+              Link da Imagem:
+            </label>
+            <input
+              className={styles.input}
+              type="url"
+              id="url"
+              value={url}
+              onChange={(e) => setImage(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="age">
+              Idade:
+            </label>
+            <input
+              className={styles.input}
+              type="number"
+              id="age"
+              value={age}
+              onChange={(e) => setIdade(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="email">
+              Email:
+            </label>
+            <input
+              className={styles.input}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="hobby">
+              Hobby:
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="hobby"
+              value={hobby}
+              onChange={(e) => setHobby(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className={`${styles.button} ${styles.submitButton}`}>
+            Cadastrar
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

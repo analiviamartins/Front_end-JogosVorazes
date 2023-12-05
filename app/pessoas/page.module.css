@@ -1,0 +1,77 @@
+/* seu-arquivo-de-estilos.module.css */
+
+.container {
+  background: url(/fundo2.jpg);
+  background-size: cover;
+  color: gold;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-attachment: fixed;
+  height: 100vh;
+  max-width: 105%;
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+  margin-left: -1rem;
+  margin-right: -0.5rem;
+}
+
+.actions {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.button,
+.primaryButton {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #000;
+  color: gold;
+  border: 2px solid gold;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background-color: gold;
+  color: #000;
+}
+
+.pessoasContainer {
+  text-align: center;
+}
+
+.mainText {
+  font-size: 24px; /* Tamanho do título */
+  color: gold;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #000;
+  color: gold;
+  border: 2px solid gold;
+  border-radius: 8px;
+  padding: 8px;
+  width: 200%; /* Preencher largura disponível */
+  box-sizing: border-box;
+  text-align: center;
+
+}
+
+/* Adicione outros estilos conforme necessário */
