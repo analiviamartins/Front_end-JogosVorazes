@@ -36,7 +36,7 @@ function home() {
 
 
     const update = async (id) => {
-        router.push(`/vorazes/${id}`);
+        router.push(`/personagens/${id}`);
     };
 
     useEffect(() => {
@@ -114,7 +114,7 @@ function home() {
                                         className={`${styles.button} ${styles.editButton}`}
                                         onClick={() => update(vorazes.id)}
                                     >
-                                        Atualizar
+                                        editar
                                     </button>
                                 </div>
                                 {
