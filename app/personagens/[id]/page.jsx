@@ -35,14 +35,14 @@ export default function UpdateStudent({ params }) {
   }, []);
 
   const atualizarPerso = () => {
-    axios.put(`http://localhost:3000/vorazes/${id}`, {
+    axios.put(`http://localhost:3000/api/vorazes/${id}`, {
         nome: nome,
+        imagem:imagem,
         idade: idade,
         distrito: distrito,
         genero: genero,
         profissao:profissao,
         descricao:descricao,
-        imagem:imagem,
       })
       .then((response) => {
         router.push("/vorazes");

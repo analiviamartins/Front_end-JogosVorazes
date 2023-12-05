@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { NextResponse } from "next/server";
 
-const url = process.env.BASE_URL;
+const url = process.env.BASE_URL  + "/vorazes";
 
 export async function GET(request, { params }) {
   const { id } = params;
@@ -19,6 +19,7 @@ export async function GET(request, { params }) {
 
 export async function PUT(request, { params }) {
   const { id } = params;
+  //console.log(id)
   const body = await request.json();
 
   try {
@@ -38,16 +39,7 @@ export async function DELETE(request, { params }) {
 
     return NextResponse.json(response.data);
   } catch (error) {
-    if (error.response) {
-      console.log("[ORDER_DELETE]", error.response.data);
-      console.log("[ORDER_DELETE]", error.response.status);
-      console.log("[ORDER_DELETE]", error.response.headers);
-    } else if (error.request) {
-      console.log("[ORDER_DELETE]", error.request);
-    } else {
-      console.log("[ORDER_DELETE]", error.message);
-    }
-    console.log("[ORDER_DELETE]", error.config);
-     return new NextResponse("Erro interno do servidor!", { status: 500 });
+    console.log("[ORDER_DELETE]", error);
+    return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }
