@@ -1,18 +1,16 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import listVorazes from '../../model/listVorazes';
-import { vorazes } from '@/model/persoVorazes';
+import  Vorazes, { Voraz } from '@/model/voraze';
 import Ganhador from '../components/vencedor/vencedor';
 import style from '../batalha/page.module.css';
 
-const vorazesInstancia = new listVorazes();
+const vorazesInstancia = new Vorazes();
 
 function page() {
 
-  const [persos, setPersos] = useState([]);
-  const [apiData, setApiData] = useState(null);
+  const [vorazes, setVorazes] = useState([]);
+  const [apiData, setApiData] = useState();
 
   const [player1, setplayer1] = useState(null);
   const [player2, setplayer2] = useState(null);
@@ -25,8 +23,8 @@ function page() {
   const [player1Vorazes, setplayer1Vorazes] = useState(null);
   const [player2Vorazes, setplayer2Vorazes] = useState(null);
 
-  const [player1VorazeSelecionado, setplayer1VorazeSelecionado] = useState(null);
-  const [player2VorazeSelecionado, setplayer2VorazeSelecionado] = useState(null);
+  const [player1VorazeSelecionado, setPlayer1VorazeSelecionado] = useState(null);
+  const [player2VorazeSelecionado, setPlayer2VorazeSelecionado] = useState(null);
 
   const [VorazeMostar, setVorazeMostrar] = useState(null);
 
@@ -40,73 +38,85 @@ function page() {
     setModalOpen(false);
   };
 
-
+  const quantidadeVorazes = (array) => {
+    let quantidade = array.length, valor, randomVorazes;
+   
+    while (0 !== quantidade) {
+   
+      randomVorazes = Math.floor(Math.random() * quantidade);
+      quantidade -= 1;
+   
+      valor = array[quantidade];
+      array[quantidade] = array[randomVorazes];
+      array[randomVorazes] = valor;
+    }
+   
+    return array;
+  }
 
   useEffect(() => {
     async function JogosFetch() {
         try {
             const resposta = await axios.get("/api/vorazes");
-            setApiData(resposta.data.voraze)
+            const data = resposta.data.voraze;
+            const quantidadeVorazesData = quantidadeVorazes(data);
+            setApiData(quantidadeVorazesData.slice(0, 6));
         } catch (error) {
             console.log("error fetching data:", error)
         }
     }
-
     JogosFetch();
-
 }, []);
 
   useEffect(() => {
     if (apiData) {
       apiData.forEach((voraze) => {
-        const { id } = voraze;
-        const novoVoraze = new vorazes({
-            id: id,
-            nome: voraze.nome,
-            distrito: voraze.distrito,
-            dano: voraze.dano,
-            defesa: voraze.defesa,
-            imagem: voraze.imagem,
+        const { id, attributes } = voraze;
+        const novoVoraze = new Voraz ({
+          id: id,
+          ...attributes
         });
 
-        vorazesInstancia.addPerso(novoVoraze);
+        vorazesInstancia.addVoraze(novoVoraze);
       });
-      setPersos(vorazesInstancia.getPersos())
+      setVorazes(vorazesInstancia.getVoraze())
     }
   }, [apiData]);
 
-  const select5RandomPersos = () => {
-    const randomPersos = [];
-    const vorazes = vorazesInstancia.select5RandomPersos();
-    vorazes.forEach((voraze) => {
-        randomPersos.push(voraze);
+  const select5RandomVorazes = (vorazes) => {
+    const randomIndices = [];
+    while (randomIndices.length < 5) {
+      const randomIndex = Math.floor(Math.random() * vorazes.length);
+      if (!randomIndices.includes(randomIndex)) {
+        randomIndices.push(randomIndex);
+      }
     }
-    );
-    return randomPersos;
-  }
+    const randomVorazes = randomIndices.map(index => vorazes[index]);
+    return randomVorazes;
+   };
 
-  useEffect(() => {
-    if (vorazes.length > 0) {
-      const randomPersos = select5RandomPersos();
-      setplayer1Vorazes(randomPersos);
+   useEffect(() => {
+    if (Vorazes.length > 0) {
+      const randomVorazes = select5RandomVorazes(vorazes);
+      setplayer1Vorazes(randomVorazes);
     }
-  }, [vorazes]);
-
-  useEffect(() => {
-    if (vorazes.length > 0) {
-      const randomPersos = select5RandomPersos();
-      setplayer2Vorazes(randomPersos);
+   }, [Vorazes]);
+   
+   useEffect(() => {
+    if (Vorazes.length > 0) {
+      const randomVorazes = select5RandomVorazes(vorazes);
+      setplayer2Vorazes(randomVorazes);
     }
-  }, [vorazes]);
+   }, [Vorazes]);
 
 
   function selecionarPerso(player, voraze) {
     if (player == 'player1') {
       console.log('selecionar', voraze + player)
-      setplayer1VorazeSelecionado(voraze,);
+      setPlayer1VorazeSelecionado(voraze,);
     } else {
       console.log('selecionar', voraze + player)
-      setplayer2VorazeSelecionado(voraze);
+      setPlayer2VorazeSelecionado(voraze);
     }
   }
 
@@ -145,23 +155,29 @@ function page() {
   }
 
   const limparCartasSelecionadas = () => {
-    setplayer1VorazeSelecionado(null);
-    setplayer2VorazeSelecionado(null);
+    setPlayer1VorazeSelecionado(null);
+    setPlayer2VorazeSelecionado(null);
   }
 
-  const removerCartaPerdedora = (player1VorazeSelecionado, player2VorazeSelecionado, setplayer1Vorazes, setplayer2Vorazes) => {
-    const p1Indice = Number(player1VorazeSelecionado.dano + player1VorazeSelecionado.defesa);
-    const p2Indice = Number(player2VorazeSelecionado.dano + player2VorazeSelecionado.defesa);
-  
+  const removerCartaPerdedora = (player1VorazeSelecionado, player2VorazeSelecionado) => {
+    const p1Indice = Number(player1VorazeSelecionado.ataque) + Number(player1VorazeSelecionado.defesa);
+    const p2Indice = Number(player2VorazeSelecionado.ataque) + Number(player2VorazeSelecionado.defesa);
+   
     if (p1Indice === p2Indice) {
-      setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
-      setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+     if (player1VorazeSelecionado && player2VorazeSelecionado) {
+       setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+       setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+     }
     } else if (p1Indice > p2Indice) {
-      setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+     if (player1VorazeSelecionado && Array.isArray(player1Vorazes)) {
+       setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+     }
     } else {
-      setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+     if (player2VorazeSelecionado && Array.isArray(player2Vorazes)) {
+       setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+     }
     }
-  };
+   };
 
   return (
     <>
@@ -270,9 +286,9 @@ function page() {
       <div>
         {
           ganhador == 'Jogador 1' ? (
-            <Ganhador isOpen={modalOpen} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
+            <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
           ) : (
-            <Ganhador isOpen={modalOpen} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
+            <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
           )
         }
       </div>
