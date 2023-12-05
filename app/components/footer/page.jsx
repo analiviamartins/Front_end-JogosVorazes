@@ -14,6 +14,11 @@ function Footer() {
       <FaTwitter />
       <FaGithub />
 </div>
+    <div className={styles.btnTopo}>
+       <a href='./'>
+        <button className={styles.button}>Voltar ao topo</button>
+      </a>
+      </div>
     <div className={styles.footerText}>
       <p>© 2023 - Todos os direitos reservados.</p>
       </div>

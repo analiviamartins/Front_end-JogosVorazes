@@ -13,13 +13,15 @@ export default function UpdateStudent({ params }) {
   const [distrito, setDistrito] = useState("");
   const [genero, setGenero] = useState("");
   const [profissao, setProfissao] = useState("");
+  const [dano, setDano] = useState("");
+  const [defesa, setDefesa] = useState("");
   const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState("");
 
   useEffect(() => {
     async function fetchVoraze() {
       const response = await axios.get(
-        `http://localhost:3000/api/vorazes`
+        `http://localhost:3000/api/vorazes/${id}`
       );
       setVoraze(response.data);
       setNome(response.data.nome);
@@ -27,6 +29,8 @@ export default function UpdateStudent({ params }) {
       setDistrito(response.data.distrito);
       setGenero(response.data.genero);
       setProfissao(response.data.profissao);
+      setDano(response.data.dano);
+      setDefesa(response.data.defesa);
       setDescricao(response.data.descricao);
       setImagem(response.data.imagem);
     }
@@ -34,13 +38,19 @@ export default function UpdateStudent({ params }) {
     fetchVoraze();
   }, []);
 
+  const voltar = async (id) => {
+    router.push(`/personagens`);
+};
+
   const atualizarPerso = () => {
-    axios.put(`http://localhost:3000/vorazes/${id}`, {
+    axios.put(`http://localhost:3000/api/vorazes/${id}`, {
         nome: nome,
         idade: idade,
         distrito: distrito,
         genero: genero,
         profissao:profissao,
+        dano: dano,
+        defesa: defesa,
         descricao:descricao,
         imagem:imagem,
       })
@@ -58,40 +68,69 @@ export default function UpdateStudent({ params }) {
           <form onSubmit={atualizarPerso}>
             <input
               type="text"
+              id="nome"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
+              required
             />
             <input
               type="text"
+              id="idade"
               value={idade}
               onChange={(e) => setIdade(e.target.value)}
+              required
             />
             <input
               type="text"
+              id="distrito"
               value={distrito}
               onChange={(e) => setDistrito(e.target.value)}
+              required
             />
             <input
               type="text"
+              id="genero"
               value={genero}
               onChange={(e) => setGenero(e.target.value)}
+              required
             />
             <input
               type="text"
-              value={descricao}
-              onChange={(e) => setProfissao(e.target.value)}
-            />
-            <input
-              type="text"
+              id="profissao"
               value={profissao}
               onChange={(e) => setDescricao(e.target.value)}
+              required
             />
             <input
               type="text"
+              id="dano"
+              value={dano}
+              onChange={(e) => setDano(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              id="defesa"
+              value={defesa}
+              onChange={(e) => setDefesa(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              id="descricao"
+              value={descricao}
+              onChange={(e) => setProfissao(e.target.value)}
+              required
+            />
+            <input
+              type="link"
+              id="image"
               value={imagem}
               onChange={(e) => setImagem(e.target.value)}
+              required
             />
             <button>Atualizar</button>
+            <button onClick={()=> voltar()}></button>
           </form>
         </div>
       ) : (

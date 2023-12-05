@@ -1,22 +1,17 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import style from './modal.module.css';
-import Home from '../../personagens/page.jsx';
-import axios from 'axios';
 
-const Modal = ({ isOpen, onClose, vorazes,id }) => {
+
+const Modal = ({ isOpen, onClose, vorazes }) => {
   if (!isOpen) {
     return null;
   } 
 
-  console.log('vorazes:', vorazes); // Log the vorazes array to the console
- console.log('id:', id); // Log the id to the console
-
-  const personagem = vorazes.find((personagem) => personagem.id == id);
-
   return (
     <>
-
+    {
+      vorazes? (
       <div className={style.modal_overlay}>
         <div className={style.modal}>
 
@@ -26,12 +21,15 @@ const Modal = ({ isOpen, onClose, vorazes,id }) => {
               Fechar
             </button>
           </div>
-          
-        <Home image={personagem.imagem} name={personagem.nome} description={personagem.descricao} index={index}/>
+          <div>
+            <h2>{vorazes.descricao}</h2>
+          </div>
+          ana
 
         </div>
       </div>
-
+      ):(null)
+    }
     </>
   );
 };
