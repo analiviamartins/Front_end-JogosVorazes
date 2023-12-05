@@ -1,0 +1,67 @@
+.carousel {
+  position: relative;
+  width: 80%;
+  margin-top: 5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8rem;
+
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 100px;
+  
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  width: 33.33%;
+}
+
+.imgDistritos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem; 
+  font-family: Palatino, URW Palladio L, serif;
+  color: #daa520;
+
+}
+.controlBtn {
+  right: 10px;
+  border: none;
+  border-radius: 5px; 
+  padding: 10px 15px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  width: 8rem;
+  height: 20rem;
+  font-size: 5rem;
+  background-color: transparent;
+  color: #daa520;
+}
+
+.controlBtn:hover {
+  opacity: 0.5;
+
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.control-btn:focus {
+  outline: none;
+}
