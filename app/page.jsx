@@ -45,6 +45,8 @@ function App() {
         <Carousel />
       </div>
     </div>
+    <div>
+    </div>
     <Footer />
     </div>
     </div>

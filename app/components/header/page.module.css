@@ -4,7 +4,6 @@
     align-items: center;
     height: 6rem;
     background-color: black;
-    color: #daa520;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -15,15 +14,16 @@
 }
 
 .button {
-    background-color: #daa520;
-    color: black;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
     padding: 0.5rem 1rem;
+    margin: 0 1rem;
 }
 
 @media only screen and (max-width: 450px) {
@@ -37,9 +37,14 @@
     }
 
     .button {
-        margin-right: 0;
-        display: flex;
-        justify-content: center;    
-        flex-direction: column; 
+        background-color: transparent;
+        color: rgb(255, 255, 255);
+        border: none;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: -5rem -0.3rem;
     }
 }
