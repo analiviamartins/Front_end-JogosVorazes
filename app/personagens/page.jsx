@@ -13,7 +13,7 @@ function home() {
     const [dadosApi, setDadosApi] = useState([]);
     const router = useRouter();
 
-
+    const [modalMostar, setModalMostrar] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const isOpen = () => {
@@ -36,11 +36,11 @@ function home() {
 
 
     const update = async (id) => {
-        router.push(`/personagens/${id}`);
+        router.push(`/vorazes/${id}`);
     };
 
     useEffect(() => {
-        async function JogosFetch() {
+        async function fetchVoraze() {
             try {
                 const resposta = await axios.get("/api/vorazes");
                 setVorazes(resposta.data.voraze)
@@ -50,7 +50,7 @@ function home() {
             }
         }
 
-        JogosFetch();
+        fetchVoraze();
 
     }, []);
 
@@ -119,9 +119,9 @@ function home() {
                                 </div>
                                 {
                                     isModalOpen ? (
-                                        <Modal isOpen={isOpen} onClose={onClose}  />
+                                        <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
                                     ) : (
-                                        null
+                                        <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
                                     )
                                 }
                             </div>
