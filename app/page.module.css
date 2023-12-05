@@ -173,3 +173,135 @@
     object-fit: cover;
     opacity:0.8 ;
 }
+
+@media only screen and (max-width: 600px) {
+    .tudao{
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .title{
+        color: #daa520;
+        margin-left: 7rem;
+        margin-top: 4rem;
+        font-family: Comic Sans MS, Comic Sans, cursive;
+        align-items: center;
+        
+    }
+    .historiaP {
+        margin-left: 2rem;
+        margin-right: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        color: #daa520;
+        font-size: 1.5rem;
+        text-align: justify;
+        width: 25rem;
+        margin-left: -1rem;
+        margin-top: 1rem;
+
+    }
+
+    .historiaImg{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        margin-left: -1rem;
+        width: 25.6rem;
+        height: 20rem;
+    }
+
+    .HistoriaTitle{
+        margin-left: 0rem;
+        margin-top: -55rem;
+        font-family: Comic Sans MS, Comic Sans, cursive;
+        color: #daa520;
+        font-size: 2rem;
+        
+    }
+    .CuriosidadesTitle{
+        margin-left: 0rem;
+        margin-top: -60rem;
+        font-family: Comic Sans MS, Comic Sans, cursive;
+        color: #daa520;
+        font-size: 2rem;
+    }
+
+    .CuriosidadesP{
+        margin-left: 2rem;
+        margin-right: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        color: #daa520;
+        font-size: 1.5rem;
+        text-align: justify;
+        width: 25rem;
+        margin-top: 0.4rem;
+        margin-left: -1rem;
+    }
+
+    .curiosidadesImg{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5rem;
+        margin-bottom: 7rem;
+        margin-left: -1rem;
+        width: 25.6rem;
+        height: 20rem;
+    }
+
+    .inspiracaoImg{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5rem;
+        margin-bottom: 7rem;
+        margin-left: -1rem;
+        width: 25.6rem;
+        height: 20rem;
+    }
+
+    .InspiracaoTitle{
+        margin-left: 0rem;
+        margin-top: -60rem;
+        font-family: Comic Sans MS, Comic Sans, cursive;
+        color: #daa520;
+        font-size: 2rem;
+    }
+
+    .InspiracaoP{
+        margin-left: 2rem;
+        margin-right: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        color: #daa520;
+        font-size: 1.5rem;
+        text-align: justify;
+        width: 25rem;
+        margin-top: 1rem;
+        margin-left: -1rem;
+    }
+
+    .carrossel{
+        align-items: center;
+        justify-content: center;
+        margin-top: 5rem;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100rem;
+        height: 15rem;
+        margin-left: -1rem;
+    }
+
+    
+}
