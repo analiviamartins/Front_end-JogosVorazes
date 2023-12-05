@@ -1,186 +1,175 @@
 'use client'
-import React from 'react'
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import listVorazes from '../../model/listVorazes';
-import { vorazes } from '@/model/persoVorazes';
-import Ganhador from '../components/vencedor/vencedor';
+import React, { useEffect, useState } from 'react'
+import Vorazes, { Voraze } from '@/model/voraze';
 import style from '../batalha/page.module.css';
+import Ganhador from '../components/vencedor/vencedor';
 
-const vorazesInstancia = new listVorazes();
+const vorazesInstancia = new Vorazes();
 
-function page() {
+function Page() {
 
-  const [persos, setPersos] = useState([]);
   const [apiData, setApiData] = useState(null);
 
-  const [player1, setplayer1] = useState(null);
-  const [player2, setplayer2] = useState(null);
+  const [player1, setPlayer1] = useState(null);
+  const [player2, setPlayer2] = useState(null);
 
-  const [player1Pontos, setplayer1Pontos] = useState(0);
-  const [player2Pontos, setplayer2Pontos] = useState(0);
+  const [player1Pontos, setPlayer1Pontos] = useState(0);
+  const [player2Pontos, setPlayer2Pontos] = useState(0);
 
   const [ganhador, setGanhador] = useState(null);
 
-  const [player1Vorazes, setplayer1Vorazes] = useState(null);
-  const [player2Vorazes, setplayer2Vorazes] = useState(null);
+  const [player1Vorazes, setPlayer1Vorazes] = useState(null);
+  const [player2Vorazes, setPlayer2Vorazes] = useState(null);
 
-  const [player1VorazeSelecionado, setplayer1VorazeSelecionado] = useState(null);
-  const [player2VorazeSelecionado, setplayer2VorazeSelecionado] = useState(null);
+  const [player1VorazeSelecionado, setPlayer1VorazeSelecionado] = useState(null);
+  const [player2VorazeSelecionado, setPlayer2VorazeSelecionado] = useState(null);
 
-  const [VorazeMostar, setVorazeMostrar] = useState(null);
+  const [VorazeMostrar, setVorazeMostrar] = useState(null);
 
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
-  };
+  }
 
   const closeModal = () => {
     setModalOpen(false);
-  };
-
-
+  }
 
   useEffect(() => {
     async function JogosFetch() {
-        try {
-            const resposta = await axios.get("/api/vorazes");
-            setApiData(resposta.data.voraze)
-        } catch (error) {
-            console.log("error fetching data:", error)
-        }
+      try {
+          const resposta = await axios.get("/api/vorazes");
+          console.log(resposta.data.voraze);
+          setApiData(resposta.data.voraze)
+      } catch (error) {
+          console.log("error fetching data:", error)
+      }
     }
-
     JogosFetch();
 
-}, []);
+  }, []);
 
   useEffect(() => {
     if (apiData) {
       apiData.forEach((voraze) => {
-        const { id } = voraze;
-        const novoVoraze = new vorazes({
-            id: id,
-            nome: voraze.nome,
-            distrito: voraze.distrito,
-            dano: voraze.dano,
-            defesa: voraze.defesa,
-            imagem: voraze.imagem,
-        });
-
-        vorazesInstancia.addPerso(novoVoraze);
+        const { id, attributes } = voraze;
+        const novoVoraze = {
+          ...attributes,
+          id: id,
+        };
+        vorazesInstancia.addVoraze(novoVoraze);
       });
-      setPersos(vorazesInstancia.getPersos())
+      setVorazes(vorazesInstancia.getVoraze())
     }
   }, [apiData]);
 
-  const select5RandomPersos = () => {
-    const randomPersos = [];
-    const vorazes = vorazesInstancia.select5RandomPersos();
+  const select5RandomVorazes = () => {
+    const randomVorazes = [];
+    const vorazes = vorazesInstancia.select5RandomVorazes();
     vorazes.forEach((voraze) => {
-        randomPersos.push(voraze);
-    }
-    );
-    return randomPersos;
+      randomVorazes.push(voraze);
+    });
+
+    return randomVorazes;
   }
 
+  const [vorazes, setVorazes] = useState([]);
+
   useEffect(() => {
     if (vorazes.length > 0) {
-      const randomPersos = select5RandomPersos();
-      setplayer1Vorazes(randomPersos);
+      const randomVorazes = select5RandomVorazes();
+      setPlayer1Vorazes(randomVorazes);
     }
   }, [vorazes]);
 
   useEffect(() => {
     if (vorazes.length > 0) {
-      const randomPersos = select5RandomPersos();
-      setplayer2Vorazes(randomPersos);
+      const randomVorazes = select5RandomVorazes();
+      setPlayer2Vorazes(randomVorazes);
     }
   }, [vorazes]);
 
-
-  function selecionarPerso(player, voraze) {
+  function selecionarVoraze(player, voraze) {
     if (player == 'player1') {
       console.log('selecionar', voraze + player)
-      setplayer1VorazeSelecionado(voraze,);
+      setPlayer1VorazeSelecionado(voraze);
     } else {
       console.log('selecionar', voraze + player)
-      setplayer2VorazeSelecionado(voraze);
+      setPlayer2VorazeSelecionado(voraze);
     }
   }
 
   const batalhar = (player1VorazeSelecionado, player2VorazeSelecionado) => {
-    const p1Indice = Number(player1VorazeSelecionado.dano) + Number(player1VorazeSelecionado.defesa);
-    const p2Indice = Number(player2VorazeSelecionado.dano) + Number(player2VorazeSelecionado.defesa);
+    const p1Indice = Number(player1VorazeSelecionado.ataque) + Number(player1VorazeSelecionado.defesa);
+    const p2Indice = Number(player2VorazeSelecionado.ataque) + Number(player2VorazeSelecionado.defesa);
 
-    console.log('Player 1 Pontos:', p1Indice);
-    console.log('Player 2 Pontos:', p2Indice);
+    console.log("player 1 pontos: ", p1Indice);
+    console.log("player 2 pontos: ", p2Indice);
 
-    if (p1Indice == p2Indice) { // Condição de empate
+    if (p1Indice == p2Indice) {
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
-      console.log('Empate');
+      console.log("Empate");
       limparCartasSelecionadas();
 
     } else if (p1Indice > p2Indice) {
-      setplayer1Pontos(player1Pontos + 1);
+      setPlayer1Pontos(player1Pontos + 1);
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
-      console.log('Player 1 ganhou')
-      setGanhador('Jogador 1');
+      console.log("Player 1 ganhou");
+      setGanhador("Player 1");
       setModalOpen(true);
-      setVorazeMostrar(player1VorazeSelecionado)
+      setVorazeMostrar(player1VorazeSelecionado);
       limparCartasSelecionadas();
 
     } else {
-      setplayer2Pontos(player2Pontos + 1);
+      setPlayer2Pontos(player2Pontos + 1);
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
-      console.log('Player 2 ganhou')
-      setGanhador('Jogador 2');
-      setVorazeMostrar(player2VorazeSelecionado)
+      console.log("Player 2 ganhou");
+      setGanhador("Player 2");
       setModalOpen(true);
+      setVorazeMostrar(player2VorazeSelecionado);
       limparCartasSelecionadas();
-
     }
-
   }
 
   const limparCartasSelecionadas = () => {
-    setplayer1VorazeSelecionado(null);
-    setplayer2VorazeSelecionado(null);
+    setPlayer1VorazeSelecionado(null);
+    setPlayer2VorazeSelecionado(null);
   }
 
-  const removerCartaPerdedora = (player1VorazeSelecionado, player2VorazeSelecionado, setplayer1Vorazes, setplayer2Vorazes) => {
-    const p1Indice = Number(player1VorazeSelecionado.dano + player1VorazeSelecionado.defesa);
-    const p2Indice = Number(player2VorazeSelecionado.dano + player2VorazeSelecionado.defesa);
-  
-    if (p1Indice === p2Indice) {
-      setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
-      setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+  const removerCartaPerdedora = (player1VorazeSelecionado, player2VorazeSelecionado) => {
+    const p1Indice = Number(player1VorazeSelecionado.ataque + player1VorazeSelecionado.defesa);
+    const p2Indice = Number(player2VorazeSelecionado.ataque + player2VorazeSelecionado.defesa);
+
+    if (p1Indice == p2Indice) {
+      setPlayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+      setPlayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
     } else if (p1Indice > p2Indice) {
-      setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+      setPlayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id != player2VorazeSelecionado.id));
     } else {
-      setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+      setPlayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id != player1VorazeSelecionado.id));
     }
-  };
+  }
 
   return (
     <>
       <div className={style.mainDiv}>
         <div className={style.subDiv}>
           {
-            apiData ? (
-              <div  className={style.subDiv}>
+            player1VorazeSelecionado ? (
+              <div className={style.subDiv}>
                 <p>Cartas Player 1 - Pontos: {player1Pontos}</p>
-                <div  className={style.deckPlayers}>
+                <div className={style.deckPlayers}>
                   {
-                    apiData.map((vorazes) => (
-                      <div  className={style.herois} key={vorazes.id}>
-                        <h2>{vorazes.nome}</h2>
-                        <img className={style.imagem} onClick={() => selecionarPerso('player1', vorazes)} src={vorazes.imagem} alt={vorazes.nome} />
-                        <p>Ataque: {vorazes.dano}</p>
-                        <p>Defesa: {vorazes.defesa}</p>
+                    player1VorazeSelecionado && (
+                      <div className={style.herois} key={player1VorazeSelecionado.id}>
+                        <h2>{player1VorazeSelecionado.nome}</h2>
+                        <img className={style.imagem} onClick={() => selecionarVoraze('player1', player1VorazeSelecionado)} src={player1VorazeSelecionado.imagem} alt={player1VorazeSelecionado.nome} width={128} />
+                        <p>Ataque: {player1VorazeSelecionado.ataque}</p>
+                        <p>Defesa: {player1VorazeSelecionado.defesa}</p>
                       </div>
-                    ))
+                    )
                   }
                 </div>
               </div>
@@ -193,19 +182,19 @@ function page() {
         </div>
         <div className={style.subDiv}>
           {
-            apiData ? (
-              <div  className={style.subDiv}>
-                <p>Cartas Player 2  - Pontos: {player2Pontos}</p>
+            player2VorazeSelecionado ? (
+              <div className={style.subDiv}>
+                <p>Cartas Player 2 - Pontos: {player2Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
-                    apiData.map((voraze) => (
-                      <div className={style.herois} key={voraze.id}>
-                        <h2>{voraze.nome}</h2>
-                        <img  className={style.imagem} onClick={() => selecionarPerso('player2', voraze)} src={voraze.imagem} alt={voraze.nome} width={128} />
-                        <p>Ataque: {voraze.dano}</p>
-                        <p>Defesa: {voraze.defesa}</p>
+                    player2VorazeSelecionado && (
+                      <div className={style.herois} key={player2VorazeSelecionado.id}>
+                        <h2>{player2VorazeSelecionado.nome}</h2>
+                        <img className={style.imagem} onClick={() => selecionarVoraze('player2', player2VorazeSelecionado)} src={player2VorazeSelecionado.imagem} alt={player2VorazeSelecionado.nome} width={128} />
+                        <p>Ataque: {player2VorazeSelecionado.ataque}</p>
+                        <p>Defesa: {player2VorazeSelecionado.defesa}</p>
                       </div>
-                    ))
+                    )
                   }
                 </div>
               </div>
@@ -225,9 +214,9 @@ function page() {
             player1VorazeSelecionado ? (
               <div className={style.herois} key={player1VorazeSelecionado.id}>
                 <h2>{player1VorazeSelecionado.nome}</h2>
-                <img className={style.imagem} src={player1VorazeSelecionado.imagem} alt={player1VorazeSelecionado.nome} width={128} />
-                <p>Ataque: {player1VorazeSelecionado.dano}</p>
+                <p>Ataque: {player1VorazeSelecionado.ataque}</p>
                 <p>Defesa: {player1VorazeSelecionado.defesa}</p>
+                <img className={style.imagem} src={player1VorazeSelecionado.imagem} alt={player1VorazeSelecionado.nome} width={128} />
               </div>
             ) : (
               <div>
@@ -242,9 +231,9 @@ function page() {
             player2VorazeSelecionado ? (
               <div className={style.herois} key={player2VorazeSelecionado.id}>
                 <h2>{player2VorazeSelecionado.nome}</h2>
-                <img className={style.imagem} src={player2VorazeSelecionado.imagem} alt={player2VorazeSelecionado.nome} width={128} />
-                <p>Ataque: {player2VorazeSelecionado.dano}</p>
+                <p>Ataque: {player2VorazeSelecionado.ataque}</p>
                 <p>Defesa: {player2VorazeSelecionado.defesa}</p>
+                <img className={style.imagem} src={player2VorazeSelecionado.imagem} alt={player2VorazeSelecionado.nome} width={128} />
               </div>
             ) : (
               <div>
@@ -262,23 +251,19 @@ function page() {
             </div>
           ) : (
             <div>
-              <p>Selecione os heróis para batalhar</p>
+              <p>Selecione os personagens para batalhar</p>
             </div>
           )
         }
       </div>
       <div>
         {
-          ganhador == 'Jogador 1' ? (
-            <Ganhador isOpen={modalOpen} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
-          ) : (
-            <Ganhador isOpen={modalOpen} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
-          )
+          ganhador ? (
+            <Ganhador isOpen={openModal} onClose={closeModal} winnerCard={VorazeMostrar} player={ganhador} />
+          ) : null
         }
       </div>
     </>
-
   )
 }
-
-export default page
+export default Page;
