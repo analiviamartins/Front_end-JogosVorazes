@@ -38,7 +38,16 @@ export async function DELETE(request, { params }) {
 
     return NextResponse.json(response.data);
   } catch (error) {
-    console.log("[ORDER_DELETE]", error);
-    return new NextResponse("Erro interno do servidor!", { status: 500 });
+    if (error.response) {
+      console.log("[ORDER_DELETE]", error.response.data);
+      console.log("[ORDER_DELETE]", error.response.status);
+      console.log("[ORDER_DELETE]", error.response.headers);
+    } else if (error.request) {
+      console.log("[ORDER_DELETE]", error.request);
+    } else {
+      console.log("[ORDER_DELETE]", error.message);
+    }
+    console.log("[ORDER_DELETE]", error.config);
+     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }

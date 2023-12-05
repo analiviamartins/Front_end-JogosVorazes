@@ -1,8 +1,8 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-import styles from "./register.module.css";
+import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
 import Link from "next/link";
 
 export default function Register() {
@@ -14,13 +14,33 @@ export default function Register() {
   const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState("");
   const [vorazes, setVorazes] = useState([]);
+  const [dadosApi, setDadosApi] = useState([]);
+  const router = useRouter();
+
+  const deletePerso = async (id) => {
+    console.log("id do delete", id)
+    const url = `/api/vorazes/${id}`;
+    try {
+        await axios.delete(url);
+        setVorazes(vorazes.filter((voraze) => voraze.id !== id));
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+ };
+
+ const editPerso = async (id) => {
+  console.log("id do edit", id)
+
+  router.push(`/vorazes/${id}`);
+}; 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post("/api/vorazes", { nome, idade, distrito, genero, profissao, descricao, imagem });
-      setVorazes([...vorazes, response.data]);
+      setVorazes([...vorazes, response.data.data]);
       setNome("");
       setIdade("");
       setDistrito("");
@@ -33,8 +53,9 @@ export default function Register() {
     }
   };
 
+
   useEffect(() => {
-    async function fetchStudents() {
+    async function fetchPerso() {
       try {
         const response = await axios.get("/api/vorazes");
         setVorazes(response.data);
@@ -43,23 +64,24 @@ export default function Register() {
       }
     }
 
-    fetchStudents();
-  }, []);
+    fetchPerso();
+  }, [deletePerso,editPerso, handleSubmit]);
+
   return (
     <div className={styles.container}>
 
       <div className={styles.actions}>
-        <Link href="/vorazes">
+        <Link href="/personagens">
           <button className={`${styles.button} ${styles.primaryButton}`}>
-            Voltar para Alunos
+            Voltar para personagens
           </button>
         </Link>
       </div>
 
       <div className={styles.studentsContainer}>
-        <h1 className={styles.mainText}>Cadastrar Aluno</h1>
+        <h1 className={styles.mainText}>Cadastrar personagem</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="nome">
               Nome:
@@ -80,7 +102,7 @@ export default function Register() {
             </label>
             <input
               className={styles.input}
-              type="number"
+              type="text"
               id="idade"
               value={idade}
               onChange={(e) => setIdade(e.target.value)}
@@ -143,15 +165,30 @@ export default function Register() {
               required
             />
           </div>
+          
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="image">
+              image:
+            </label>
+            <input
+              className={styles.input}
+              type="link"
+              id="image"
+              value={imagem}
+              onChange={(e) => setImagem(e.target.value)}
+              required
+            />
+          </div>
 
           <button
-            type="submit"
+           type="submit" onClick={handleSubmit}
             className={`${styles.button} ${styles.submitButton}`}
           >
             Cadastrar
           </button>
         </form>
-      </div>
-    </div>
+          </div>
+        </div>
+
   );
 }

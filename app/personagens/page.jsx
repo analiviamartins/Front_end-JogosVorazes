@@ -1,8 +1,11 @@
 'use client'
 import axios from "axios"
-import { useEffect, useState } from "react";
+import { Children, useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
+import Modal from "../components/modal/page.jsx"
 import style from "../personagens/personagens.module.css"
+import styles from "../personagens/cadastro/page.module.css"
+import Link from "next/link";
 
 
 function home() {
@@ -10,18 +13,30 @@ function home() {
     const [dadosApi, setDadosApi] = useState([]);
     const router = useRouter();
 
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const isOpen = () => {
+        setIsModalOpen(true);
+    }
+
+    const onClose = () => {
+        setIsModalOpen(false);
+    }
+
     const deletar = async (id) => {
         const url = `/api/vorazes/${id}`;
         try {
             await axios.delete(url);
-            setDadosApi(dadosApi.filter((voraze) => voraze.id !== id));
+            setDadosApi(dadosApi.filter((vorazes) => vorazes.id !== id));
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
 
+
     const update = async (id) => {
-        router.push(`/vorazes/${id}`);
+        router.push(`/personagens/${id}`);
     };
 
     useEffect(() => {
@@ -39,56 +54,81 @@ function home() {
 
     }, []);
 
+
     console.log(dadosApi)
     return (
         <div className={style.body}>
             <div className={style.titulo}>
                 <img src="/image.png" width={500} height={300} />
             </div>
+            <div className={styles.actions}>
+                <Link href="/personagens/cadastro">
+                    <button className={`${styles.button} ${styles.primaryButton}`}>
+                        Cadastrar personagem
+                    </button>
+                </Link>
+            </div>
             {dadosApi ? (
                 vorazes ? (
 
                     <div className={style.lista}>
 
-                        {dadosApi.map((voraze) => (
-                            <div key={voraze.id} className={style.card}>
-                                <div className={style.flipcard}>
-                                <div className={style.flipcardInner}>
-                                    <div className={style.flipcardFront}>
-
-                                        <div className={style.title}>
-                                            <h1 className={style.Nome}>
-                                                {voraze.nome}
-                                            </h1>
-                                        </div>
-                                        <img src={voraze.imagem} width={150} height={175} alt={voraze.nome} />
-                                        <div className={style.texto}>
-                                        <p>
-                                            <strong>Idade:</strong> {voraze.idade}
-                                        </p>
-                                        <p>
-                                            <strong>Distrito:</strong> {voraze.distrito}
-                                        </p>
-                                        <p>
-                                            <strong>Gênero:</strong> {voraze.genero}
-                                        </p>
-                                        <p>
-                                            <strong>Profissão:</strong> {voraze.profissao}
-                                        </p>
-                                        </div>
-                                        </div>
-                                    <div className={style.flipcardBack}>
-                                        <p>
-                                            <strong>Descrição:</strong> {voraze.descricao}
-                                        </p>
+                        {dadosApi.map((vorazes) => (
+                            <div key={vorazes.id} className={style.card}>
+                                <img src={vorazes.imagem} width={150} height={175} className={style.img} alt={vorazes.nome} />
+                                <div class="container">
+                                    <div className={style.title}>
+                                        <h1 className={style.Nome}>
+                                            {vorazes.nome}
+                                        </h1>
                                     </div>
                                 </div>
+                                <div className={style.texto}>
+                                    <p>
+                                        <strong>Idade:</strong> {vorazes.idade}
+                                    </p>
+                                    <p>
+                                        <strong>Distrito:</strong> {vorazes.distrito}
+                                    </p>
+                                    <p>
+                                        <strong>Gênero:</strong> {vorazes.genero}
+                                    </p>
+                                    <p>
+                                        <strong>Profissão:</strong> {vorazes.profissao}
+                                    </p>
                                 </div>
+                                <div className={styles.buttons}>
+                                    <button
+                                        className={styles.button}
+                                        onClick={isOpen}
+                                    >
+                                        modal
+                                    </button>
+                                    <button
+                                        className={`${styles.button} ${styles.deleteButton}`}
+                                        onClick={() => deletar(vorazes.id)}
+                                    >
+                                        Deletar
+                                    </button>
+                                    <button
+                                        className={`${styles.button} ${styles.editButton}`}
+                                        onClick={() => update(vorazes.id)}
+                                    >
+                                        Atualizar
+                                    </button>
+                                </div>
+                                {
+                                    isModalOpen ? (
+                                        <Modal isOpen={isOpen} onClose={onClose}  />
+                                    ) : (
+                                        null
+                                    )
+                                }
                             </div>
-                        
+
                         ))}
                     </div>
-                    
+
 
 
                 ) : (
@@ -97,22 +137,9 @@ function home() {
             ) : (
                 <p>Não há personagens cadastrados</p>
             )}
-        <div className={styles.buttons}>
-        <button
-          className={`${styles.button} ${styles.deleteButton}`}
-          onClick={() => deletar(student.id)}
-        >
-          <FaTrash /> Deletar
-        </button>
-        <button
-          className={`${styles.button} ${styles.editButton}`}
-          onClick={() => update(student.id)}
-        >
-          <FaEdit /> Atualizar
-        </button>
-      </div>
-      </div>
-    )};
+        </div>
+    )
+};
 export default home;
 
 

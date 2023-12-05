@@ -19,7 +19,7 @@ export default function UpdateStudent({ params }) {
   useEffect(() => {
     async function fetchVoraze() {
       const response = await axios.get(
-        `http://localhost:3000/api/vorazes/${id}`
+        `http://localhost:3000/api/vorazes`
       );
       setVoraze(response.data);
       setNome(response.data.nome);
@@ -35,7 +35,7 @@ export default function UpdateStudent({ params }) {
   }, []);
 
   const atualizarPerso = () => {
-    axios.put(`http://localhost:3000/api/voraze/${id}`, {
+    axios.put(`http://localhost:3000/vorazes/${id}`, {
         nome: nome,
         idade: idade,
         distrito: distrito,
@@ -45,7 +45,7 @@ export default function UpdateStudent({ params }) {
         imagem:imagem,
       })
       .then((response) => {
-        router.push("/voraze");
+        router.push("/vorazes");
       });
   };
 

@@ -1,4 +1,4 @@
-export class vorazes{
+export default class vorazes{
     constructor(id,nome, distrito, dano, defesa, imagem){
         // Atribuindo um ID único para cada instância da classe
         this.id= id;
@@ -7,6 +7,6 @@ export class vorazes{
         this.distrito= distrito;
         this.dano= dano;
         this.defesa= defesa;
+        this.descricao=descricao
         this.imagem = imagem;
     }}
-    export default vorazes;
