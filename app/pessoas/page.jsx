@@ -27,6 +27,7 @@ function home() {
     console.log(dadosApi)
     return (
         <div>
+            
             <p>Sobre nós</p>
             {dadosApi ? (
                 pessoa ? (
