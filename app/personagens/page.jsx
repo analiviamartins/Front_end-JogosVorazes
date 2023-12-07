@@ -1,11 +1,14 @@
 'use client'
 import axios from "axios"
-import { Children, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import Modal from "../components/modal/page.jsx"
 import style from "../personagens/personagens.module.css"
 import styles from "../personagens/cadastro/page.module.css"
 import Link from "next/link";
+import { RiPencilFill } from "react-icons/ri";
+import { FaTrash } from "react-icons/fa6";
+import { PiBookBookmarkFill } from "react-icons/pi";
 
 
 function home() {
@@ -15,6 +18,7 @@ function home() {
 
     const [modalMostar, setModalMostrar] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const isOpen = () => {
         setIsModalOpen(true);
@@ -28,11 +32,16 @@ function home() {
         const url = `/api/vorazes/${id}`;
         try {
             await axios.delete(url);
-            setDadosApi(dadosApi.filter((vorazes) => vorazes.id !== id));
+            if (dadosApi) {
+                setDadosApi(dadosApi.filter((vorazes) => vorazes.id !== id));
+            }
+            if (element) {
+                element.parentNode.removeChild(element);
+               }
         } catch (error) {
             console.error("Error fetching data:", error);
         }
-    };
+     };
 
 
     const update = async (id) => {
@@ -97,33 +106,34 @@ function home() {
                                         <strong>Profissão:</strong> {vorazes.profissao}
                                     </p>
                                 </div>
-                                <div className={styles.buttons}>
+                                <div className={style.buttons}>
                                     <button
-                                        className={styles.button}
-                                        onClick={isOpen}
+                                        className={`${style.button} ${style.viewButton}`}
+                                        onClick={() => {
+                                            setModalMostrar(vorazes);
+                                            isOpen();
+                                        }}
                                     >
-                                        modal
+                                        <PiBookBookmarkFill />
                                     </button>
                                     <button
-                                        className={`${styles.button} ${styles.deleteButton}`}
+                                        className={`${style.button} ${style.deleteButton}`}
                                         onClick={() => deletar(vorazes.id)}
                                     >
-                                        Deletar
+                                        <FaTrash />
                                     </button>
                                     <button
-                                        className={`${styles.button} ${styles.editButton}`}
+                                        className={`${style.button} ${style.editButton}`}
                                         onClick={() => update(vorazes.id)}
                                     >
-                                        editar
+                                        <RiPencilFill />
                                     </button>
                                 </div>
-                                {
-                                    isModalOpen ? (
+                                
+                                    {isModalOpen ? (
                                         <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
-                                    ) : (
-                                        <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
-                                    )
-                                }
+                                    ) : null}
+                                
                             </div>
 
                         ))}
