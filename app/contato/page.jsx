@@ -141,7 +141,7 @@ const Contato = () => {
       {/* Renderiza o Pop-up se visível */}
       {popUpVisivel && (
         <PopUp
-          mensagem={popUpSucesso ? "Mensagem enviada com sucesso" : "Mensagem enviada com sucesso"}
+          mensagem={popUpSucesso ? "Mensagem enviada com sucesso" : "mensagem com erro"}
           sucesso={popUpSucesso}
           onClose={() => setPopUpVisivel(false)}
         />
