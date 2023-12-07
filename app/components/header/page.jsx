@@ -6,6 +6,7 @@ import { GiArcheryTarget } from "react-icons/gi";
 import { MdOutlineContactPage } from "react-icons/md";
 import { IoIosHome } from "react-icons/io";
 
+
 const Header = () => (
     <header>
         <div className={style.header}>
