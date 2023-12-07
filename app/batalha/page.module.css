@@ -5,7 +5,17 @@
     align-items: center;
     justify-content: center;
     gap: 4rem;
+    height: 100%;
+   background-attachment: fixed;
 }
+
+.mainDiv::after {
+    content: '';
+    position: absolute;
+    transform: translateZ(-1px) scale(1.5);
+    background-size: 100%;
+    z-index: -1;
+  }
 
 .imagem{
     width: 256px;
