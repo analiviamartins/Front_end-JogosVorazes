@@ -4,6 +4,7 @@ import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { GiArcheryTarget } from "react-icons/gi";
 
+
 const Header = () => (
  <header>
   <div className={style.header}>
@@ -16,7 +17,7 @@ const Header = () => (
         <button className={style.button}><FaUser />
 </button>
     </a>
-    <a href='./pessoa' >
+    <a href='./cadastro' >
         <button className={style.button}><FaUsers /></button>
     </a>
   </div>
