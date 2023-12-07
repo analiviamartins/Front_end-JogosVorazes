@@ -4,6 +4,7 @@ import { FaUsers } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { GiArcheryTarget } from "react-icons/gi";
 import { MdOutlineContactPage } from "react-icons/md";
+import { IoIosHome } from "react-icons/io";
 
 const Header = () => (
     <header>
@@ -11,7 +12,12 @@ const Header = () => (
             <div className={style.title}>
             <img className={style.logo} src='/logoHeader.png' alt='Logo' width={200} height={60} />
             </div>
+            
+              
         <div className={style.buttons}>
+              <a href='./' >
+                    <button className={style.button}><IoIosHome /></button>
+                </a>
             <a href="./batalha" >
                 <button className={style.button}><GiArcheryTarget />
                 </button>

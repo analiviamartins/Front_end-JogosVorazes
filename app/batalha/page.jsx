@@ -7,6 +7,8 @@ import axios from 'axios';
 import Vorazes, { Voraz } from '@/model/voraze';
 import Ganhador from '../components/vencedor/vencedor';
 import style from '../batalha/page.module.css';
+import Header from '../components/header/page.jsx';
+import Footer from '../components/footer/page.jsx';
 
 // Criando uma nova instância da classe Vorazes.
 const vorazesInstancia = new Vorazes();
@@ -190,6 +192,7 @@ function page() {
   // Retorna o JSX para renderizar o componente.
   return (
     <>
+      <Header />
       <div className={style.mainDiv}>
         <div className={style.subDiv}>
           {
@@ -301,6 +304,7 @@ function page() {
           )
         }
       </div>
+      <Footer />
     </>
 
   )
