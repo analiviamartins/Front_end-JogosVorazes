@@ -129,7 +129,7 @@ export default function UpdateStudent({ params }) {
               onChange={(e) => setImagem(e.target.value)}
               required
             />
-            <button>Atualizar</button>
+            <button onClick={() => atualizarPerso()}>Atualizar</button>
             <button onClick={()=> voltar()}></button>
           </form>
         </div>
