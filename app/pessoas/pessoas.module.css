@@ -20,6 +20,8 @@
 .mainText {
   color: gold;
   text-align: center;
+  font-size: large;
+  font-family: 'Montserrat', sans-serif;;
 }
 
 .formGroup {
@@ -30,6 +32,8 @@
   display: block;
   margin-bottom: 5px;
   color: gold;
+  font-size: small;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .input {
@@ -39,13 +43,15 @@
   color: gold;
   border-radius: 5px;
   background-color: #000;
+
 }
 
 .submitButton {
   background-color: gold;
   color: #000;
   border-radius: 5px;
-  
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 .submitButton:hover {

@@ -16,7 +16,7 @@ export default function Cadaster() {
   const handleSubmit = async (e) => {
     e.preventDefault(); {
       try {
-        const response = await axios.post("/api/pessoas", { nome, url, age, email, hobby, pessoas });
+        const response = await axios.post("/api/equipe", { nome, url, age, email, hobby, pessoas });
         setPessoas([...pessoas, response.data]);
         setNome("");
         setImage("");
@@ -32,7 +32,7 @@ export default function Cadaster() {
     useEffect(() => {
       async function fetchPessoas() {
         try {
-          const response = await axios.get("/api/pessoas");
+          const response = await axios.get("/api/equipe");
           setPessoas(response.data);
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -41,11 +41,12 @@ export default function Cadaster() {
       fetchPessoas();
     }, []);
   }
+  console.log(pessoas);
   return (
     <div>
       <div className={styles.actions}>
         <Link href="/pessoas">
-          <button type="button" className={`${styles.button} ${styles.firstbutton}`}>
+          <button type="button" className={`${styles.button} ${styles.backbutton}`}>
             Back Home
           </button>
         </Link>
