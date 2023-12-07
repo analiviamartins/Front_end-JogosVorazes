@@ -60,7 +60,9 @@ export default function UpdateStudent({ params }) {
   };
 
   return (
+
     <div>
+      
       <h1>Atualizar Personagem</h1>
       {voraze ? (
         <div>
@@ -137,5 +139,6 @@ export default function UpdateStudent({ params }) {
         <p>Carregando...</p>
       )}
     </div>
+
   );
 }
