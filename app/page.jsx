@@ -1,12 +1,15 @@
 "use client"
+//importe dos itens necessários e estilos
 import Carousel from '@/src/carrosel';
 import styles from './page.module.css';
 import Header from './components/header/page.jsx';
 import Footer from './components/footer/page.jsx';
 
+//criação da função app
 function App() {
   return (
     <div className={styles.body}>
+      {/*chamada do header*/}
       <Header />
     <div className={styles.tudao2}>
       <div className={styles.tudao}>
@@ -40,7 +43,7 @@ function App() {
           <h2 className={styles.InspiracaoTitle}>Inspiração e origem</h2>
         </div>
         <p className={styles.InspiracaoP}>Segundo Suzanne Collins, a ideia para The Hunger Games surgiu enquanto ela assistia a diferentes canais de televisão. Em um canal, a autora observou pessoas competindo em um reality show e em outro viu cenas da Guerra no Iraque. As duas coisas "começaram a se confundir de um modo muito inquietante" e a ideia para o livro que depois virou filme foi formada. O mito grego de Teseu serviu de base para a história - a personagem principal Katniss seria como um Teseu futurista - e os gladiadores romanos completaram o quadro. A sensação de perda que Suzanne teve quando o pai prestou serviço militar na Guerra do Vietnã também contribuiu para o desenvolvimento do livro, no qual a protagonista perdeu o pai aos onze anos de idade por um horrível acidente nas minas - cinco anos antes do início da história.</p>
-
+      
       <div className={styles.carrossel}>
         <Carousel />
       </div>
