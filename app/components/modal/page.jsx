@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import style from './modal.module.css';
 
 
@@ -16,7 +16,7 @@ const Modal = ({ isOpen, onClose, vorazes }) => {
         <div className={style.modal}>
 
           <div className={style.modal_header}>
-            <h2>Descrição</h2>
+            <h2>Descrição: </h2>
             <button className={style.close_button} onClick={onClose}>
               Fechar
             </button>
@@ -24,7 +24,7 @@ const Modal = ({ isOpen, onClose, vorazes }) => {
           <div>
             <h2>{vorazes.descricao}</h2>
           </div>
-          ana
+          
 
         </div>
       </div>
