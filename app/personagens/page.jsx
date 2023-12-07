@@ -13,7 +13,7 @@ function home() {
     const [dadosApi, setDadosApi] = useState([]);
     const router = useRouter();
 
-
+    const [modalMostar, setModalMostrar] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const isOpen = () => {
@@ -40,7 +40,7 @@ function home() {
     };
 
     useEffect(() => {
-        async function JogosFetch() {
+        async function fetchVoraze() {
             try {
                 const resposta = await axios.get("/api/vorazes");
                 setVorazes(resposta.data.voraze)
@@ -50,7 +50,7 @@ function home() {
             }
         }
 
-        JogosFetch();
+        fetchVoraze();
 
     }, []);
 
@@ -114,14 +114,14 @@ function home() {
                                         className={`${styles.button} ${styles.editButton}`}
                                         onClick={() => update(vorazes.id)}
                                     >
-                                        Atualizar
+                                        editar
                                     </button>
                                 </div>
                                 {
                                     isModalOpen ? (
-                                        <Modal isOpen={isOpen} onClose={onClose}  />
+                                        <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
                                     ) : (
-                                        null
+                                        <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
                                     )
                                 }
                             </div>
