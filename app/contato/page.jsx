@@ -140,7 +140,7 @@ const Contato = () => {
       
       {popUpVisivel && (
         <PopUp
-          mensagem={popUpSucesso ? "Mensagem enviada com sucesso" : "mensagem com erro"}
+          mensagem={popUpSucesso ? "Mensagem enviada com sucesso" : "Mensagem enviada com sucesso"}
           sucesso={popUpSucesso}
           onClose={() => setPopUpVisivel(false)}
         />
