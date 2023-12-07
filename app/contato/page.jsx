@@ -97,7 +97,7 @@ const Contato = () => {
       <div className="coluna-de-entrada">
         <div>
           <h1>Nome</h1>
-          {/* Campo de entrada para o nome com a classe de erro se aplicável */}
+          
           <input
             type="text"
             value={nome}
@@ -107,7 +107,7 @@ const Contato = () => {
         </div>
         <div>
           <h1>Email</h1>
-          {/* Campo de entrada para o email com a classe de erro se aplicável */}
+          
           <input
             type="email"
             value={email}
@@ -119,7 +119,7 @@ const Contato = () => {
       <div className="coluna-de-entrada">
         <div>
           <h1>Telefone</h1>
-          {/* Campo de entrada para o telefone com a máscara e a classe de erro se aplicável */}
+          
           <InputMask
             mask="+55 (99) 99999-9999"
             type="tel"
@@ -130,7 +130,6 @@ const Contato = () => {
         </div>
         <div>
           <h1>Mensagem</h1>
-          {/* Campo de entrada para a mensagem com a classe de erro se aplicável */}
           <input
             value={mensagem}
             onChange={(e) => setMensagem(e.target.value)}
@@ -138,7 +137,7 @@ const Contato = () => {
           />
         </div>
       </div>
-      {/* Renderiza o Pop-up se visível */}
+      
       {popUpVisivel && (
         <PopUp
           mensagem={popUpSucesso ? "Mensagem enviada com sucesso" : "mensagem com erro"}
