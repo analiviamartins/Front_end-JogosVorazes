@@ -43,20 +43,6 @@ class Vorazes {
         console.log(this.vorazes);
     }
 
-    select5RandomVorazes() {
-        let randomVorazes = [];
-        let randomIndex = 0;
-        let vorazes = this.vorazes;
-
-        for (let i = 0; i < 6; i++) {
-            randomIndex = Math.floor(Math.random() * vorazes.length);
-            randomVorazes.push(vorazes[randomIndex]);
-            vorazes.splice(randomIndex, 1);
-        }
-
-        return randomVorazes;
-    }
-
 }
 
 export default Vorazes;

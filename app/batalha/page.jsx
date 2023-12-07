@@ -1,78 +1,103 @@
+// 'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 'use client'
+
+// Importando as bibliotecas e componentes necessários.
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import  Vorazes, { Voraz } from '@/model/voraze';
+import Vorazes, { Voraz } from '@/model/voraze';
 import Ganhador from '../components/vencedor/vencedor';
 import style from '../batalha/page.module.css';
+import Header from '../components/header/page.jsx';
+import Footer from '../components/footer/page.jsx';
 
+// Criando uma nova instância da classe Vorazes.
 const vorazesInstancia = new Vorazes();
 
+// Definindo o componente React.
 function page() {
 
+  // Definindo variáveis de estado para Vorazes e dados da API
   const [vorazes, setVorazes] = useState([]);
-  const [apiData, setApiData] = useState();
+  const [apiData, setApiData] = useState([]);
 
+  // Definindo variáveis de estado para os jogadores.
   const [player1, setplayer1] = useState(null);
   const [player2, setplayer2] = useState(null);
 
+  // Definindo variáveis de estado para os pontos dos jogadores.
   const [player1Pontos, setplayer1Pontos] = useState(0);
   const [player2Pontos, setplayer2Pontos] = useState(0);
 
+  // Definindo variável de estado para o vencedor.
   const [ganhador, setGanhador] = useState(null);
 
+  // Definindo variáveis de estado para os Vorazes dos jogadores.
   const [player1Vorazes, setplayer1Vorazes] = useState(null);
   const [player2Vorazes, setplayer2Vorazes] = useState(null);
 
+  // Definindo variáveis de estado para o Voraze selecionado pelos jogadores.
   const [player1VorazeSelecionado, setPlayer1VorazeSelecionado] = useState(null);
   const [player2VorazeSelecionado, setPlayer2VorazeSelecionado] = useState(null);
 
+  // Definindo variável de estado para o Voraze a ser mostrado.
   const [VorazeMostar, setVorazeMostrar] = useState(null);
 
+  // Definindo variável de estado para o estado do modal.
   const [modalOpen, setModalOpen] = useState(false);
 
+  // Função para abrir o modal.
   const openModal = () => {
     setModalOpen(true);
   };
 
+  // Função para fechar o modal.
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  // Função para embaralhar um array de Vorazes.
   const quantidadeVorazes = (array) => {
     let quantidade = array.length, valor, randomVorazes;
-   
+
+    // Enquanto a quantidade de Vorazes for diferente de zero, embaralhe o array.
     while (0 !== quantidade) {
-   
       randomVorazes = Math.floor(Math.random() * quantidade);
       quantidade -= 1;
-   
+
       valor = array[quantidade];
       array[quantidade] = array[randomVorazes];
       array[randomVorazes] = valor;
     }
-   
+
+    // Retorna o array embaralhado.
     return array;
   }
 
+  // Hook useEffect que é executado quando o componente é montado.
+  // Faz uma requisição GET para a API e armazena os dados no estado.
   useEffect(() => {
     async function JogosFetch() {
-        try {
-            const resposta = await axios.get("/api/vorazes");
-            const data = resposta.data.voraze;
-            const quantidadeVorazesData = quantidadeVorazes(data);
-            setApiData(quantidadeVorazesData.slice(0, 6));
-        } catch (error) {
-            console.log("error fetching data:", error)
-        }
+      try {
+        const resposta = await axios.get("/api/vorazes");
+        const data = resposta.data.voraze;
+        const quantidadeVorazesData = quantidadeVorazes(data);
+        const firstSixElements = quantidadeVorazesData.slice(0, 6);
+        const lastSixElements = quantidadeVorazesData.slice(-6);
+        setApiData([...firstSixElements, ...lastSixElements]);
+      } catch (error) {
+        console.log("error fetching data:", error)
+      }
     }
     JogosFetch();
-}, []);
+  }, []);
 
+  // Hook useEffect que é executado quando os dados da API mudam.
+  // Cria uma nova instância de Voraz para cada item nos dados da API e adiciona-os à instância de Vorazes.
   useEffect(() => {
     if (apiData) {
       apiData.forEach((voraze) => {
         const { id, attributes } = voraze;
-        const novoVoraze = new Voraz ({
+        const novoVoraze = new Voraz({
           id: id,
           ...attributes
         });
@@ -83,55 +108,35 @@ function page() {
     }
   }, [apiData]);
 
-  const select5RandomVorazes = (vorazes) => {
-    const randomIndices = [];
-    while (randomIndices.length < 5) {
-      const randomIndex = Math.floor(Math.random() * vorazes.length);
-      if (!randomIndices.includes(randomIndex)) {
-        randomIndices.push(randomIndex);
-      }
-    }
-    const randomVorazes = randomIndices.map(index => vorazes[index]);
-    return randomVorazes;
-   };
-
-   useEffect(() => {
-    if (Vorazes.length > 0) {
-      const randomVorazes = select5RandomVorazes(vorazes);
-      setplayer1Vorazes(randomVorazes);
-    }
-   }, [Vorazes]);
-   
-   useEffect(() => {
-    if (Vorazes.length > 0) {
-      const randomVorazes = select5RandomVorazes(vorazes);
-      setplayer2Vorazes(randomVorazes);
-    }
-   }, [Vorazes]);
-
-
+  // Função para selecionar um Voraze para um jogador.
   function selecionarPerso(player, voraze) {
     if (player == 'player1') {
+      // Se o jogador for 'player1', seleciona o Voraze para 'player1'.
       console.log('selecionar', voraze + player)
       setPlayer1VorazeSelecionado(voraze,);
     } else {
+      // Se o jogador for 'player2', seleciona o Voraze para 'player2'.
       console.log('selecionar', voraze + player)
       setPlayer2VorazeSelecionado(voraze);
     }
   }
 
+  // Função para lidar com a batalha entre dois Vorazes.
   const batalhar = (player1VorazeSelecionado, player2VorazeSelecionado) => {
+    // Calcula os índices de pontos para cada jogador com base em seus atributos de dano e defesa.
     const p1Indice = Number(player1VorazeSelecionado.dano) + Number(player1VorazeSelecionado.defesa);
     const p2Indice = Number(player2VorazeSelecionado.dano) + Number(player2VorazeSelecionado.defesa);
 
     console.log('Player 1 Pontos:', p1Indice);
     console.log('Player 2 Pontos:', p2Indice);
 
+    // Se os índices forem iguais, remove as cartas e limpa as cartas selecionadas.
     if (p1Indice == p2Indice) { // Condição de empate
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
       console.log('Empate');
       limparCartasSelecionadas();
 
+      // Se o índice do jogador 1 for maior, adiciona um ponto ao jogador 1, remove a carta perdente e limpa as cartas selecionadas.
     } else if (p1Indice > p2Indice) {
       setplayer1Pontos(player1Pontos + 1);
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
@@ -141,6 +146,7 @@ function page() {
       setVorazeMostrar(player1VorazeSelecionado)
       limparCartasSelecionadas();
 
+      // Se o índice do jogador 2 for maior, adiciona um ponto ao jogador 2, remove a carta perdente e limpa as cartas selecionadas.
     } else {
       setplayer2Pontos(player2Pontos + 1);
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
@@ -149,48 +155,54 @@ function page() {
       setVorazeMostrar(player2VorazeSelecionado)
       setModalOpen(true);
       limparCartasSelecionadas();
-
     }
-
   }
 
+  // Função para limpar as cartas selecionadas.
   const limparCartasSelecionadas = () => {
     setPlayer1VorazeSelecionado(null);
     setPlayer2VorazeSelecionado(null);
   }
 
+  // Função para remover a carta perdente.
   const removerCartaPerdedora = (player1VorazeSelecionado, player2VorazeSelecionado) => {
+    // Calcula os índices de pontos para cada jogador com base em seus atributos de ataque e defesa.
     const p1Indice = Number(player1VorazeSelecionado.ataque) + Number(player1VorazeSelecionado.defesa);
     const p2Indice = Number(player2VorazeSelecionado.ataque) + Number(player2VorazeSelecionado.defesa);
-   
-    if (p1Indice === p2Indice) {
-     if (player1VorazeSelecionado && player2VorazeSelecionado) {
-       setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
-       setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
-     }
-    } else if (p1Indice > p2Indice) {
-     if (player1VorazeSelecionado && Array.isArray(player1Vorazes)) {
-       setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
-     }
-    } else {
-     if (player2VorazeSelecionado && Array.isArray(player2Vorazes)) {
-       setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
-     }
-    }
-   };
 
+    // Se os índices forem iguais, remove as cartas dos jogadores.
+    if (p1Indice === p2Indice) {
+      if (player1VorazeSelecionado && player2VorazeSelecionado) {
+        setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+        setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+      }
+      // Se o índice do jogador 1 for maior, remove a carta do jogador 1.
+    } else if (p1Indice > p2Indice) {
+      if (player1VorazeSelecionado && Array.isArray(player1Vorazes)) {
+        setplayer1Vorazes(player1Vorazes.filter((voraze) => voraze.id !== player1VorazeSelecionado.id));
+      }
+      // Se o índice do jogador 2 for maior, remove a carta do jogador 2.
+    } else {
+      if (player2VorazeSelecionado && Array.isArray(player2Vorazes)) {
+        setplayer2Vorazes(player2Vorazes.filter((voraze) => voraze.id !== player2VorazeSelecionado.id));
+      }
+    }
+  };
+
+  // Retorna o JSX para renderizar o componente.
   return (
     <>
+      <Header />
       <div className={style.mainDiv}>
         <div className={style.subDiv}>
           {
             apiData ? (
-              <div  className={style.subDiv}>
+              <div className={style.subDiv}>
                 <p>Cartas Player 1 - Pontos: {player1Pontos}</p>
-                <div  className={style.deckPlayers}>
+                <div className={style.deckPlayers}>
                   {
-                    apiData.map((vorazes) => (
-                      <div  className={style.herois} key={vorazes.id}>
+                    apiData.slice(0, 6).map((vorazes) => (
+                      <div className={style.herois} key={vorazes.id}>
                         <h2>{vorazes.nome}</h2>
                         <img className={style.imagem} onClick={() => selecionarPerso('player1', vorazes)} src={vorazes.imagem} alt={vorazes.nome} />
                         <p>Ataque: {vorazes.dano}</p>
@@ -210,14 +222,14 @@ function page() {
         <div className={style.subDiv}>
           {
             apiData ? (
-              <div  className={style.subDiv}>
+              <div className={style.subDiv}>
                 <p>Cartas Player 2  - Pontos: {player2Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
-                    apiData.map((voraze) => (
+                    apiData.slice(-6).map((voraze) => (
                       <div className={style.herois} key={voraze.id}>
                         <h2>{voraze.nome}</h2>
-                        <img  className={style.imagem} onClick={() => selecionarPerso('player2', voraze)} src={voraze.imagem} alt={voraze.nome} width={128} />
+                        <img className={style.imagem} onClick={() => selecionarPerso('player2', voraze)} src={voraze.imagem} alt={voraze.nome} width={128} />
                         <p>Ataque: {voraze.dano}</p>
                         <p>Defesa: {voraze.defesa}</p>
                       </div>
@@ -292,6 +304,7 @@ function page() {
           )
         }
       </div>
+      <Footer />
     </>
 
   )

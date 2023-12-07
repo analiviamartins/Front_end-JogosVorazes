@@ -38,8 +38,8 @@ export default function UpdateStudent({ params }) {
     fetchVoraze();
   }, []);
 
-  const voltar = async (id) => {
-    router.push(`/personagens`);
+  const voltar = async () => {
+    router.push(`http://localhost:3000/api/vorazes/personagens`);
 };
 
   const atualizarPerso = () => {
@@ -55,12 +55,14 @@ export default function UpdateStudent({ params }) {
         imagem:imagem,
       })
       .then((response) => {
-        router.push("/vorazes");
+        router.push("/personagens");
       });
   };
 
   return (
+
     <div>
+      
       <h1>Atualizar Personagem</h1>
       {voraze ? (
         <div>
@@ -129,13 +131,14 @@ export default function UpdateStudent({ params }) {
               onChange={(e) => setImagem(e.target.value)}
               required
             />
-            <button>Atualizar</button>
-            <button onClick={()=> voltar()}></button>
+            <button onClick={() => atualizarPerso()}>Atualizar</button>
+            <button onClick={()=> voltar()}>Voltar</button>
           </form>
         </div>
       ) : (
         <p>Carregando...</p>
       )}
     </div>
+
   );
 }
