@@ -1,13 +1,8 @@
 "use client";
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from './page.module.css'
-import PopUp from './PopUp';
-
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-});
+import styles from "@/app/pessoas/pessoas.module.css";
+import Link from "next/link";
 
 export default function Cadaster() {
   const [nome, setNome] = useState("");
@@ -16,94 +11,61 @@ export default function Cadaster() {
   const [email, setEmail] = useState("");
   const [hobby, setHobby] = useState("");
   const [pessoas, setPessoas] = useState([]);
-  const [showPopUp, setShowPopUp] = useState(false);
-  const [popupMessage, setPopUpMessage] = useState("");
-  const [popupType, setPopUpType] = useState("");
-  const router = useRouter;
 
-  const add = async (e) => {
-    try {
-      const response = await api.post("/api/pessoas", {nome, url, age, email, hobby });
-       setPessoas({...pessoas, response.data});
-
-       setPopUpMessage("Cadastrado com sucesso!");
-       setPopUpType("successful");
-       setShowPopUp(true); 
-    } catch (error) {
-      console.error("Erro ao se cadastrar");
-      setPopUpMessage("Erro ao se cadastrar")
-      setPopUpType("error");
-      setShowPopUp(true);
-   }
-
-    }
-  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await api.post("/api/pessoas", { nome, url, age, email, hobby, pessoas });
-      setNome("");
-      setImage("");
-      setIdade("");
-      setEmail("");
-      setHobby("");
-      setPessoas("");
-      router.push(`/pessoas/`);
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
-  };
-
-  useEffect(() => {
-    async function fetchPessoas() {
+    e.preventDefault(); {
       try {
-        const response = await api.get("/api/pessoas");
-        setPessoas(response.data);
+        const response = await axios.post("/api/pessoas", { nome, url, age, email, hobby, pessoas });
+        setPessoas([...pessoas, response.data]);
+        setNome("");
+        setImage("");
+        setIdade("");
+        setEmail("");
+        setHobby("");
+
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error submitting data:", error);
       }
-    }
+    };
 
-    fetchPessoas();
-  }, []);
-
+    useEffect(() => {
+      async function fetchPessoas() {
+        try {
+          const response = await axios.get("/api/pessoas");
+          setPessoas(response.data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+      fetchPessoas();
+    }, []);
+  }
   return (
-    <div className={styles.container}>
-      <header />
+    <div>
       <div className={styles.actions}>
-        <a href="./pessoas">
-          <button className={`${styles.button} ${styles.primaryButton}`}>
-            Go Home
+        <Link href="/pessoas">
+          <button type="button" className={`${styles.button} ${styles.firstbutton}`}>
+            Back Home
           </button>
-        </a>
+        </Link>
       </div>
       <div className={styles.pessoasContainer}>
-        <h1 className={styles.mainText}>Cadastre-se</h1>
+        <h1 className={styles.mainText}>Seu cadastro:</h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="nome">
+            <label className={styles.label} htmlFor="name">
               Nome:
             </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)} 
+            <input className={styles.input} type="text" id="name" value={nome} onChange={(e) => setNome(e.target.value)}
               required
             />
           </div>
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="url">
-              Link da Imagem:
+              URL da sua imagem:
             </label>
-            <input
-              className={styles.input}
-              type="url"
-              id="url"
-              value={url}
-              onChange={(e) => setImage(e.target.value)}
+            <input className={styles.input} type="url" id="url" value={url} onChange={(e) => setImage(e.target.value)}
               required
             />
           </div>
@@ -111,12 +73,7 @@ export default function Cadaster() {
             <label className={styles.label} htmlFor="age">
               Idade:
             </label>
-            <input
-              className={styles.input}
-              type="number"
-              id="age"
-              value={age}
-              onChange={(e) => setIdade(e.target.value)}
+            <input className={styles.input} type="number" id="age" value={age} onChange={(e) => setIdade(e.target.value)}
               required
             />
           </div>
@@ -124,12 +81,7 @@ export default function Cadaster() {
             <label className={styles.label} htmlFor="email">
               Email:
             </label>
-            <input
-              className={styles.input}
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+            <input className={styles.input} type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -137,42 +89,25 @@ export default function Cadaster() {
             <label className={styles.label} htmlFor="hobby">
               Hobby:
             </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="hobby"
-              value={hobby}
-              onChange={(e) => setHobby(e.target.value)}
+            <input className={styles.input} type="text" id="hobby" value={hobby} onChange={(e) => setHobby(e.target.value)}
               required
             />
-            <button
-              className={styles.button}
-              type="button"
-              value={cadasterButton}
-              onClick={() => add()}>
-              Cadastrar
-            </button>
-            <button
-              className={styles.remove}
-              type="button"
-              value={removeButton}
-              onClick={() => deletar()}>
-              Excluir
-              </button>
-            <button
-              className={styles.button}
-              type="button"
-              value={editButton}
-              onClick={() => update()}
-            >
-              Salvar
-            </button>
-            <p>
-              {showPopup && <PopUp message={popupMessage} type={popupType} />}
-            </p>
           </div>
+          <button type="button" className={`${styles.button} ${styles.submitButton}`}>
+            Cadastrar
+          </button>
+
         </form>
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
