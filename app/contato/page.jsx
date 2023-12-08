@@ -3,7 +3,7 @@
 // Importações necessárias
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
-import "./style.css";
+import "./page.modules.css";
 import axios from "axios";
 
 // Componente do Pop-up
