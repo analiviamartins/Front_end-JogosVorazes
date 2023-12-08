@@ -78,9 +78,9 @@ function home() {
             <div className={style.titulo}>
                 <img src="/image.png" width={500} height={300} />
             </div>
-            <div className={styles.actions}>
+            <div className={style.actions}>
                 <Link href="/personagens/cadastro">
-                   <button className={`${styles.button} ${styles.primaryButton}`}>
+                   <button className={`${style.button} ${style.primaryButton}`}>
                        Cadastrar personagem
                    </button>
                 </Link>
