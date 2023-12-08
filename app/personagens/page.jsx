@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import Modal from "../components/modal/page.jsx"
 import style from "../personagens/personagens.module.css"
-import styles from "../personagens/cadastro/page.module.css"
 import Link from "next/link";
 import { RiPencilFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa6";

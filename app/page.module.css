@@ -1,3 +1,4 @@
+
 .container {
     display: flex;
     flex-direction: column;
@@ -27,7 +28,7 @@
 .tudao{
 
     background-image: url(/fundo2.jpg);
-
+    flex-direction: column;
     height: 100%;
     background-attachment: fixed;
 }
@@ -37,6 +38,7 @@
     transform: translateZ(-1px) scale(1.5);
     background-size: 100%;
     z-index: -1;
+
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Poppins:wght@100;200;300;400;500;600&display=swap');
@@ -184,7 +186,7 @@
 
     .title{
         color: #daa520;
-        margin-left: 7rem;
+        margin-left: 4rem;
         margin-top: 4rem;
         font-family: Comic Sans MS, Comic Sans, cursive;
         align-items: center;
@@ -208,11 +210,11 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        margin-top: 5rem;
+        margin-top: 8rem;
         margin-bottom: 5rem;
         margin-left: -1rem;
         width: 25.6rem;
-        height: 20rem;
+        height: 17rem;
     }
 
     .HistoriaTitle{
@@ -252,7 +254,7 @@
         margin-bottom: 7rem;
         margin-left: -1rem;
         width: 25.6rem;
-        height: 20rem;
+        height: 17rem;
     }
 
     .inspiracaoImg{
@@ -264,7 +266,7 @@
         margin-bottom: 7rem;
         margin-left: -1rem;
         width: 25.6rem;
-        height: 20rem;
+        height: 17rem;
     }
 
     .InspiracaoTitle{
