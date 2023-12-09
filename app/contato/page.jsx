@@ -153,3 +153,4 @@ const Contato = () => {
 };
 
 export default Contato;
+//exportaçao do codigo
