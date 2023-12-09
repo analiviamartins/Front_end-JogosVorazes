@@ -3,8 +3,10 @@
 // Importações necessárias
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
-import "./page.modules.css";
+import "./contato.module.css";
 import axios from "axios";
+import Header from "../header/page";
+import Footer from "../footer/page";
 
 // Componente do Pop-up
 const PopUp = ({ mensagem, sucesso, onClose }) => {
@@ -94,6 +96,7 @@ const Contato = () => {
   // JSX do componente de Contato
   return (
     <div className="container">
+      <Header/>
       <div className="coluna-de-entrada">
         <div>
           <h1>Nome</h1>
@@ -148,6 +151,7 @@ const Contato = () => {
       <div className="container-botao">
         <button onClick={enviarDados}>Enviar</button>
       </div>
+      <Footer/>
     </div>
   );
 };
