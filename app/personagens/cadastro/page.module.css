@@ -77,3 +77,20 @@
     box-sizing: border-box;
     margin-left: 9rem;
   }
+
+  @media (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+    .cadastroContainer {
+      max-width: 90%;
+    }
+  
+    .submitButton {
+      margin-left: 9rem;
+      margin-top: 1rem;
+    }
+  
+    .label,
+    .input {
+      margin-left: 4rem;
+    }
+  }

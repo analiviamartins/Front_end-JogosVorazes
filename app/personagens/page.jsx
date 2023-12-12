@@ -8,7 +8,8 @@ import Link from "next/link";
 import { RiPencilFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa6";
 import { PiBookBookmarkFill } from "react-icons/pi";
-
+import Header from "../components/header/page.jsx";
+import Footer from "../components/footer/page.jsx";
 
 function home() {
     const [vorazes, setVorazes] = useState([])
@@ -75,6 +76,7 @@ function home() {
     console.log(dadosApi)
     return (
         <div className={style.body}>
+            <Header />
             <div className={style.titulo}>
                 <img src="/image.png" width={500} height={300} />
             </div>
@@ -151,6 +153,7 @@ function home() {
                     <p>Não há personagens cadastrados</p>
                 )}
             </div>
+            <Footer />
         </div>
     )
 };

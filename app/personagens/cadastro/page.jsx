@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
+import Header from "@/app/components/header/page";
+import Footer from "@/app/components/footer/page";
 
 export default function Register() {
   const [nome, setNome] = useState("");
@@ -69,7 +71,7 @@ export default function Register() {
 
   return (
     <div className={styles.container}>
-
+      <Header />
       <div className={styles.actions}>
         <Link href="/personagens">
           <button className={`${styles.button} ${styles.primaryButton}`}>
@@ -188,6 +190,7 @@ export default function Register() {
           </button>
         </form>
           </div>
+          <Footer />
         </div>
 
   );

@@ -89,7 +89,7 @@
     justify-content: center;
     margin-top: 5rem;
     margin-bottom: 5rem;
-    margin-left: 5rem;
+    margin-left: 1rem;
     width: 32rem;
     height: 20rem;
 }
@@ -102,7 +102,7 @@
     font-size: 1.5rem;
     text-align: justify;
     width: 34rem;
-    margin-left: 45rem;
+    margin-left: 35rem;
     margin-top: -25rem;
 }
 
@@ -142,7 +142,7 @@
     text-align: center;
     height: 36rem;
     margin-top: 2rem;
-    margin-left: 4rem;
+    margin-left: 1rem;
     margin-right: 4rem;
   }
 
@@ -183,7 +183,7 @@
     justify-content: center;
     margin-top: 10rem;
     margin-bottom: 5rem;
-    margin-left: 5rem;
+    margin-left: 1rem;
     width: 32rem;
     height: 20rem;
 }
@@ -206,7 +206,7 @@
     font-size: 1.5rem;
     text-align: justify;
     width: 42rem;
-    margin-left: 40rem;
+    margin-left: 36rem;
     margin-top: -27rem;
 }
 
@@ -224,7 +224,7 @@
     }
 
     .title {
-        color: #daa520;
+        color: #ffffff;
         margin-left: 4rem;
         margin-top: 4rem;
         font-family: Comic Sans MS, Comic Sans, cursive;
@@ -236,7 +236,7 @@
         margin-left: 2rem;
         margin-right: 2rem;
         font-family: 'Montserrat', sans-serif;
-        color: #daa520;
+        color: #ffffff;
         font-size: 1.5rem;
         text-align: justify;
         width: 25rem;
@@ -261,7 +261,7 @@
         margin-left: 0rem;
         margin-top: -55rem;
         font-family: Comic Sans MS, Comic Sans, cursive;
-        color: #daa520;
+        color: #ffffff;
         font-size: 2rem;
 
     }
@@ -270,31 +270,20 @@
         margin-left: 0rem;
         margin-top: -60rem;
         font-family: Comic Sans MS, Comic Sans, cursive;
-        color: #daa520;
+        color: #ffffff;
         font-size: 2rem;
     }
 
-    .CuriosidadesP {
-        margin-left: 2rem;
-        margin-right: 2rem;
-        font-family: 'Montserrat', sans-serif;
-        color: #daa520;
-        font-size: 1.5rem;
-        text-align: justify;
-        width: 25rem;
-        margin-top: 0.4rem;
-        margin-left: -1rem;
-    }
 
     .curiosidadesImg {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        margin-top: 5rem;
-        margin-bottom: 7rem;
-        margin-left: -1rem;
-        width: 25.6rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        margin-left: 0rem;
+        width: 19.9rem;
         height: 17rem;
     }
 
@@ -314,7 +303,7 @@
         margin-left: 0rem;
         margin-top: -60rem;
         font-family: Comic Sans MS, Comic Sans, cursive;
-        color: #daa520;
+        color: #ffffff;
         font-size: 2rem;
     }
 
@@ -322,7 +311,7 @@
         margin-left: 2rem;
         margin-right: 2rem;
         font-family: 'Montserrat', sans-serif;
-        color: #daa520;
+        color: #ffffff;
         font-size: 1.5rem;
         text-align: justify;
         width: 25rem;
@@ -346,5 +335,18 @@
         margin-left: -1rem;
     }
 
+.card{
+    max-width: 15rem;
+    flex-direction: column;
+    height: 45rem;
+    font-size: 0.1rem;
+    min-width: 20rem;
+    margin-bottom: 5rem;
+    margin-left: 4rem;
+}
+.separar2{
+    display: flex;
+    flex-direction: column;
+}
 
 }
