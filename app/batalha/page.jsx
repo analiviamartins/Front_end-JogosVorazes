@@ -225,7 +225,7 @@ function page() {
           {
             apiData ? (
               <div className={style.subDiv}>
-                <Loading />
+                
                 <p className={style.pontos}><strong>Cartas time 2 - Pontos:</strong>{player2Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
