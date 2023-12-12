@@ -11,15 +11,19 @@ function App() {
     <div className={styles.body}>
       {/*chamada do header*/}
       <Header />
+      {/*criação da div principal*/}
       <div className={styles.tudao2}>
         <div className={styles.tudao}>
           <div className={styles.container}>
+            {/*adição do banner principal*/}
             <img className={styles.image} src="/banner.jpg" alt="Banner" />
           </div>
           <div className={styles.div1}>
+            {/*adiçao do título*/}
             <img className={styles.titleImg} src="/Bem vindos ao Jogos!.png" alt="Bem-vindos aos Jogos" />
           </div>
           <img className={styles.historiaImg} src="/historiaJogos.jpeg" alt="historiaJogos" />
+          {/*criação da div sobre a história do filme*/}
           <div className={styles.separar}>
             <h2 className={styles.HistoriaTitle}>HISTÓRIA</h2>
           </div>
@@ -27,6 +31,7 @@ function App() {
           <div className={styles.div2}>
           </div>
           <div className={styles.separar}>
+            {/*curiosidades sobre o filme*/}
             <h2 className={styles.CuriosidadesTitle}>CURIOSIDADES</h2>
           </div>
           <div className={styles.separar2}>
@@ -50,15 +55,17 @@ function App() {
           <p className={styles.InspiracaoP}>Segundo Suzanne Collins, a ideia para The Hunger Games surgiu enquanto ela assistia a diferentes canais de televisão. Em um canal, a autora observou pessoas competindo em um reality show e em outro viu cenas da Guerra no Iraque. As duas coisas "começaram a se confundir de um modo muito inquietante" e a ideia para o livro que depois virou filme foi formada. O mito grego de Teseu serviu de base para a história - a personagem principal Katniss seria como um Teseu futurista - e os gladiadores romanos completaram o quadro. A sensação de perda que Suzanne teve quando o pai prestou serviço militar na Guerra do Vietnã também contribuiu para o desenvolvimento do livro, no qual a protagonista perdeu o pai aos onze anos de idade por um horrível acidente nas minas - cinco anos antes do início da história.</p>
 
           <div className={styles.carrossel}>
+            {/*chamada carrossel*/}
             <Carousel />
           </div>
         </div>
         <div>
         </div>
+        {/*chamada footer*/}
         <Footer />
       </div>
     </div>
   );
 };
-
+//exporte da função
 export default App;
