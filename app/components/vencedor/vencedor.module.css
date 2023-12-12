@@ -1,0 +1,21 @@
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    background-image: url(/fundo2.jpg);
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #daa520;
+    padding: 20px;
+    border-radius: 7px;
+    text-align: center;
+    color: black;
+}

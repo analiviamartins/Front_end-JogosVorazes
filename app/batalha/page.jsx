@@ -200,16 +200,15 @@ function page() {
           {
             apiData ? (
               <div className={style.subDiv}>
-                <Loading />
-                <p>Cartas Player 1 - Pontos: {player1Pontos}</p>
+                <p className={style.pontos}><strong>Cartas time 1 - Pontos: </strong>{player1Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
                     apiData.slice(0, 6).map((vorazes) => (
                       <div className={style.herois} key={vorazes.id}>
                         <h2>{vorazes.nome}</h2>
                         <img className={style.imagem} onClick={() => selecionarPerso('player1', vorazes)} src={vorazes.imagem} alt={vorazes.nome} />
-                        <p>Ataque: {vorazes.dano}</p>
-                        <p>Defesa: {vorazes.defesa}</p>
+                        <p><strong>Ataque:</strong>{vorazes.dano}</p>
+                        <p><strong>Defesa:</strong>{vorazes.defesa}</p>
                       </div>
                     ))
                   }
@@ -226,15 +225,15 @@ function page() {
           {
             apiData ? (
               <div className={style.subDiv}>
-                <p>Cartas Player 2  - Pontos: {player2Pontos}</p>
+                <p className={style.pontos}><strong>Cartas time 2 - Pontos:</strong>{player2Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
                     apiData.slice(-6).map((voraze) => (
                       <div className={style.herois} key={voraze.id}>
                         <h2>{voraze.nome}</h2>
                         <img className={style.imagem} onClick={() => selecionarPerso('player2', voraze)} src={voraze.imagem} alt={voraze.nome} width={128} />
-                        <p>Ataque: {voraze.dano}</p>
-                        <p>Defesa: {voraze.defesa}</p>
+                        <p><strong>Ataque:</strong>{voraze.dano}</p>
+                        <p><strong>Defesa:</strong>{voraze.defesa}</p>
                       </div>
                     ))
                   }
@@ -251,7 +250,7 @@ function page() {
       </div>
       <div className={style.heroisSelecionados}>
         <div>
-          <p>Carta Selecionada Player 1</p>
+          <p><strong>Carta Selecionada Player 1</strong></p>
           {
             player1VorazeSelecionado ? (
               <div className={style.herois} key={player1VorazeSelecionado.id}>
@@ -262,13 +261,13 @@ function page() {
               </div>
             ) : (
               <div>
-                <p>Esperando Player 1</p>
+                <p><strong>Esperando Player 1</strong></p>
               </div>
             )
           }
         </div>
         <div>
-          <p>Carta Selecionada Player 2</p>
+          <p><strong>Carta Selecionada Player 2</strong></p>
           {
             player2VorazeSelecionado ? (
               <div className={style.herois} key={player2VorazeSelecionado.id}>
@@ -279,7 +278,7 @@ function page() {
               </div>
             ) : (
               <div>
-                <p>Esperando Player 2</p>
+                <p><strong>Esperando Player 2</strong></p>
               </div>
             )
           }
@@ -293,7 +292,7 @@ function page() {
             </div>
           ) : (
             <div>
-              <p>Selecione os heróis para batalhar</p>
+              <p><strong>Selecione os heróis para batalhar</strong></p>
             </div>
           )
         }
@@ -302,10 +301,7 @@ function page() {
         {
           ganhador == 'Jogador 1' ? (
             <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
-          ) : (
-            <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
-            
-          )
+          ) : null
         }
       </div>
       
