@@ -1,45 +1,57 @@
+//importe dos itens necessários
 import axios from "axios";
 
 import { NextResponse } from "next/server";
 
-const url = process.env.BASE_URL  + "/vorazes";
+//chamada  base url para API
+const url = process.env.BASE_URL + "/vorazes";
 
+//definir função GET
 export async function GET(request, { params }) {
+  //puxar id do parametro
   const { id } = params;
 
+  //fazer uma requisição do get para a API
   try {
     const response = await axios.get(`${url}/${id}`);
 
+    //retornar dados
     return NextResponse.json(response.data);
   } catch (error) {
-    console.log("[ORDER_GET]", error);
     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }
 
+//definir funçao PUT
 export async function PUT(request, { params }) {
+  //puxar id do parametro e do body
   const { id } = params;
-  //console.log(id)
   const body = await request.json();
 
+  //fazer uma requisição do PUT
   try {
     const response = await axios.put(`${url}/${id}`, body);
 
+    //retornar dados
     return NextResponse.json(response.data);
   } catch (error) {
-    console.log("[ORDER_PUT]", error);
     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }
 
+//definir funçao DELETE
 export async function DELETE(request, { params }) {
+
+  //puxar id do parametro
   const { id } = params;
+
+  //fazer uma requisição do DELETE
   try {
     const response = await axios.delete(`${url}/${id}`);
 
+    //retornar dados
     return NextResponse.json(response.data);
   } catch (error) {
-    console.log("[ORDER_DELETE]", error);
     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }
