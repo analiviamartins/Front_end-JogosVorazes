@@ -1,160 +1,116 @@
-"use client";
-import axios from "axios";
+'use client'
+import axios from "axios"
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import styles from "./page.module.css";
+import { useRouter } from "next/navigation"
+import Modal from "../components/modal/page.jsx"
+import style from "../pessoa/page.module.css"
 import Link from "next/link";
+import { RiPencilFill } from "react-icons/ri";
+import { FaTrash } from "react-icons/fa6";
+import { PiBookBookmarkFill } from "react-icons/pi";
 
-export default function Register() {
-    const [nome, setNome] = useState("");
-    const [idade, setIdade] = useState("");
-    const [email, setEmail] = useState("");
-    const [hobby, setHobby] = useState("");
-    const [img, setImg] = useState("");
-    const [equipe, setEquipe] = useState("");
+
+function home() {
+  const [equipe, setEquipe] = useState([])
+  const [dadosApi, setDadosApi] = useState([]);
   const router = useRouter();
 
-  const deletePessoa = async (id) => {
-    console.log("id do delete", id)
+  const [modalMostar, setModalMostrar] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const deletar = async (id) => {
     const url = `/api/equipe/${id}`;
     try {
-        await axios.delete(url);
-        setEquipe(equipe.filter((equipes) => equipes.id !== id));
+      await axios.delete(url);
+      if (dadosApi) {
+        setDadosApi(dadosApi.filter((equipe) => equipe.id !== id));
+      }
+      if (element) {
+        element.parentNode.removeChild(element);
+      }
     } catch (error) {
-        console.error("Error fetching data:", error);
-    }
- };
-
- const editPessoa = async (id) => {
-  console.log("id do edit", id)
-
-  router.push(`/equipe/${id}`);
-}; 
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post("/api/equipe", {nome, idade, email, hobby, img});
-      setEquipe([...equipe, response.data.data]);
-      setNome("");
-      setIdade("");
-      setEmail("");
-      setHobby("");
-      setImg("");
-    } catch (error) {
-      console.error("Error submitting data:", error);
+      console.error("Error fetching data:", error);
     }
   };
 
 
+  const update = async (id) => {
+    router.push(`/equipe/${id}`);
+  };
+
   useEffect(() => {
-    async function fetchPessoa() {
+    async function fetchEquipe() {
       try {
-        const response = await axios.get("/api/equipe");
-        setEquipe(response.data);
+        const resposta = await axios.get(`/api/equipe`);
+
+        setEquipe(resposta.data.equipe)
+        setDadosApi(resposta.data.equipe)
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.log("error fetching data:", error)
       }
     }
 
-    fetchPessoa();
-  }, [deletePessoa,editPessoa, handleSubmit]);
+    fetchEquipe();
+
+  }, []);
+
 
   return (
-    <div className={styles.container}>
-      <div className={styles.actions}>
-        <Link href="/pessoas">
-          <button className={`${styles.button} ${styles.primaryButton}`}>
-            Voltar para Membros
+    <div className={style.body}>
+      <div className={style.titulo}>
+        <img src="/image.png" width={500} height={300} />
+      </div>
+      <div className={style.actions}>
+        <Link href="/pessoa/cadastro">
+          <button className={`${style.button} ${style.primaryButton}`}>
+            Cadastrar Membro
           </button>
         </Link>
       </div>
-  
-      <div className={styles.studentsContainer}>
-        <h1 className={styles.mainText}>Cadastrar Membro</h1>
-  
-        <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="nome">
-              Nome:
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="nome"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-            />
+      {dadosApi ? (
+        dadosApi.map((equipe) => (
+          <div key={equipe.id} className={style.card}>
+            <img src={equipe.img} width={150} height={175} className={style.img} alt={equipe.nome} />
+            <div class="container">
+              <div className={style.title}>
+                <h1 className={style.Nome}>
+                  {equipe.nome}
+                </h1>
+              </div>
+            </div>
+            <div className={style.texto}>
+              <p>
+                <strong>Idade:</strong> {equipe.idade}
+              </p>
+              <p>
+                <strong>Email:</strong> {equipe.distrito}
+              </p>
+              <p>
+                <strong>Hobby:</strong> {equipe.genero}
+              </p>
+            </div>
+            <div className={style.buttons}>
+              <button
+                className={`${style.button} ${style.deleteButton}`}
+                onClick={() => deletar(vorazes.id)}
+              >
+                <FaTrash />
+              </button>
+              <button
+                className={`${style.button} ${style.editButton}`}
+                onClick={() => update(vorazes.id)}
+              >
+                <RiPencilFill />
+              </button>
+            </div>
+
           </div>
-  
-          <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="idade">
-              Idade:
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="idade"
-              value={idade}
-              onChange={(e) => setIdade(e.target.value)}
-              required
-            />
-          </div>
-  
-          <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="email">
-              Email:
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-  
-          <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="hobby">
-              Hobby:
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="hobby"
-              value={hobby}
-              onChange={(e) => setHobby(e.target.value)}
-              required
-            />
-          </div>
-  
-          <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="imagem">
-              Imagem:
-            </label>
-            <input
-              className={styles.input}
-              type="text"
-              id="img"
-              value={img}
-              onChange={(e) => setImg(e.target.value)}
-              required
-            />
-          </div>
-  
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className={`${styles.button} ${styles.submitButton}`}
-          >
-            Cadastrar
-          </button>
-        </form>
-      </div>
+        ))
+      ) : (
+        <p>Não há personagens cadastrados</p>
+      )}
     </div>
-  );
+  )
 };
+export default home;
