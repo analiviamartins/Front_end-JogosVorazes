@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import style from './contato.module.css';
+import Header from '../components/header/page.jsx';
+import Footer from '../components/footer/page.jsx';
 
 function isValidEmail(email) {
  return /\S+@\S+\.\S+/.test(email);
@@ -36,7 +38,10 @@ export default function ContactPage() {
  };
 
  return (
+  <div className={style.container1}>
+    <Header />
   <form className={style.container}>
+    
     <div className={style.titleBlock}>
     <h1>Contato</h1>
     <div className={style.nameBlock}>
@@ -61,6 +66,9 @@ export default function ContactPage() {
       <button type="submit" className={style.button}>Enviar</button>
     </div>
     </div>
+    
   </form>
+  <Footer />
+  </div>
  );
 }
