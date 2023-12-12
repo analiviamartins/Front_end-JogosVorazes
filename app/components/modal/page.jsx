@@ -1,13 +1,14 @@
+//importando itens necessarios
 'use client'
 import React from 'react';
 import style from './modal.module.css';
 
-
+//definindo o componente Modal
 const Modal = ({ isOpen, onClose, vorazes }) => {
   if (!isOpen) {
     return null;
   } 
-
+  //retornando dados
   return (
     <>
     {
@@ -31,5 +32,5 @@ const Modal = ({ isOpen, onClose, vorazes }) => {
     </>
   );
 };
-
+//exportando o componente Modal
 export default Modal;

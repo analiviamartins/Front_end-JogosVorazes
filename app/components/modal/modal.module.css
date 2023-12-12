@@ -1,3 +1,4 @@
+/*definindo estilos de classe modal_overlay*/
 .modal_overlay {
     position: fixed;
     top: 0;
@@ -7,7 +8,7 @@
     z-index: 1000;
     background-image: url(/fundo2.jpg);
 }
-
+/*definindo estilos de classe modal*/
 .modal {
     position: fixed;
     top: 50%;
@@ -19,19 +20,19 @@
     text-align: center;
     color: black;
 }
-
+/*definindo estilos da imagem*/
 .img{
     align-items: center;
     text-align: center;
 }
-
+/*definindo estilos de classe modal_header*/
 .modal_header {
     justify-content: space-between;
     align-items: center;
     text-align: center;
     margin-bottom: 20px;
 }
-
+/*definindo estilos do botao de fechar*/
 .close_button {
     background-color: #f44336;
     color: black;
@@ -43,7 +44,7 @@
     align-items: center;
     text-align: center;
 }
-
+/*definindo estilos do botao :hover de fechar*/
 .close_button:hover {
     background-color: #d32f2f;
 }
