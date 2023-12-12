@@ -1,6 +1,6 @@
 'use client'
 import axios from "axios"
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 import Modal from "../components/modal/page.jsx"
 import style from "../personagens/personagens.module.css"
@@ -153,7 +153,6 @@ function home() {
                     <p>Não há personagens cadastrados</p>
                 )}
 
-                <Footer />
             </div>
             <Footer />
         </div>

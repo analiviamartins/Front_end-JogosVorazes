@@ -27,10 +27,10 @@ const Header = () => (
                 <button className={style.button}><FaUser />
                 </button>
             </a>
-            <a href='./pessoa' >
+            <a href='./pessoas' >
                 <button className={style.button}><FaUsers /></button>
             </a>
-            <a href='./contato' >
+            <a href='./contatos' >
                 <button className={style.button}><MdOutlineContactPage /></button>
             </a>
 
