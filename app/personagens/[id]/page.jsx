@@ -1,13 +1,17 @@
+//'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 "use client";
+//Importe dos itens necessários
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+//exporte na função
 export default function UpdateVoraze({ params }) {
   const { id } = params;
   const [voraze, setVoraze] = useState("");
   const router = useRouter();
 
+//definição do estado
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
   const [distrito, setDistrito] = useState("");
@@ -18,6 +22,7 @@ export default function UpdateVoraze({ params }) {
   const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState("");
 
+//buscar dados do personagem
   useEffect(() => {
     async function fetchVoraze() {
       const response = await axios.get(
@@ -35,13 +40,16 @@ export default function UpdateVoraze({ params }) {
       setImagem(response.data.imagem);
     }
 
+    //requisição GET para a API
     fetchVoraze();
   }, []);
 
+//definir função
   const voltar = async () => {
     router.push(`http://localhost:3000/api/vorazes/personagens`);
 };
 
+//requisição PUT para atualizar os personagens
   const atualizarPerso = () => {
     axios.put(`http://localhost:3000/api/vorazes/${id}`, {
         nome: nome,
@@ -67,7 +75,9 @@ export default function UpdateVoraze({ params }) {
       {voraze ? (
         <div>
           <p>{voraze.id}</p>
+           {/* campos do formulário */}
           <form onSubmit={atualizarPerso}>
+             {/*renderização dos componentes*/}
             <input
               type="text"
               id="nome"
@@ -131,6 +141,7 @@ export default function UpdateVoraze({ params }) {
               onChange={(e) => setImagem(e.target.value)}
               required
             />
+             {/*botão de atualizar e outro para voltar para págian de personagens*/}
             <button onClick={() => atualizarPerso()}>Atualizar</button>
             <button onClick={()=> voltar()}>Voltar</button>
           </form>
