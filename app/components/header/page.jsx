@@ -1,3 +1,4 @@
+//Importe das bibliotecas e componentes necessários
 import React from 'react';
 import style from './page.module.css';
 import { FaUsers } from "react-icons/fa";
@@ -7,14 +8,17 @@ import { MdOutlineContactPage } from "react-icons/md";
 import { IoIosHome } from "react-icons/io";
 import { FaListAlt } from "react-icons/fa";
 
-const Header = () => (
+//Criar função header
+const Header = () => ( 
     <header>
         <div className={style.header}>
+            {/*criação título*/}
             <div className={style.title}>
+            {/*adição da logo*/}
             <img className={style.logo} src='/logoHeader.png' alt='Logo' width={200} height={60} />
             </div>
             
-              
+         {/*chamada icons*/}
         <div className={style.buttons}>
               <a href='./' >
                     <button className={style.button}><IoIosHome /></button>
@@ -39,4 +43,5 @@ const Header = () => (
     </header>
 );
 
+//exporte headet
 export default Header;
