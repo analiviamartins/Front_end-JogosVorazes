@@ -152,6 +152,8 @@ function home() {
                 ) : (
                     <p>Não há personagens cadastrados</p>
                 )}
+
+                <Footer />
             </div>
             <Footer />
         </div>
