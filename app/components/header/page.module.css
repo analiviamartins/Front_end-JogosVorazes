@@ -32,7 +32,8 @@
     margin: 0 1rem;
 
 }
-{/*responsividade*/}
+
+/*responsividade*/
 @media only screen and (max-width: 450px) {
     .body {
         width: 100vw;
