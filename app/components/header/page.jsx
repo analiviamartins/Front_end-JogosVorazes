@@ -29,7 +29,7 @@ const Header = () => (
                 <button className={style.button}><FaUser />
                 </button>
             </a>
-            <a href='./pessoas' >
+            <a href='./pessoa' >
                 <button className={style.button}><FaUsers /></button>
             </a>
             <a href='./contatos' >
