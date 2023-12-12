@@ -1,3 +1,4 @@
+//Importando as bibliotecas e componentes necessários.
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -5,7 +6,9 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
 
+//definir componente Register
 export default function Register() {
+  //declarar variável
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
   const [distrito, setDistrito] = useState("");
@@ -17,30 +20,30 @@ export default function Register() {
   const [dadosApi, setDadosApi] = useState([]);
   const router = useRouter();
 
+  //função de excluir
   const deletePerso = async (id) => {
-    console.log("id do delete", id)
+    //requisição DELETE para a API
     const url = `/api/vorazes/${id}`;
     try {
         await axios.delete(url);
         setVorazes(vorazes.filter((voraze) => voraze.id !== id));
     } catch (error) {
-        console.error("Error fetching data:", error);
     }
  };
 
+ //função editar
  const editPerso = async (id) => {
-  console.log("id do edit", id)
-
-  router.push(`/vorazes/${id}`);
+ router.push(`/vorazes/${id}`);
 }; 
 
-
+//função para lidar com o envio do formulário.
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+   //requisição POST para a API
     try {
       const response = await axios.post("/api/vorazes", { nome, idade, distrito, genero, profissao, descricao, imagem });
       setVorazes([...vorazes, response.data.data]);
+      //resetando formulário
       setNome("");
       setIdade("");
       setDistrito("");
@@ -49,24 +52,23 @@ export default function Register() {
       setDescricao("");
       setImagem("");
     } catch (error) {
-      console.error("Error submitting data:", error);
     }
   };
 
-
+//buscar dados da API
   useEffect(() => {
     async function fetchPerso() {
       try {
         const response = await axios.get("/api/vorazes");
         setVorazes(response.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
       }
     }
 
     fetchPerso();
   }, [deletePerso,editPerso, handleSubmit]);
 
+  //renderizar componente 
   return (
     <div className={styles.container}>
 
@@ -77,7 +79,7 @@ export default function Register() {
           </button>
         </Link>
       </div>
-
+      {/*div para cadasro*/}
       <div className={styles.cadastroContainer}>
         <h1 className={styles.mainText}>Cadastrar personagem</h1>
 
@@ -95,7 +97,7 @@ export default function Register() {
               required
             />
           </div>
-
+            {/*input para idade*/}
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="idade">
               Idade:
@@ -109,7 +111,7 @@ export default function Register() {
               required
             />
           </div>
-
+            {/*input para distrito*/}
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="distrito">
               Distrito:
@@ -123,7 +125,7 @@ export default function Register() {
               required
             />
           </div>
-
+            {/*input  para genero*/}
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="genero">
               Gênero:
@@ -137,7 +139,7 @@ export default function Register() {
               required
             />
           </div>
-
+            {/*input para profissão*/}
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="profissao">
               Profissao:
@@ -151,7 +153,7 @@ export default function Register() {
               required
             />
           </div>
-
+            {/*input para descrição*/}
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="descricao">
               Descricao:
@@ -165,7 +167,7 @@ export default function Register() {
               required
             />
           </div>
-          
+          {/*input para imagem*/}
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="image">
               Image:
@@ -179,7 +181,7 @@ export default function Register() {
               required
             />
           </div>
-
+          {/*botão de cadastrar*/}
           <button
            type="submit" onClick={handleSubmit}
             className={`${styles.button} ${styles.submitButton}`}
