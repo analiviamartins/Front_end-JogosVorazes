@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa";
 import { GiArcheryTarget } from "react-icons/gi";
 import { MdOutlineContactPage } from "react-icons/md";
 import { IoIosHome } from "react-icons/io";
+import { FaListAlt } from "react-icons/fa";
 
 const Header = () => (
     <header>
@@ -32,6 +33,7 @@ const Header = () => (
             <a href='./contato' >
                 <button className={style.button}><MdOutlineContactPage /></button>
             </a>
+
             </div>
         </div>
     </header>

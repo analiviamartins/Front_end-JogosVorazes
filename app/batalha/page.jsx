@@ -9,6 +9,7 @@ import Ganhador from '../components/vencedor/vencedor';
 import style from '../batalha/page.module.css';
 import Header from '../components/header/page.jsx';
 import Footer from '../components/footer/page.jsx';
+import Loading from '../components/loading/Loading.jsx';
 
 // Criando uma nova instância da classe Vorazes.
 const vorazesInstancia = new Vorazes();
@@ -194,10 +195,12 @@ function page() {
     <>
       <Header />
       <div className={style.mainDiv}>
+      
         <div className={style.subDiv}>
           {
             apiData ? (
               <div className={style.subDiv}>
+                <Loading />
                 <p>Cartas Player 1 - Pontos: {player1Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
@@ -301,9 +304,11 @@ function page() {
             <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
           ) : (
             <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
+            
           )
         }
       </div>
+      
       <Footer />
     </>
 
