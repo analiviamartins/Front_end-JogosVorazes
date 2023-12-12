@@ -55,22 +55,21 @@ function home() {
         async function fetchVoraze() {
             try {
                 const resposta = await axios.get("/api/vorazes");
-                setVorazes(resposta.data.voraze)
-                setDadosApi(resposta.data.voraze)
+                setVorazes(resposta.data.voraze);
+                setDadosApi(resposta.data.voraze);
             } catch (error) {
-                console.log("error fetching data:", error)
+                console.log("error fetching data:", error);
             }
         }
-
+     
         fetchVoraze();
+     }, []);
 
-    }, []);
-
-    const personagensFiltrados = dadosApi.filter(vorazes =>
+     const personagensFiltrados = (dadosApi || []).filter(vorazes =>
         vorazes.nome.toLowerCase().includes(nomeFiltro.toLowerCase()) &&
         vorazes.distrito.toLowerCase().includes(distritoFiltro.toLowerCase()) &&
         vorazes.profissao.toLowerCase().includes(profissaoFiltro.toLowerCase())
-    );
+     );
 
 
     console.log(dadosApi)
