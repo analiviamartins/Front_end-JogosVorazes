@@ -86,7 +86,6 @@ function page() {
         const lastSixElements = quantidadeVorazesData.slice(-6);
         setApiData([...firstSixElements, ...lastSixElements]);
       } catch (error) {
-        console.log("error fetching data:", error)
       }
     }
     JogosFetch();
@@ -113,11 +112,9 @@ function page() {
   function selecionarPerso(player, voraze) {
     if (player == 'player1') {
       // Se o jogador for 'player1', seleciona o Voraze para 'player1'.
-      console.log('selecionar', voraze + player)
       setPlayer1VorazeSelecionado(voraze,);
     } else {
       // Se o jogador for 'player2', seleciona o Voraze para 'player2'.
-      console.log('selecionar', voraze + player)
       setPlayer2VorazeSelecionado(voraze);
     }
   }
@@ -128,20 +125,16 @@ function page() {
     const p1Indice = Number(player1VorazeSelecionado.dano) + Number(player1VorazeSelecionado.defesa);
     const p2Indice = Number(player2VorazeSelecionado.dano) + Number(player2VorazeSelecionado.defesa);
 
-    console.log('Player 1 Pontos:', p1Indice);
-    console.log('Player 2 Pontos:', p2Indice);
 
     // Se os índices forem iguais, remove as cartas e limpa as cartas selecionadas.
     if (p1Indice == p2Indice) { // Condição de empate
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
-      console.log('Empate');
       limparCartasSelecionadas();
 
       // Se o índice do jogador 1 for maior, adiciona um ponto ao jogador 1, remove a carta perdente e limpa as cartas selecionadas.
     } else if (p1Indice > p2Indice) {
       setplayer1Pontos(player1Pontos + 1);
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
-      console.log('Player 1 ganhou')
       setGanhador('Jogador 1');
       setModalOpen(true);
       setVorazeMostrar(player1VorazeSelecionado)
@@ -151,7 +144,6 @@ function page() {
     } else {
       setplayer2Pontos(player2Pontos + 1);
       removerCartaPerdedora(player1VorazeSelecionado, player2VorazeSelecionado);
-      console.log('Player 2 ganhou')
       setGanhador('Jogador 2');
       setVorazeMostrar(player2VorazeSelecionado)
       setModalOpen(true);
