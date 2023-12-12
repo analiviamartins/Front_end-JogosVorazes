@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function UpdateStudent({ params }) {
+export default function UpdateVoraze({ params }) {
   const { id } = params;
   const [voraze, setVoraze] = useState("");
   const router = useRouter();
@@ -100,7 +100,7 @@ export default function UpdateStudent({ params }) {
               type="text"
               id="profissao"
               value={profissao}
-              onChange={(e) => setDescricao(e.target.value)}
+              onChange={(e) => setProfissao(e.target.value)}
               required
             />
             <input
@@ -121,7 +121,7 @@ export default function UpdateStudent({ params }) {
               type="text"
               id="descricao"
               value={descricao}
-              onChange={(e) => setProfissao(e.target.value)}
+              onChange={(e) => setDescricao(e.target.value)}
               required
             />
             <input

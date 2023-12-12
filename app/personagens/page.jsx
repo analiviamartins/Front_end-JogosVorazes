@@ -19,8 +19,8 @@ function home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [nomeFiltro, setNomeFiltro] = useState("");
-   const [distritoFiltro, setDistritoFiltro] = useState("");
-   const [profissaoFiltro, setProfissaoFiltro] = useState("");
+    const [distritoFiltro, setDistritoFiltro] = useState("");
+    const [profissaoFiltro, setProfissaoFiltro] = useState("");
 
     const isOpen = () => {
         setIsModalOpen(true);
@@ -65,8 +65,8 @@ function home() {
 
     }, []);
 
-    const personagensFiltrados = dadosApi.filter(vorazes => 
-        vorazes.nome.toLowerCase().includes(nomeFiltro.toLowerCase()) && 
+    const personagensFiltrados = dadosApi.filter(vorazes =>
+        vorazes.nome.toLowerCase().includes(nomeFiltro.toLowerCase()) &&
         vorazes.distrito.toLowerCase().includes(distritoFiltro.toLowerCase()) &&
         vorazes.profissao.toLowerCase().includes(profissaoFiltro.toLowerCase())
     );
@@ -80,9 +80,9 @@ function home() {
             </div>
             <div className={style.actions}>
                 <Link href="/personagens/cadastro">
-                   <button className={`${style.button} ${style.primaryButton}`}>
-                       Cadastrar personagem
-                   </button>
+                    <button className={`${style.button} ${style.primaryButton}`}>
+                        Cadastrar personagem
+                    </button>
                 </Link>
             </div>
             <input type="text" placeholder="Filtrar por nome" value={nomeFiltro} onChange={(e) => setNomeFiltro(e.target.value)} />
@@ -91,62 +91,62 @@ function home() {
             {personagensFiltrados ? (
                 personagensFiltrados.map((vorazes) => (
                     <div key={vorazes.id} className={style.card}>
-                    <img src={vorazes.imagem} width={150} height={175} className={style.img} alt={vorazes.nome} />
-                    <div class="container">
-                        <div className={style.title}>
-                            <h1 className={style.Nome}>
-                                {vorazes.nome}
-                            </h1>
+                        <img src={vorazes.imagem} width={150} height={175} className={style.img} alt={vorazes.nome} />
+                        <div class="container">
+                            <div className={style.title}>
+                                <h1 className={style.Nome}>
+                                    {vorazes.nome}
+                                </h1>
+                            </div>
                         </div>
-                    </div>
-                    <div className={style.texto}>
-                        <p>
-                            <strong>Idade:</strong> {vorazes.idade}
-                        </p>
-                        <p>
-                            <strong>Distrito:</strong> {vorazes.distrito}
-                        </p>
-                        <p>
-                            <strong>Gênero:</strong> {vorazes.genero}
-                        </p>
-                        <p>
-                            <strong>Profissão:</strong> {vorazes.profissao}
-                        </p>
-                    </div>
-                    <div className={style.buttons}>
-                        <button
-                            className={`${style.button} ${style.viewButton}`}
-                            onClick={() => {
-                                setModalMostrar(vorazes);
-                                isOpen();
-                            }}
-                        >
-                            <PiBookBookmarkFill />
-                        </button>
-                        <button
-                            className={`${style.button} ${style.deleteButton}`}
-                            onClick={() => deletar(vorazes.id)}
-                        >
-                            <FaTrash />
-                        </button>
-                        <button
-                            className={`${style.button} ${style.editButton}`}
-                            onClick={() => update(vorazes.id)}
-                        >
-                            <RiPencilFill />
-                        </button>
-                    </div>
+                        <div className={style.texto}>
+                            <p>
+                                <strong>Idade:</strong> {vorazes.idade}
+                            </p>
+                            <p>
+                                <strong>Distrito:</strong> {vorazes.distrito}
+                            </p>
+                            <p>
+                                <strong>Gênero:</strong> {vorazes.genero}
+                            </p>
+                            <p>
+                                <strong>Profissão:</strong> {vorazes.profissao}
+                            </p>
+                        </div>
+                        <div className={style.buttons}>
+                            <button
+                                className={`${style.button} ${style.viewButton}`}
+                                onClick={() => {
+                                    setModalMostrar(vorazes);
+                                    isOpen();
+                                }}
+                            >
+                                <PiBookBookmarkFill />
+                            </button>
+                            <button
+                                className={`${style.button} ${style.deleteButton}`}
+                                onClick={() => deletar(vorazes.id)}
+                            >
+                                <FaTrash />
+                            </button>
+                            <button
+                                className={`${style.button} ${style.editButton}`}
+                                onClick={() => update(vorazes.id)}
+                            >
+                                <RiPencilFill />
+                            </button>
+                        </div>
 
-                    {isModalOpen ? (
-                        <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
-                    ) : null}
+                        {isModalOpen ? (
+                            <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
+                        ) : null}
 
-                </div>
+                    </div>
                 ))
             ) : (
                 <p>Não há personagens cadastrados</p>
             )}
         </div>
     )
- };
- export default home;
+};
+export default home;
