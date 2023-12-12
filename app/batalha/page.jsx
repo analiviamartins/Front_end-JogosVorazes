@@ -193,7 +193,9 @@ function page() {
   // Retorna o JSX para renderizar o componente.
   return (
     <>
+    {/*Chamada do header*/}
       <Header />
+      {/*Criação da div principal*/}
       <div className={style.mainDiv}>
       
         <div className={style.subDiv}>
@@ -203,6 +205,7 @@ function page() {
                 <p className={style.pontos}><strong>Cartas time 1 - Pontos: </strong>{player1Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
+                    //requisição da API
                     apiData.slice(0, 6).map((vorazes) => (
                       <div className={style.herois} key={vorazes.id}>
                         <h2>{vorazes.nome}</h2>
@@ -225,10 +228,12 @@ function page() {
           {
             apiData ? (
               <div className={style.subDiv}>
+                {/*Chamada do loading*/}
                 <Loading />
                 <p className={style.pontos}><strong>Cartas time 2 - Pontos:</strong>{player2Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
+                    //requisição da API
                     apiData.slice(-6).map((voraze) => (
                       <div className={style.herois} key={voraze.id}>
                         <h2>{voraze.nome}</h2>
@@ -249,6 +254,7 @@ function page() {
         </div>
 
       </div>
+      {/*Selecionar carta*/}
       <div className={style.heroisSelecionados}>
         <div>
           <p><strong>Carta Selecionada Player 1</strong></p>
@@ -267,6 +273,7 @@ function page() {
             )
           }
         </div>
+        {/*Selecionar carta*/}
         <div>
           <p><strong>Carta Selecionada Player 2</strong></p>
           {
@@ -285,6 +292,8 @@ function page() {
           }
         </div>
       </div>
+
+      {/*Criaçao da div batalhar*/}
       <div className={style.mainDiv}>
         {
           player1VorazeSelecionado && player2VorazeSelecionado ? (
@@ -298,6 +307,8 @@ function page() {
           )
         }
       </div>
+
+      {/*Exibir ganhador*/}
       <div>
         {
           ganhador == 'Jogador 1' ? (
@@ -306,10 +317,12 @@ function page() {
         }
       </div>
       
+      {/*Chamda do footer*/}
       <Footer />
     </>
 
   )
 }
 
+//Exporte da função
 export default page
