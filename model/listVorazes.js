@@ -63,4 +63,5 @@ class listVorazes {
     }
 
 }
+//exporte listVorazes
 export default listVorazes;
