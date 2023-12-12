@@ -16,16 +16,14 @@ const Modal = ({ isOpen, onClose, vorazes }) => {
         <div className={style.modal}>
 
           <div className={style.modal_header}>
-            <h2>Descrição: </h2>
-            <button className={style.close_button} onClick={onClose}>
-              Fechar
-            </button>
+            <img src="/modal.png" alt="Logo" width={70} height={70} className={style.img} />
           </div>
           <div>
             <h2>{vorazes.descricao}</h2>
           </div>
-          
-
+          <button className={style.close_button} onClick={onClose}>
+              <strong>Fechar</strong>
+            </button>
         </div>
       </div>
       ):(null)

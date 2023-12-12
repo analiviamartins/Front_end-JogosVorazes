@@ -39,6 +39,7 @@
 }
 
 .heroisSelecionados{
+    background-color: #FFD700;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -60,6 +61,13 @@
     min-height: 950px;
     max-height: 950px;
     border-radius: 5px;
+}
+
+.pontos{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #FFA500;
 }
 
 .subDiv{

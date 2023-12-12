@@ -2,55 +2,48 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    display: block;
-    z-index: 1;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    background-image: url(/fundo2.jpg);
 }
 
 .modal {
-    background-color: #000000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #daa520;
     padding: 20px;
-    border-radius: 5px;
-    width: 50rem;
+    border-radius: 7px;
     text-align: center;
-    color: #FFD700;
+    color: black;
+}
+
+.img{
+    align-items: center;
+    text-align: center;
 }
 
 .modal_header {
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     margin-bottom: 20px;
 }
 
 .close_button {
     background-color: #f44336;
-    color: #fff;
+    color: black;
     border: none;
-    padding: 8px 15px;
+    padding: 13px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 1rem;
+    align-items: center;
+    text-align: center;
 }
 
 .close_button:hover {
     background-color: #d32f2f;
-}
-
-.modal_body img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-
-.modal_body h2 {
-    margin: 10px;
-}
-
-.modal_body p {
-    margin: 5px 0;
 }

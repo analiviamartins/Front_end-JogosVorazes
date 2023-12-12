@@ -20,9 +20,9 @@ return (
               </div>
               <div className={style.modal_body}>
                 <h1>{winner.nome} é o vencedor!</h1>
-                <h2>{player} é o vencedor desse duelo!</h2>
-                <img src={winner.imagem} alt={winner.nome} />
-                <p>Ataque: {winner.ataque}</p>
+                <h2>{player} ganhou desse duelo!</h2>
+                <img src={winner.imagem} alt={winner.nome} width={256}  height={128}/>
+                <p>Ataque: {winner.dano}</p>
                 <p>Defesa: {winner.defesa}</p>
               </div>
             </div>
