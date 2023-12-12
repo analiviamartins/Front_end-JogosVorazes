@@ -1,0 +1,80 @@
+.container {
+    background-image: url(/fundo2.jpg);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.actions {
+    margin-top: 5rem;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+    
+}
+
+.primaryButton {
+    background-color: #daa520;
+    color: black;
+}
+
+.editarContainer{
+    margin-top: 20px;
+    max-width: 70%;
+    border-radius: 10px;
+    margin: auto;
+    background-color: rgb(68, 65, 65)
+  }
+
+  .mainText {
+    color: #daa520;
+    font-size: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .formGroup {
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #daa520;
+    margin-left: 9rem;
+  }
+
+  .input {
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-left: 9rem;
+  }
+
+  .submitButton {
+    background-color: #2ecc71;
+    color: #fff;
+    margin-left: 22rem;
+  }
+
+  .lado{
+    display: flex;
+  }
