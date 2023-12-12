@@ -1,3 +1,4 @@
+/*definir estilos para a classe pageBody */
 .pageBody {
   background: url('https://assets-prd.ignimgs.com/2023/11/17/hungergames-blogroll-1700179653585.jpg') center center fixed;
   background-size: cover;
@@ -10,12 +11,12 @@
   justify-content: center;
   height: 100vh;
 }
-
+/*definir estilos para a classe inputContainer */
 .inputContainer {
   margin-bottom: 10px;
   text-align: center;
 }
-
+/*definir estilos para input */
 .input {
   font-family: 'Times New Roman', Times, serif;
   background-color: #000;
@@ -27,18 +28,18 @@
   width: 300px;
   box-sizing: border-box;
 }
-
+/*definir estilos para input email */
 .input[type="email"] {
   color: gold;
   font-family: 'Times New Roman', Times, serif;
 }
-
+/*definir estilos para a classe botao */
 .buttonContainer {
   display: flex;
   gap: 10px;
   font-family: 'Times New Roman', Times, serif;
 }
-
+/*definir estilos para a classe remove, edit, add */
 .remove,
 .edit,
 .add {
@@ -50,7 +51,7 @@
   padding: 8px 16px;
   cursor: pointer;
 }
-
+/*definir estilos hover para classe remove, edit, add */
 .remove:hover,
 .edit:hover,
 .add:hover {

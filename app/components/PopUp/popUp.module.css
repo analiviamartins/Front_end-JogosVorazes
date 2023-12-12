@@ -1,7 +1,8 @@
+/*definir estilos para a classe error */
 .error{
     background-color: rgb(215, 19, 19);
 }
-
+/*definir estilos para a classe sucess */
 .success {
     background-color: rgb(34, 182, 24);
 }

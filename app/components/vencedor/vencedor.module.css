@@ -1,3 +1,4 @@
+/*definir estilos para a classe modal_overlay */
 .modal_overlay {
     position: fixed;
     top: 0;
@@ -5,9 +6,9 @@
     bottom: 0;
     right: 0;
     z-index: 1000;
-    background-image: url(/fundo2.jpg);
+    background-image: url(/fundo2.jpg); /*definir imagem de fundo */
 }
-
+/*definir estilos para a classe modal */
 .modal {
     position: fixed;
     top: 50%;
