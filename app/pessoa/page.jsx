@@ -2,7 +2,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
-import Modal from "../components/modal/page.jsx"
+
 import style from "../pessoa/page.module.css"
 import Link from "next/link";
 import { RiPencilFill } from "react-icons/ri";
@@ -15,8 +15,7 @@ function home() {
   const [dadosApi, setDadosApi] = useState([]);
   const router = useRouter();
 
-  const [modalMostar, setModalMostrar] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+ 
 
 
   const deletar = async (id) => {
@@ -84,22 +83,22 @@ function home() {
                 <strong>Idade:</strong> {equipe.idade}
               </p>
               <p>
-                <strong>Email:</strong> {equipe.distrito}
+                <strong>Email:</strong> {equipe.email}
               </p>
               <p>
-                <strong>Hobby:</strong> {equipe.genero}
+                <strong>Hobby:</strong> {equipe.hobby}
               </p>
             </div>
             <div className={style.buttons}>
               <button
                 className={`${style.button} ${style.deleteButton}`}
-                onClick={() => deletar(vorazes.id)}
+                onClick={() => deletar(equipe.id)}
               >
                 <FaTrash />
               </button>
               <button
                 className={`${style.button} ${style.editButton}`}
-                onClick={() => update(vorazes.id)}
+                onClick={() => update(equipe.id)}
               >
                 <RiPencilFill />
               </button>
