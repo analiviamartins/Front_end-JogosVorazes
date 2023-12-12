@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import style from './contato.module.css';
 
 function isValidEmail(email) {
  return /\S+@\S+\.\S+/.test(email);
@@ -35,28 +36,30 @@ export default function ContactPage() {
  };
 
  return (
-  <form className="container">
+  <form className={style.container}>
+    <div className={style.titleBlock}>
     <h1>Contato</h1>
-    <div className="name block">
+    <div className={style.nameBlock}>
       <label htmlFor="name">Nome *</label>
-      <input id="name" type="text" name="name" required />
+      <input className={style.name} id="name" type="text" name="name" required />
     </div>
-    <div className="email block">
+    <div className={style.emailBlock}>
       <label htmlFor="email">Email *</label>
-      <input id="email" type="email" name="email" value={email} onChange={handleEmailChange} required />
+      <input className={style.email} id="email" type="email" name="email" value={email} onChange={handleEmailChange} required />
       {emailError && <span>{emailError}</span>}
     </div>
-    <div className="phone block">
+    <div className={style.phoneBlock}>
       <label htmlFor="phone">Telefone *</label>
-      <input id="phone" type="tel" name="phone" value={phone} onChange={handlePhoneChange} required />
+      <input className={style.phone} id="phone" type="tel" name="phone" value={phone} onChange={handlePhoneChange} required />
       {phoneError && <span>{phoneError}</span>}
     </div>
-    <div className="message block">
+    <div className={style.messageBlock}>
       <label htmlFor="message">Comentário *</label>
-      <textarea id="message" rows="6" name="message" required></textarea>
+      <input className={style.message} id="message" rows="6" name="message" required></input>
     </div>
-    <div className="button block">
-      <button type="submit">Enviar</button>
+    <div className={style.buttonBlock}>
+      <button type="submit" className={style.button}>Enviar</button>
+    </div>
     </div>
   </form>
  );
