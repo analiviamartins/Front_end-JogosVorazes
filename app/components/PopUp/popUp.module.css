@@ -1,7 +1,9 @@
+/*estilizando mensagem error*/
 .error{
     background-color: rgb(215, 19, 19);
 }
 
+/*estilizando mensagem sucess*/
 .success {
     background-color: rgb(34, 182, 24);
 }

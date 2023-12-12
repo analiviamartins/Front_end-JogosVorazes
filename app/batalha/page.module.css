@@ -1,3 +1,4 @@
+/*definindo o estilo para a div principal */
 .mainDiv{
     background-image: url("/fundo2.jpg");
     display: flex;
@@ -9,6 +10,7 @@
    background-attachment: fixed;
 }
 
+/*definindo o estilo para o pseudo-elemento ::after da div principal */
 .mainDiv::after {
     content: '';
     position: absolute;
@@ -17,12 +19,13 @@
     z-index: -1;
   }
 
+  /*definindo o estilo para a imagem */
 .imagem{
     width: 230px;
     height: 120px;
     border-radius: 30px;
 }
-
+/*definindo o estilo para a classe herois*/
 .herois{
     display: flex;
     flex-direction: column;
@@ -40,7 +43,7 @@
     min-height: 18rem;
     max-height: 18rem;
 }
-
+/*definindo o estilo para  a classe heroisSelecionados */
 .heroisSelecionados{
     background-color: #FFD700;
     display: flex;
@@ -50,7 +53,7 @@
     gap: 1rem;
     margin-top: 100px;
 }
-
+/*definindo o estilo para a classe deckPlayers*/
 .deckPlayers{
     background-color: rgb(0, 0, 0);
     display: flex;
@@ -67,14 +70,14 @@
     margin-right: -1rem;
     margin-left: -1rem;
 }
-
+/*definindo o estilo para a classe pontos */
 .pontos{
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 2rem;
     color: #FFA500;
 }
-
+/*definindo o estilo para a classe subDiv */
 .subDiv{
     display: flex;
     flex-direction: column;
@@ -83,7 +86,7 @@
     justify-content: center;
     align-items: center;
 }
-
+/*definindo o estilo para o botao*/
 .botao button{
     background-color: #FFD700;
     color: white;
@@ -94,12 +97,12 @@
     cursor: pointer;
     text-align: center;
 }
-
+/* Definindo o estilo para o botao:hover*/
 .botao button:hover {
     background-color: #FFA500;
     transition: background-color 0.3s ease;
  }
-
+/*responsividade*/
  @media screen and (max-width: 600px) {
     
     .mainDiv{

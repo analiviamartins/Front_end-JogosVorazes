@@ -318,5 +318,5 @@ function page() {
 
   )
 }
-
+//expostando função page
 export default page
