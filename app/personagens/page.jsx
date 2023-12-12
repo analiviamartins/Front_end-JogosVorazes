@@ -11,7 +11,6 @@ import { PiBookBookmarkFill } from "react-icons/pi";
 import Header from "../components/header/page.jsx";
 import Footer from "../components/footer/page.jsx";
 
-
 function home() {
     const [vorazes, setVorazes] = useState([])
     const [dadosApi, setDadosApi] = useState([]);
@@ -156,6 +155,7 @@ function home() {
 
                 <Footer />
             </div>
+            <Footer />
         </div>
     )
 };
