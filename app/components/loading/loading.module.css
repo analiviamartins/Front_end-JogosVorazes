@@ -1,3 +1,5 @@
+
+/*definir estilos para a classe full_screen_gif */
 .full_screen_gif {
     position: fixed;
     top: 0;
@@ -10,7 +12,7 @@
     justify-content: center;
     z-index: 9999;
   }
-  
+  /*definir estilos para o gif*/
   .full_screen_gif img {
     max-width: 100%;
     max-height: 100%;
