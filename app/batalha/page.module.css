@@ -1,5 +1,6 @@
+/*definir estilos para mainDiv */
 .mainDiv{
-    background-image: url("/fundo2.jpg");
+    background-image: url("/fundo2.jpg"); /*definindo a imagem de fundo */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -8,7 +9,7 @@
     height: 100%;
    background-attachment: fixed;
 }
-
+/*definindo estilos para ::after da classe mainDiv */
 .mainDiv::after {
     content: '';
     position: absolute;
@@ -17,12 +18,14 @@
     z-index: -1;
   }
 
+/*estilizando imagem*/
 .imagem{
-    width: 256px;
-    height: 128px;
+    width: 256px; /* largura da imagem*/
+    height: 128px; /*altura da imagem */
     border-radius: 40px;
 }
 
+/*definir estilos para a classe herois */
 .herois{
     display: flex;
     flex-direction: column;
@@ -30,24 +33,26 @@
     justify-content: center;
     gap: 1rem;
     background-color: rgb(180, 180, 180);
-    padding: 20px;
-    margin: 10px;
+    padding: 20px; /*definir o preenchimento */
+    margin: 10px; /* definir a margem */
     border-radius: 20px;
     color : rgb(0, 0, 0);
-    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75); /*definir sobra da div */
 
 }
 
+/*definir estilos para classe heroisSelecionados */
 .heroisSelecionados{
     background-color: #FFD700;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 1rem; /*definir a distância entre os itens */
     margin-top: 100px;
 }
 
+/*Definir estilos para classe deckPlayers */
 .deckPlayers{
     background-color: rgb(0, 0, 0);
     display: flex;
@@ -56,20 +61,20 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-    max-width: 650px;
-    min-width: 650px;
-    min-height: 950px;
-    max-height: 950px;
+    max-width: 650px;/* largura maxima da imagem*/
+    min-width: 650px; /* largura minima da imagem*/
+    min-height: 950px; /* altura minima da imagem*/
+    max-height: 950px; /* altura maxima da imagem*/
     border-radius: 5px;
 }
-
+/*definir estilos para a classe pontos */
 .pontos{
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 2rem;
     color: #FFA500;
 }
-
+/*definir estilos para a classe subDiv */
 .subDiv{
     display: flex;
     flex-direction: column;
@@ -78,7 +83,7 @@
     justify-content: center;
     align-items: center;
 }
-
+/*definir estilos para a classe botao*/
 .botao button{
     background-color: #FFD700;
     color: white;
@@ -89,12 +94,13 @@
     cursor: pointer;
     text-align: center;
 }
-
+/*definir estilos :hover para a classe botao*/
 .botao button:hover {
     background-color: #FFA500;
     transition: background-color 0.3s ease;
  }
 
+ /*responsividade*/
  @media screen and (max-width: 600px) {
     
     .mainDiv{
