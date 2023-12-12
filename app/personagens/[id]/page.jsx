@@ -5,13 +5,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-//exporte na função
+//definir componente UpdateVoraze
 export default function UpdateVoraze({ params }) {
   const { id } = params;
   const [voraze, setVoraze] = useState("");
   const router = useRouter();
 
-//definição do estado
+//declarar variável
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
   const [distrito, setDistrito] = useState("");
