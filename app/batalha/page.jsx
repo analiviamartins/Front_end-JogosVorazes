@@ -225,7 +225,7 @@ function page() {
           {
             apiData ? (
               <div className={style.subDiv}>
-                <Loading />
+
                 <p className={style.pontos}><strong>Cartas time 2 - Pontos:</strong>{player2Pontos}</p>
                 <div className={style.deckPlayers}>
                   {
@@ -293,7 +293,7 @@ function page() {
             </div>
           ) : (
             <div>
-              <p><strong>Selecione os heróis para batalhar</strong></p>
+              <p className={style.selecionarHerois}><strong>Selecione os heróis para batalhar</strong></p>
             </div>
           )
         }
@@ -302,7 +302,14 @@ function page() {
         {
           ganhador == 'Jogador 1' ? (
             <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
-          ) : null
+          ) : ganhador == 'Jogador 2' ? (
+            <Ganhador isOpen={openModal} onClose={closeModal} winner={VorazeMostar} player={ganhador} />
+          ) 
+          : (
+            <div>
+              <p></p>
+            </div>
+          )
         }
       </div>
       

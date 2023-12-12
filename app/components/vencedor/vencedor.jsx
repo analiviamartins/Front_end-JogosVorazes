@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import style from './vencedor.module.css';
 
 const Ganhador = ({ isOpen, onClose, winner, player }) => {
@@ -15,7 +15,7 @@ return (
               <div className={style.modal_header}>
                 <h2>Resultado da Batalha</h2>
                 <button className={style.close_button} onClick={onClose}>
-                  Fechar
+                  Voltar
                 </button>
               </div>
               <div className={style.modal_body}>
