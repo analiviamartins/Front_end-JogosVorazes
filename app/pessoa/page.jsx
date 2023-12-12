@@ -1,219 +1,160 @@
-'use client';
+"use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import style from "./page.module.css";
+import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
+import Link from "next/link";
 
-function Home() {
-  const [dadosApi, setDadosApi] = useState([]);
-  const [nome, setNome] = useState("");
-  const [url, setImage] = useState("");
-  const [age, setIdade] = useState("");
-  const [email, setEmail] = useState("");
-  const [hobby, setHobby] = useState("");
-  const [pessoaEmEdicao, setPessoaEmEdicao] = useState(null);
+export default function Register() {
+    const [nome, setNome] = useState("");
+    const [idade, setIdade] = useState("");
+    const [email, setEmail] = useState("");
+    const [hobby, setHobby] = useState("");
+    const [img, setImg] = useState("");
+    const [equipe, setEquipe] = useState("");
+  const router = useRouter();
+
+  const deletePessoa = async (id) => {
+    console.log("id do delete", id)
+    const url = `/api/equipe/${id}`;
+    try {
+        await axios.delete(url);
+        setEquipe(equipe.filter((equipes) => equipes.id !== id));
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+ };
+
+ const editPessoa = async (id) => {
+  console.log("id do edit", id)
+
+  router.push(`/equipe/${id}`);
+}; 
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("/api/equipe", {nome, idade, email, hobby, img});
+      setEquipe([...equipe, response.data.data]);
+      setNome("");
+      setIdade("");
+      setEmail("");
+      setHobby("");
+      setImg("");
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+  };
+
 
   useEffect(() => {
-    async function PessoaFetch() {
+    async function fetchPessoa() {
       try {
-        const resposta = await axios.get("/api/equipe");
-        setDadosApi(resposta.data.membros);
+        const response = await axios.get("/api/equipe");
+        setEquipe(response.data);
       } catch (error) {
-        console.log("error fetching data:", error);
+        console.error("Error fetching data:", error);
       }
     }
 
-    PessoaFetch();
-  }, []);
-
-  const removePessoa = async (id) => {
-    try {
-      await axios.delete(`/api/equipe/${id}`);
-      const updatedData = dadosApi.filter((p) => p.id !== id);
-      setDadosApi(updatedData);
-    } catch (error) {
-      console.log("error removing person:", error);
-    }
-  };
-
-  const editarPessoa = async () => {
-    try {
-      if (!pessoaEmEdicao) {
-        // Se não houver pessoa em edição, não faz nada
-        return;
-      }
-
-      const pessoaEditada = {
-        nome,
-        url,
-        idade: age,
-        email,
-        hobby,
-      };
-
-      await axios.put(`/api/equipe/${pessoaEmEdicao.id}`, { pessoaEditada });
-
-      // Atualiza os dados na interface
-      const updatedData = dadosApi.map((p) =>
-        p.id === pessoaEmEdicao.id ? { id: pessoaEmEdicao.id, ...pessoaEditada } : p
-      );
-      setDadosApi(updatedData);
-
-      // Limpa os campos após a edição
-      setNome("");
-      setImage("");
-      setIdade("");
-      setEmail("");
-      setHobby("");
-      setPessoaEmEdicao(null); // Finaliza o modo de edição
-    } catch (error) {
-      console.log("error editing person:", error);
-    }
-  };
-
-  const iniciarEdicao = (pessoa) => {
-    // Preenche os campos com os dados da pessoa selecionada
-    setNome(pessoa.nome);
-    setImage(pessoa.url);
-    setIdade(pessoa.idade);
-    setEmail(pessoa.email);
-    setHobby(pessoa.hobby);
-    setPessoaEmEdicao(pessoa);
-  };
-
-  const cadastrarPessoa = async () => {
-    try {
-      // Valida se todos os campos estão preenchidos
-      if (!nome || !url || !age || !email || !hobby) {
-        console.log("Preencha todos os campos.");
-        return;
-      }
-
-      const novaPessoa = {
-        nome,
-        url,
-        idade: age,
-        email,
-        hobby,
-      };
-
-      const resposta = await axios.post("/api/equipe", { nome, url, age, email, hobby });
-      setDadosApi([...dadosApi, resposta.data]); // Adiciona a nova pessoa aos dados existentes
-
-      // Limpa os campos após o cadastro
-      setNome("");
-      setImage("");
-      setIdade("");
-      setEmail("");
-      setHobby("");
-
-      // Adiciona mensagem de sucesso
-      console.log("Pessoa cadastrada com sucesso!");
-    } catch (error) {
-      console.log("error creating person:", error);
-
-      // Adiciona mensagem de erro
-      console.log("Erro ao cadastrar pessoa. Tente novamente.");
-    }
-  };
-  ;
+    fetchPessoa();
+  }, [deletePessoa,editPessoa, handleSubmit]);
 
   return (
-    <div className={style.pageBody}>
-      <p>Cadastro</p>
-      {dadosApi && dadosApi.length > 0 ? (
-        <div>
-          {dadosApi.map((pesso) => (
-            <div key={pesso.id}>
-              <div>
-                <p>
-                  <strong> Nome:</strong> {pesso.nome}{" "}
-                </p>
-                <img src={pesso.url} alt={pesso.nome} />
-
-                <p>
-                  <strong>Idade:</strong> {pesso.idade}
-                </p>
-
-                <p>
-                  <strong>Email:</strong> {pesso.email}
-                </p>
-
-                <p>
-                  <strong>Hobby:</strong> {pesso.hobby}
-                </p>
-
-                <div className={style.buttonContainer}>
-                  <button
-                    className={style.remove}
-                    onClick={() => removePessoa(pesso.id)}
-                  >
-                    Excluir
-                  </button>
-                  <button
-                    className={style.edit}
-                    onClick={() => iniciarEdicao(pesso)}
-                  >
-                    Editar
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-
-      <input
-        value={nome}
-        className={style.input}
-        onChange={(e) => setNome(e.target.value)}
-        type="text"
-        placeholder="Nome:"
-      />
-
-      <input
-        value={url}
-        className={style.input}
-        onChange={(e) => setImage(e.target.value)}
-        type="url"
-        placeholder="Link da sua imagem:"
-      />
-
-      <input
-        value={age}
-        className={style.input}
-        onChange={(e) => setIdade(e.target.value)}
-        type="number"
-        placeholder="Idade:"
-      />
-
-      <input
-        value={email}
-        className={style.input}
-        onChange={(e) => setEmail(e.target.value)}
-        type="email"
-        placeholder="Email:"
-      />
-
-      <input
-        value={hobby}
-        className={style.input}
-        onChange={(e) => setHobby(e.target.value)}
-        type="text"
-        placeholder="Seu hobby:"
-      />
-
-      <div className={style.buttonContainer}>
-        <button
-          className={style.add}
-          onClick={pessoaEmEdicao ? editarPessoa : cadastrarPessoa}
-        >
-          {pessoaEmEdicao ? "Salvar Edição" : "Cadastrar Pessoa"}
-        </button>
+    <div className={styles.container}>
+      <div className={styles.actions}>
+        <Link href="/pessoas">
+          <button className={`${styles.button} ${styles.primaryButton}`}>
+            Voltar para Membros
+          </button>
+        </Link>
+      </div>
+  
+      <div className={styles.studentsContainer}>
+        <h1 className={styles.mainText}>Cadastrar Membro</h1>
+  
+        <form onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="nome">
+              Nome:
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="nome"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          </div>
+  
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="idade">
+              Idade:
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="idade"
+              value={idade}
+              onChange={(e) => setIdade(e.target.value)}
+              required
+            />
+          </div>
+  
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="email">
+              Email:
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+  
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="hobby">
+              Hobby:
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="hobby"
+              value={hobby}
+              onChange={(e) => setHobby(e.target.value)}
+              required
+            />
+          </div>
+  
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="imagem">
+              Imagem:
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              id="img"
+              value={img}
+              onChange={(e) => setImg(e.target.value)}
+              required
+            />
+          </div>
+  
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className={`${styles.button} ${styles.submitButton}`}
+          >
+            Cadastrar
+          </button>
+        </form>
       </div>
     </div>
   );
-}
-
-export default Home;
+};
