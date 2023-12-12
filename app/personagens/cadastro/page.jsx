@@ -78,7 +78,7 @@ export default function Register() {
         </Link>
       </div>
 
-      <div className={styles.studentsContainer}>
+      <div className={styles.cadastroContainer}>
         <h1 className={styles.mainText}>Cadastrar personagem</h1>
 
         <form onSubmit={handleSubmit} >
@@ -112,7 +112,7 @@ export default function Register() {
 
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="distrito">
-              distrito:
+              Distrito:
             </label>
             <input
               className={styles.input}
@@ -126,7 +126,7 @@ export default function Register() {
 
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="genero">
-              genero:
+              Gênero:
             </label>
             <input
               className={styles.input}
@@ -140,7 +140,7 @@ export default function Register() {
 
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="profissao">
-              profissao:
+              Profissao:
             </label>
             <input
               className={styles.input}
@@ -154,7 +154,7 @@ export default function Register() {
 
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="descricao">
-              descricao:
+              Descricao:
             </label>
             <input
               className={styles.input}
@@ -168,7 +168,7 @@ export default function Register() {
           
           <div className={styles.formGroup}>
             <label className={styles.label} htmlFor="image">
-              image:
+              Image:
             </label>
             <input
               className={styles.input}
