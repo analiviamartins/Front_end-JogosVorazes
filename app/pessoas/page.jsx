@@ -2,32 +2,36 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from "@/app/pessoas/pessoas.module.css";
-import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 export default function Cadaster() {
   const [nome, setNome] = useState("");
-  const [url, setImage] = useState("");
-  const [age, setIdade] = useState("");
+  const [idade, setIdade] = useState("");
   const [email, setEmail] = useState("");
   const [hobby, setHobby] = useState("");
+  const [img, setImage] = useState("");
   const [pessoas, setPessoas] = useState([]);
+  const router = useRouter();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault(); {
       try {
-        const response = await axios.post("/api/equipe", { nome, url, age, email, hobby, pessoas });
+        const response = await axios.post("/api/equipe", { nome, idade, email, hobby, img });
         setPessoas([...pessoas, response.data]);
         setNome("");
-        setImage("");
         setIdade("");
         setEmail("");
         setHobby("");
+        setImage("");
+        console.log(handleSubmit)
 
       } catch (error) {
         console.error("Error submitting data:", error);
       }
     };
+
+
 
     useEffect(() => {
       async function fetchPessoas() {
@@ -45,11 +49,6 @@ export default function Cadaster() {
   return (
     <div>
       <div className={styles.actions}>
-        <Link href="/pessoas">
-          <button type="button" className={`${styles.button} ${styles.backbutton}`}>
-            Back Home
-          </button>
-        </Link>
       </div>
       <div className={styles.pessoasContainer}>
         <h1 className={styles.mainText}>Seu cadastro:</h1>
@@ -63,18 +62,10 @@ export default function Cadaster() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="url">
-              URL da sua imagem:
-            </label>
-            <input className={styles.input} type="url" id="url" value={url} onChange={(e) => setImage(e.target.value)}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label className={styles.label} htmlFor="age">
+            <label className={styles.label} htmlFor="idade">
               Idade:
             </label>
-            <input className={styles.input} type="number" id="age" value={age} onChange={(e) => setIdade(e.target.value)}
+            <input className={styles.input} type="number" id="idade" value={idade} onChange={(e) => setIdade(e.target.value)}
               required
             />
           </div>
@@ -94,6 +85,15 @@ export default function Cadaster() {
               required
             />
           </div>
+          <div className={styles.formGroup}>
+            <label className={styles.label} htmlFor="imagem">
+              Imagem:
+            </label>
+            <input className={styles.input} type="url" id="img" value={img} onChange={(e) => setImage(e.target.value)} 
+            rquired 
+            />
+          </div>
+          
           <button type="button" className={`${styles.button} ${styles.submitButton}`}>
             Cadastrar
           </button>
