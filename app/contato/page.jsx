@@ -1,19 +1,16 @@
 "use client"
-//npm install react-input-mask
 // Importações necessárias
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
-import "./contato.module.css";
+import style from "./contato.module.css"; 
 import axios from "axios";
-import Header from "../header/page";
-import Footer from "../footer/page";
 
 // Componente do Pop-up
 const PopUp = ({ mensagem, sucesso, onClose }) => {
   return (
-    <div className={`pop-up-overlay ${sucesso ? "sucesso" : "erro"}`}>
-      <div className="pop-up">
-        <div className="pop-up-conteudo">
+    <div className={`${style.popUpOverlay} ${sucesso ? style.sucesso : style.erro}`}>
+      <div className={style.popUp}>
+        <div className={style.popUpConteudo}>
           <p>{mensagem}</p>
           <button onClick={onClose}>Fechar</button>
         </div>
@@ -94,64 +91,72 @@ const Contato = () => {
   };
 
   // JSX do componente de Contato
-  return (
-    <div className="container">
-      <Header/>
-      <div className="coluna-de-entrada">
-        <div>
-          <h1>Nome</h1>
-          
-          <input
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            className={inputErrors.nome ? "entrada-com-erro" : ""}
-          />
-        </div>
-        <div>
-          <h1>Email</h1>
-          
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={inputErrors.email ? "entrada-com-erro" : ""}
-          />
-        </div>
-      </div>
-      <div className="coluna-de-entrada">
-        <div>
-          <h1>Telefone</h1>
-          
-          <InputMask
-            mask="+55 (99) 99999-9999"
-            type="tel"
-            value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
-            className={inputErrors.telefone ? "entrada-com-erro" : ""}
-          />
-        </div>
-        <div>
-          <h1>Mensagem</h1>
-          <input
-            value={mensagem}
-            onChange={(e) => setMensagem(e.target.value)}
-            className={inputErrors.mensagem ? "entrada-com-erro" : ""}
-          />
-        </div>
-      </div>
-      
-      {popUpVisivel && (
-        <PopUp
-          mensagem={popUpSucesso ? "Mensagem enviada com sucesso" : "Mensagem enviada com sucesso"}
-          sucesso={popUpSucesso}
-          onClose={() => setPopUpVisivel(false)}
+  // Restante do código...
+
+// JSX do componente de Contato
+return (
+  <div className={style.container}>
+    
+    <div className={style.colunaDeEntrada}>
+      <div>
+        <h1>Nome</h1>
+        
+        <input
+          id="nomeInput"
+          type="text"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          className={inputErrors.nome ? style.entradaComErro : ""}
         />
-      )}
-      <div className="container-botao">
-        <button onClick={enviarDados}>Enviar</button>
       </div>
-      <Footer/>
+      <div>
+        <h1>Email</h1>
+        
+        <input
+          id="emailInput"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={inputErrors.email ? style.entradaComErro : ""}
+        />
+      </div>
     </div>
-  );
-};
+    <div className={style.colunaDeEntrada}>
+      <div>
+        <h1>Telefone</h1>
+        
+        <InputMask
+          id="telefoneInput"
+          mask="+55 (99) 99999-9999"
+          type="tel"
+          value={telefone}
+          onChange={(e) => setTelefone(e.target.value)}
+          className={inputErrors.telefone ? style.entradaComErro : ""}
+        />
+      </div>
+      <div>
+        <h1>Mensagem</h1>
+        <input
+          id="mensagemInput"
+          value={mensagem}
+          onChange={(e) => setMensagem(e.target.value)}
+          className={inputErrors.mensagem ? style.entradaComErro : ""}
+        />
+      </div>
+    </div>
+    
+    {popUpVisivel && (
+      <PopUp
+        mensagem={popUpSucesso ? "Mensagem enviada com sucesso" : "Erro ao enviar mensagem"}
+        sucesso={popUpSucesso}
+        onClose={() => setPopUpVisivel(false)}
+      />
+    )}
+    <div className={style.containerBotao}>
+      <button id="enviarBtn" onClick={enviarDados}>Enviar</button>
+    </div>
+    
+  </div>
+);
+    }
+  export default Contato;
