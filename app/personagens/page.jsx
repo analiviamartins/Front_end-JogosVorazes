@@ -85,67 +85,72 @@ function home() {
                     </button>
                 </Link>
             </div>
-            <input type="text" placeholder="Filtrar por nome" value={nomeFiltro} onChange={(e) => setNomeFiltro(e.target.value)} />
-            <input type="text" placeholder="Filtrar por distrito" value={distritoFiltro} onChange={(e) => setDistritoFiltro(e.target.value)} />
-            <input type="text" placeholder="Filtrar por profissão" value={profissaoFiltro} onChange={(e) => setProfissaoFiltro(e.target.value)} />
-            {personagensFiltrados ? (
-                personagensFiltrados.map((vorazes) => (
-                    <div key={vorazes.id} className={style.card}>
-                        <img src={vorazes.imagem} width={150} height={175} className={style.img} alt={vorazes.nome} />
-                        <div class="container">
-                            <div className={style.title}>
-                                <h1 className={style.Nome}>
-                                    {vorazes.nome}
-                                </h1>
+            <div className={style.inputs}>
+                <input className={style.pesquisa} type="text" placeholder="Filtrar por nome" value={nomeFiltro} onChange={(e) => setNomeFiltro(e.target.value)} />
+                <input className={style.pesquisa} type="text" placeholder="Filtrar por distrito" value={distritoFiltro} onChange={(e) => setDistritoFiltro(e.target.value)} />
+                <input className={style.pesquisa} type="text" placeholder="Filtrar por profissão" value={profissaoFiltro} onChange={(e) => setProfissaoFiltro(e.target.value)} />
+            </div>
+            <div className={style.lista}>
+                {personagensFiltrados ? (
+                    personagensFiltrados.map((vorazes) => (
+                        <div key={vorazes.id} className={style.card}>
+                            <img src={vorazes.imagem} width={150} height={175} className={style.img} alt={vorazes.nome} />
+                            <div class="container">
+                                <div className={style.title}>
+                                    <h1 className={style.Nome}>
+                                        {vorazes.nome}
+                                    </h1>
+                                </div>
                             </div>
-                        </div>
-                        <div className={style.texto}>
-                            <p>
-                                <strong>Idade:</strong> {vorazes.idade}
-                            </p>
-                            <p>
-                                <strong>Distrito:</strong> {vorazes.distrito}
-                            </p>
-                            <p>
-                                <strong>Gênero:</strong> {vorazes.genero}
-                            </p>
-                            <p>
-                                <strong>Profissão:</strong> {vorazes.profissao}
-                            </p>
-                        </div>
-                        <div className={style.buttons}>
-                            <button
-                                className={`${style.button} ${style.viewButton}`}
-                                onClick={() => {
-                                    setModalMostrar(vorazes);
-                                    isOpen();
-                                }}
-                            >
-                                <PiBookBookmarkFill />
-                            </button>
-                            <button
-                                className={`${style.button} ${style.deleteButton}`}
-                                onClick={() => deletar(vorazes.id)}
-                            >
-                                <FaTrash />
-                            </button>
-                            <button
-                                className={`${style.button} ${style.editButton}`}
-                                onClick={() => update(vorazes.id)}
-                            >
-                                <RiPencilFill />
-                            </button>
-                        </div>
+                            <div className={style.texto}>
+                                <p>
+                                    <strong>Idade:</strong> {vorazes.idade}
+                                </p>
+                                <p>
+                                    <strong>Distrito:</strong> {vorazes.distrito}
+                                </p>
+                                <p>
+                                    <strong>Gênero:</strong> {vorazes.genero}
+                                </p>
+                                <p>
+                                    <strong>Profissão:</strong> {vorazes.profissao}
+                                </p>
+                            </div>
+                            <div className={style.buttons}>
+                                <button
+                                    className={`${style.button} ${style.viewButton}`}
+                                    onClick={() => {
+                                        setModalMostrar(vorazes);
+                                        isOpen();
+                                    }}
+                                >
+                                    <PiBookBookmarkFill />
+                                </button>
+                                <button
+                                    className={`${style.button} ${style.deleteButton}`}
+                                    onClick={() => deletar(vorazes.id)}
+                                >
+                                    <FaTrash />
+                                </button>
+                                <button
+                                    className={`${style.button} ${style.editButton}`}
+                                    onClick={() => update(vorazes.id)}
+                                >
+                                    <RiPencilFill />
+                                </button>
+                            </div>
 
-                        {isModalOpen ? (
-                            <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
-                        ) : null}
+                            {isModalOpen ? (
+                                <Modal isOpen={isOpen} onClose={onClose} vorazes={modalMostar} />
+                            ) : null}
 
-                    </div>
-                ))
-            ) : (
-                <p>Não há personagens cadastrados</p>
-            )}
+                        </div>
+                    ))
+
+                ) : (
+                    <p>Não há personagens cadastrados</p>
+                )}
+            </div>
         </div>
     )
 };
