@@ -113,3 +113,7 @@
         flex-direction: column;
         }
     }
+
+    .selecionarHerois {
+        color: #FFD700;
+    }
