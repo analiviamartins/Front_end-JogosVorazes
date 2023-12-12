@@ -1,3 +1,4 @@
+//importe dos itens necessarios e icons
 import React from 'react';
 import style from './page.module.css';
 import { FaUsers } from "react-icons/fa";
@@ -7,6 +8,7 @@ import { MdOutlineContactPage } from "react-icons/md";
 import { IoIosHome } from "react-icons/io";
 import { FaListAlt } from "react-icons/fa";
 
+//definindo o componente Header
 const Header = () => (
     <header>
         <div className={style.header}>
@@ -39,4 +41,5 @@ const Header = () => (
     </header>
 );
 
+//exportando o componente Header
 export default Header;
