@@ -1,15 +1,14 @@
+/* Importando a fonte Montserrat do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 
-
-
+/* Estilos para o corpo da página */
 .body {
-
   background-image: url(/fundo2.jpg);
-
   height: 100%;
   background-attachment: fixed;
 }
 
+/* Estilos para o elemento ::after do corpo da página */
 .body::after {
   content: '';
   position: absolute;
@@ -18,6 +17,7 @@
   z-index: -1;
 }
 
+/* Estilos para o título */
 .titulo {
   align-items: center;
   justify-content: center;
@@ -25,6 +25,7 @@
   display: flex;
 }
 
+/* Estilos para a lista */
 .lista {
   width: 100%;
   display: flex;
@@ -34,9 +35,9 @@
   justify-content: center;
 }
 
+/* Estilos para o card */
 .card {
   background-color: rgb(68, 65, 65);
-  ;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 0.7rem;
@@ -45,19 +46,23 @@
   box-shadow: #daa520;
 }
 
+/* Estilos para o card quando o mouse está sobre ele */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos para o container */
 .container {
   padding: 2px 16px;
 }
 
+/* Estilos para o texto */
 .texto {
   line-height: 3rem;
   color: white;
 }
 
+/* Estilos para a imagem */
 .img {
   padding-top: 5%;
   border-radius: 0.7rem;
@@ -65,10 +70,12 @@
   border-top-right-radius: 0.7rem;
 }
 
+/* Estilos para o título */
 .title {
   min-height: 50px;
 }
 
+/* Estilos para o nome */
 .Nome {
   color: #daa520;
   font-family: 'Montserrat', sans-serif;
@@ -77,42 +84,30 @@
   font-size: 1.5rem;
 }
 
-
-
-/* The Modal (background) */
+/* Estilos para o modal (plano de fundo) */
 .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: rgb(0, 0, 0);
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
+/* Estilos para o conteúdo do modal */
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
-  /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-  /* Could be more or less, depending on screen size */
 }
 
-/* The Close Button */
+/* Estilos para o botão de fechar */
 .close {
   color: #aaa;
   float: right;
@@ -120,6 +115,7 @@
   font-weight: bold;
 }
 
+/* Estilos para o botão de fechar quando o mouse está sobre ele ou quando ele está em foco */
 .close:hover,
 .close:focus {
   color: black;
@@ -127,6 +123,7 @@
   cursor: pointer;
 }
 
+/* Estilos para o botão */
 .button {
   background-color: #daa520;
   border: none;
@@ -145,6 +142,7 @@
   cursor: pointer;
 }
 
+/* Estilos para o campo de pesquisa */
 .pesquisa{
  padding: 6px;
  border: none;
@@ -153,6 +151,7 @@
  font-size: 17px;
 }
 
+/* Estilos para os inputs */
 .inputs{
  text-align: center;
   justify-content: center;
@@ -160,6 +159,7 @@
   margin-bottom: 3rem;
 }
 
+/* Estilos para as ações */
 .actions {
  margin: 20px 0;
  display: flex;
@@ -167,14 +167,17 @@
  justify-content: center;
 }
 
+/* Estilos para o botão de excluir quando o mouse está sobre ele */
 .deleteButton:hover {
   background-color: #f44336;
 }
 
+/* Estilos para o botão de editar quando o mouse está sobre ele */
 .editButton:hover {
   background-color: #008CBA;
 }
 
+/* Estilos para o botão de visualizar quando o mouse está sobre ele */
 .viewButton:hover {
   background-color: #008000;
 }

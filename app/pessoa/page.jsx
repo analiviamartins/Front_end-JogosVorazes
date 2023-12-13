@@ -1,8 +1,10 @@
+// 'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 'use client'
+
+// Importa as bibliotecas e componentes necessários
 import axios from "axios"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
-
 import style from "../pessoa/page.module.css"
 import Link from "next/link";
 import { RiPencilFill } from "react-icons/ri";
@@ -11,15 +13,14 @@ import Header from "../components/header/page";
 import Footer from "../components/footer/page";
 import Loading from "../components/loading/page";
 
-
+// Define a função do componente home
 function home() {
+  // Define o estado inicial para a equipe e os dados da API
   const [equipe, setEquipe] = useState([])
   const [dadosApi, setDadosApi] = useState([]);
   const router = useRouter();
 
- 
-
-
+  // Define a função para deletar um membro da equipe
   const deletar = async (id) => {
     const url = `/api/equipe/${id}`;
     try {
@@ -35,11 +36,12 @@ function home() {
     }
   };
 
-
+ // Define a função para atualizar um membro da equipe
   const update = async (id) => {
     router.push(`/pessoa/${id}`);
   };
 
+  // Define a função para buscar os dados da equipe
   useEffect(() => {
     async function fetchEquipe() {
       try {
@@ -56,7 +58,7 @@ function home() {
 
   }, []);
 
-
+ // Retorna o JSX do componente
   return (
     <div className={style.body}>
       <Header />
