@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
+import Header from "@/app/components/header/page";
 
 export default function Register() {
     const [nome, setNome] = useState("");
@@ -65,16 +66,16 @@ export default function Register() {
 
     return (
         <div className={styles.container}>
-      
+          <Header />
           <div className={styles.actions}>
-            <Link href="/personagens">
+            <Link href="/pessoa">
               <button className={`${styles.button} ${styles.primaryButton}`}>
-                Voltar para personagens
+                Voltar para Equipe
               </button>
             </Link>
           </div>
       
-          <div className={styles.studentsContainer}>
+          <div className={styles.cadastroContainer}>
             <h1 className={styles.mainText}>Cadastrar personagem</h1>
       
             <form onSubmit={handleSubmit}>

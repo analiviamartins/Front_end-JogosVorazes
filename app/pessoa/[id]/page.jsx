@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import style from "../../pessoa/[id]/page.module.css"
 
 export default function UpdateStudent({ params }) {
   const { id } = params;
@@ -49,48 +50,83 @@ export default function UpdateStudent({ params }) {
   return (
     <div className={style.container}>
       <div className={style.editarContainer}>
-      <h1>Atualizar Membro</h1>
+      <h1 className={style.mainText}>Atualizar Membro</h1>
       {equipe ? (
         <div>
-          <p>{equipe.id}</p>
           <form onSubmit={atualizarPessoa}>
+          <div className={style.formGroup}>
+          <label className={style.label} htmlFor="nome">
+                  Nome:
+                </label>
             <input
+            className={style.input}
               type="text"
               id="nome"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
               required
             />
+            </div>
+            <div className={style.formGroup}>
+            <label className={style.label} htmlFor="idade">
+                  Idade:
+                </label>
             <input
+            className={style.input}
               type="text"
               id="idade"
               value={idade}
               onChange={(e) => setIdade(e.target.value)}
               required
             />
+             </div>
+            <div className={style.formGroup}>
+            <label className={style.label} htmlFor="email">
+                  Email:
+                </label>
             <input
+            className={style.input}
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+             </div>
+            <div className={style.formGroup}>
+            <label className={style.label} htmlFor="hobby">
+                  Hobby:
+                </label>
             <input
+            className={style.input}
               type="text"
               id="hobby"
               value={hobby}
               onChange={(e) => setHobby(e.target.value)}
               required
             />
+            </div>
+            <div className={style.formGroup}>
+            <label className={style.label} htmlFor="imagem">
+                  Imagem:
+                </label>
             <input
+            className={style.input}
               type="link"
               id="img"
               value={img}
               onChange={(e) => setImg(e.target.value)}
               required
             />
-            <button onClick={() => atualizarPessoa()}>Atualizar</button>
-            <button onClick={()=> voltar()}>Voltar</button>
+            </div>
+            <div className={style.lado}>
+              <div>
+              <button onClick={() => atualizarPessoa()} className={`${style.button} ${style.submitButton}`}>Atualizar</button>
+              </div>
+              <div>
+                <button onClick={() => voltar()} className={`${style.button} ${style.primaryButton}`}>Voltar</button>
+              </div>
+              </div>
           </form>
         </div>
       ) : (

@@ -96,9 +96,12 @@ function home() {
           </button>
         </Link>
       </div>
-      <input type="text" placeholder="Filtrar por nome" value={nomeFiltro} onChange={(e) => setNomeFiltro(e.target.value)} />
-      <input type="text" placeholder="Filtrar por distrito" value={distritoFiltro} onChange={(e) => setDistritoFiltro(e.target.value)} />
-      <input type="text" placeholder="Filtrar por profissão" value={profissaoFiltro} onChange={(e) => setProfissaoFiltro(e.target.value)} />
+      <div className={style.inputs}>
+      <input className={style.pesquisa} type="text" placeholder="Filtrar por nome" value={nomeFiltro} onChange={(e) => setNomeFiltro(e.target.value)} />
+      <input className={style.pesquisa} type="text" placeholder="Filtrar por distrito" value={distritoFiltro} onChange={(e) => setDistritoFiltro(e.target.value)} />
+      <input className={style.pesquisa} type="text" placeholder="Filtrar por profissão" value={profissaoFiltro} onChange={(e) => setProfissaoFiltro(e.target.value)} />
+      </div>
+      <div className={style.lista}>
       {dadosApi ? (
         dadosApi.map((vorazes) => (
           <div key={vorazes.id} className={style.card}>
@@ -158,6 +161,7 @@ function home() {
         <p>Não há personagens cadastrados</p>
       )}
       <Footer />
+    </div>
     </div>
   )
 
