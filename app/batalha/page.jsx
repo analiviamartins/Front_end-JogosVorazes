@@ -195,7 +195,7 @@ function page() {
     <>
       <Header />
       <div className={style.mainDiv}>
-      <Loading />
+      
         <div className={style.subDiv}>
           {
             apiData ? (
