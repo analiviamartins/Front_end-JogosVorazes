@@ -1,4 +1,7 @@
+// 'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 "use client";
+
+// Importa as bibliotecas e componentes necessários
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -7,7 +10,10 @@ import Link from "next/link";
 import Header from "@/app/components/header/page";
 import Footer from "@/app/components/footer/page";
 
+// Define a função do componente Register
 export default function Register() {
+
+   // Define o estado inicial para os campos do formulário e os personagens
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
   const [distrito, setDistrito] = useState("");
@@ -17,8 +23,11 @@ export default function Register() {
   const [imagem, setImagem] = useState("");
   const [vorazes, setVorazes] = useState([]);
   const [dadosApi, setDadosApi] = useState([]);
+
+   // Obtém o objeto de roteamento do Next.js
   const router = useRouter();
 
+   // Define a função para deletar um personagem
   const deletePerso = async (id) => {
     console.log("id do delete", id)
     const url = `/api/vorazes/${id}`;
@@ -30,13 +39,14 @@ export default function Register() {
     }
  };
 
+  // Define a função para editar um personagem
  const editPerso = async (id) => {
   console.log("id do edit", id)
 
   router.push(`/vorazes/${id}`);
 }; 
 
-
+// Define a função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,7 +65,7 @@ export default function Register() {
     }
   };
 
-
+ // Define a função para buscar os personagens
   useEffect(() => {
     async function fetchPerso() {
       try {
@@ -69,6 +79,7 @@ export default function Register() {
     fetchPerso();
   }, [deletePerso,editPerso, handleSubmit]);
 
+   // Retorna o JSX do componente
   return (
     <div className={styles.container}>
       <Header />
