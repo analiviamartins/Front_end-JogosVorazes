@@ -1,20 +1,25 @@
+// 'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 "use client"
+
+// Importa as bibliotecas e componentes necessários
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../../pessoa/[id]/page.module.css"
 
+// Define a função do componente UpdateStudent
 export default function UpdateStudent({ params}) {
+  // Define o estado inicial para os campos do formulário e a equipe
  const router = useRouter();
  const { id } = params;
  const [equipe, setEquipe] = useState("");
-
  const [nome, setNome] = useState("");
  const [idade, setIdade] = useState("");
  const [email, setEmail] = useState("");
  const [hobby, setHobby] = useState("");
  const [img, setImg] = useState("");
 
+ // Define a função para buscar os dados da equipe
  useEffect(() => {
    async function fetchEquipe() {
      const response = await axios.get(`http://localhost:3000/api/equipe/${id}`);
@@ -29,10 +34,12 @@ export default function UpdateStudent({ params}) {
    fetchEquipe();
  }, [id]);
 
+ // Define a função para voltar para a página anterior
  const voltar = async () => {
    router.push(`http://localhost:3000/pessoa`);
  };
 
+ // Define a função para atualizar um membro da equipe
  const atualizarPessoa = () => {
    axios.put(`http://localhost:3000/${id}`, {
        nome: nome,
@@ -46,6 +53,7 @@ export default function UpdateStudent({ params}) {
      });
  };
 
+  // Retorna o JSX do componente
  return (
    <div className={styles.container}>
      <div className={styles.editarContainer}>
