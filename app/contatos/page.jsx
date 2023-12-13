@@ -1,24 +1,35 @@
+// 'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 "use client";
+
+// Importando os módulos necessários
 import React, { useState } from 'react';
 import style from './contato.module.css';
 import Header from '../components/header/page.jsx';
 import Footer from '../components/footer/page.jsx';
 
+// Função para validar o endereço de e-mail
 function isValidEmail(email) {
  return /\S+@\S+\.\S+/.test(email);
 }
 
+// Função para validar o número de telefone
 function isValidPhoneNumber(phoneNumber) {
   var phoneNumberPattern = /^\(\d{2}\) \d{4,5}-\d{4}$/;
   return phoneNumberPattern.test(phoneNumber);
 }
 
+// Componente principal do formulário de contato
 export default function ContactPage() {
+ // Estado para armazenar o valor do e-mail
  const [email, setEmail] = useState("");
+ // Estado para armazenar o valor do telefone
  const [phone, setPhone] = useState("");
+ // Estado para armazenar erros de e-mail
  const [emailError, setEmailError] = useState("");
+ // Estado para armazenar erros de telefone
  const [phoneError, setPhoneError] = useState("");
 
+  // Função para lidar com a mudança de valor no campo de e-mail
  const handleEmailChange = (event) => {
   setEmail(event.target.value);
   if (!isValidEmail(event.target.value)) {
@@ -28,6 +39,7 @@ export default function ContactPage() {
   }
  };
 
+ // Função para lidar com a mudança de valor no campo de telefone
  const handlePhoneChange = (event) => {
   setPhone(event.target.value);
   if (!isValidPhoneNumber(event.target.value)) {
@@ -37,6 +49,7 @@ export default function ContactPage() {
   }
  };
 
+  // Renderização do componente
  return (
   <div className={style.container1}>
     <Header />

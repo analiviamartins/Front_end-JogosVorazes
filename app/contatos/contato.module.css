@@ -1,3 +1,4 @@
+/* Define o estilo para o contêiner */
 .container{
     display: flex;
     flex-direction: column;
@@ -8,6 +9,7 @@
     background-image: url("/fundo2.jpg");
 }
 
+/* Define o estilo para o bloco do título */
 .titleBlock{
   width: 40rem;
   background-color: black;
@@ -21,51 +23,61 @@
   border: 1px solid gold;
 }
 
+/* Define o estilo para o bloco do nome */
 .nameBlock{
   font-size: 1rem;
   margin-top: 1rem;
 }
 
+/* Define o estilo para o nome */
 .name{
   background-color: rgb(224, 206, 206);
   border-radius: 0.5rem;
 }
 
+/* Define o estilo para o bloco do email */
 .emailBlock{
   font-size: 1rem;
   margin-top: 1rem;
 }
 
+/* Define o estilo para o email */
 .email{
   background-color: rgb(224, 206, 206);
   border-radius: 0.5rem;
 }
 
+/* Define o estilo para o bloco do telefone */
 .phoneBlock{
   font-size: 1rem;
   margin-top: 1rem;
 }
 
+/* Define o estilo para o telefone */
 .phone{
   background-color: rgb(224, 206, 206);
   border-radius: 0.5rem;
 }
 
+/* Define o estilo para o bloco da mensagem */
 .messageBlock{
   font-size: 1rem;
   margin-top: 1rem;
 }
 
+/* Define o estilo para a mensagem */
 .message{
   background-color: rgb(224, 206, 206);
   border-radius: 0.5rem;
 }
 
+/* Define o estilo para o bloco do botão */
 .buttonBlock{
   margin-top: 2rem;  
 
 }
 
+/* Define o estilo para o botão */
 .button{
   background-color: rgb(255, 255, 255);
   color: black;
@@ -76,6 +88,7 @@
   cursor: pointer;
 }
  
+/* Define o estilo para o estado de hover do botão */
 .button:hover{
   background-color: gold;
   color: black;
@@ -86,7 +99,7 @@
   cursor: pointer;
 } 
 
-
+/* Define o estilo para o contêiner em telas menores que 600px */
 @media only screen and (max-width: 600px) {
   .titleBlock {
       width: 80%;
