@@ -7,7 +7,6 @@ import style from "../pessoa/page.module.css"
 import Link from "next/link";
 import { RiPencilFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa6";
-import { PiBookBookmarkFill } from "react-icons/pi";
 import Header from "../components/header/page";
 import Footer from "../components/footer/page";
 
@@ -37,7 +36,7 @@ function home() {
 
 
   const update = async (id) => {
-    router.push(`/equipe/${id}`);
+    router.push(`/pessoa/${id}`);
   };
 
   useEffect(() => {
@@ -70,6 +69,7 @@ function home() {
           </button>
         </Link>
       </div>
+      <div className={style.lista}>
       {dadosApi ? (
         dadosApi.map((equipe) => (
           <div key={equipe.id} className={style.card}>
@@ -113,6 +113,7 @@ function home() {
         <p>Não há personagens cadastrados</p>
       )}
       <Footer />
+    </div>
     </div>
   )
 };
