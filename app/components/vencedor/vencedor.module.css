@@ -1,3 +1,4 @@
+/* Define o estilo para a sobreposição do modal */
 .modal_overlay {
     position: fixed;
     top: 0;
@@ -8,6 +9,7 @@
     background-image: url(/fundo2.jpg);
 }
 
+/* Define o estilo para o modal */
 .modal {
     position: fixed;
     top: 50%;

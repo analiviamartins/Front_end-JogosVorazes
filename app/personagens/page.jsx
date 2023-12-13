@@ -1,4 +1,7 @@
+// 'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 'use client'
+
+// Importa as bibliotecas e componentes necessárioss
 import axios from "axios"
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
@@ -12,27 +15,35 @@ import Header from "../components/header/page.jsx";
 import Footer from "../components/footer/page.jsx";
 import Loading from "../components/loading/page.jsx";
 
-
+// Define a função do componente Home
 function home() {
-  const [vorazes, setVorazes] = useState([])
-  const [dadosApi, setDadosApi] = useState([]);
-  const router = useRouter();
+   // Define o estado inicial para os vorazes e os dados da API
+ const [vorazes, setVorazes] = useState([]);
+ const [dadosApi, setDadosApi] = useState([]);
 
-  const [modalMostar, setModalMostrar] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+ // Obtém o objeto de roteamento do Next.js
+ const router = useRouter();
 
-  const [nomeFiltro, setNomeFiltro] = useState("");
-  const [distritoFiltro, setDistritoFiltro] = useState("");
-  const [profissaoFiltro, setProfissaoFiltro] = useState("");
+ // Define o estado inicial para o modal e o estado do modal
+ const [modalMostar, setModalMostrar] = useState(null);
+ const [isModalOpen, setIsModalOpen] = useState(false);
 
+ // Define o estado inicial para os filtros de nome, distrito e profissão
+ const [nomeFiltro, setNomeFiltro] = useState("");
+ const [distritoFiltro, setDistritoFiltro] = useState("");
+ const [profissaoFiltro, setProfissaoFiltro] = useState("");
+
+ // Define a função para abrir o modal
   const isOpen = () => {
     setIsModalOpen(true);
   }
 
+  // Define a função para fechar o modal
   const onClose = () => {
     setIsModalOpen(false);
   }
 
+  // Define a função para deletar um personagem
   const deletar = async (id) => {
     const url = `/api/vorazes/${id}`;
     try {
@@ -48,11 +59,12 @@ function home() {
     }
   };
 
-
+// Define a função para atualizar um personagem
   const update = async (id) => {
     router.push(`/personagens/${id}`);
   };
 
+  // Define a função para buscar os personagens
   useEffect(() => {
     async function fetchVoraze() {
       try {
@@ -83,7 +95,7 @@ function home() {
 
   }, [nomeFiltro, distritoFiltro, profissaoFiltro]);
 
-
+// Retorna o JSX do componente
   return (
     <div className={style.body}>
         <Header />

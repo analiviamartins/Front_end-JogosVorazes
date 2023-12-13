@@ -1,10 +1,15 @@
+// 'use client' é uma diretiva para o Babel que permite o uso de recursos mais recentes do JavaScript.
 "use client";
+
+// Importa as bibliotecas e componentes necessários
 import axios from "axios";
 import style from "./page.module.css"
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+// Define a função do componente UpdateVoraze
 export default function UpdateVoraze({ params }) {
+  // Define o estado inicial para os campos do formulário e os personagens
   const { id } = params;
   const [voraze, setVoraze] = useState("");
   const router = useRouter();
@@ -19,6 +24,7 @@ export default function UpdateVoraze({ params }) {
   const [descricao, setDescricao] = useState("");
   const [imagem, setImagem] = useState("");
 
+   // Define a função para buscar os dados do personagens
   useEffect(() => {
     async function fetchVoraze() {
       const response = await axios.get(
@@ -39,10 +45,12 @@ export default function UpdateVoraze({ params }) {
     fetchVoraze();
   }, []);
 
+   // Define a função para voltar para a página anterior
   const voltar = async () => {
     router.push(`http://localhost:3000/api/vorazes/personagens`);
   };
 
+   // Define a função para atualizar o voraze
   const atualizarPerso = () => {
     axios.put(`http://localhost:3000/api/vorazes/${id}`, {
       nome: nome,
@@ -60,8 +68,8 @@ export default function UpdateVoraze({ params }) {
       });
   };
 
+   // Retorna o JSX do componente
   return (
-
     <div className={style.container}>
       <div className={style.editarContainer}>
         <h1 className={style.mainText}>Atualizar Personagem</h1>
