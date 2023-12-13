@@ -1,16 +1,26 @@
-//importando dos itens necessarios
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import estilo from './loading.module.css';
 
-//definindo o componente Loading
 const Loading = () => {
-  //retornando dados
-  return (
-    //criando um elemento de div para a imagem de carregamento
-    <div className={estilo.full_screen_gif}>
-      <img src="/loading.png" alt="GIF" />
-    </div>
-  );
+ const [showImage, setShowImage] = useState(true);
+
+ useEffect(() => {
+   const timer = setTimeout(() => {
+     setShowImage(false);
+   }, 2000);
+
+   return () => clearTimeout(timer);
+ }, []);
+
+ if (!showImage) {
+   return null;
+ }
+
+ return (
+   <div className={estilo.full_screen_gif}>
+     <img src="/loadingGif5.gif" alt="GIF" />
+   </div>
+ );
 };
-//exportando o componente Loading
+
 export default Loading;

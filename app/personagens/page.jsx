@@ -10,6 +10,7 @@ import { FaTrash } from "react-icons/fa6";
 import { PiBookBookmarkFill } from "react-icons/pi";
 import Header from "../components/header/page.jsx";
 import Footer from "../components/footer/page.jsx";
+import Loading from "../components/loading/page.jsx";
 
 
 function home() {
@@ -87,6 +88,7 @@ function home() {
     <div className={style.body}>
         <Header />
       <div className={style.titulo}>
+        <Loading />
         <img src="/image.png" width={500} height={300} />
       </div>
       <div className={style.actions}>

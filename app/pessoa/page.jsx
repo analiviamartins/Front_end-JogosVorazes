@@ -9,6 +9,7 @@ import { RiPencilFill } from "react-icons/ri";
 import { FaTrash } from "react-icons/fa6";
 import Header from "../components/header/page";
 import Footer from "../components/footer/page";
+import Loading from "../components/loading/page";
 
 
 function home() {
@@ -60,6 +61,7 @@ function home() {
     <div className={style.body}>
       <Header />
       <div className={style.titulo}>
+        <Loading />
         <img src="/image.png" width={500} height={300} />
       </div>
       <div className={style.actions}>
