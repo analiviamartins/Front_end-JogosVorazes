@@ -1,11 +1,15 @@
+// Importando os módulos necessários
 import React from 'react'
 import style from './vencedor.module.css';
 
+// Definindo o componente Ganhador
 const Ganhador = ({ isOpen, onClose, winner, player }) => {
+   // Se o modal não estiver aberto, não renderiza nada
     if (!isOpen) {
       return null;
 }
 
+ // Se houver um vencedor, renderiza o modal com as informações do vencedor
 return (
     <>
      {
@@ -36,4 +40,5 @@ return (
   );
 };
 
+// Exportando o componente Ganhador
 export default Ganhador;
