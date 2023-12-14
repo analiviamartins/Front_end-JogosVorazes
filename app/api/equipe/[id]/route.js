@@ -33,6 +33,7 @@ export async function PUT(request, { params }) {
     //retornando dados
     return NextResponse.json(response.data);
   } catch (error) {
+    console.log("[ORDER_PUT]", error);
     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }

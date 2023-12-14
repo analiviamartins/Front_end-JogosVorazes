@@ -29,13 +29,29 @@ export default function ContactPage() {
  // Estado para armazenar erros de telefone
  const [phoneError, setPhoneError] = useState("");
 
+ // PopUp
+ const [showPopup, setShowPopup] = useState(false);
+ const [popupMessage, setPopupMessage] = useState("");
+ const [popupType, setPopupType] = useState("");
+
+ const handleShowPopup = (message, type) => {
+  setPopupMessage(message);
+  setPopupType(type);
+  setShowPopup(true);
+  setTimeout(() => {
+    setShowPopup(false);
+  }, 3000);
+};
+
   // Função para lidar com a mudança de valor no campo de e-mail
  const handleEmailChange = (event) => {
   setEmail(event.target.value);
   if (!isValidEmail(event.target.value)) {
     setEmailError("Email inválido");
+    handleShowPopup("Parâmetros incompletos", "error");
   } else {
     setEmailError("");
+    handleShowPopup("Erro aleatório", "error");
   }
  };
 
@@ -44,8 +60,10 @@ export default function ContactPage() {
   setPhone(event.target.value);
   if (!isValidPhoneNumber(event.target.value)) {
     setPhoneError("Telefone inválido");
+    handleShowPopup("Parâmetros incompletos", "error");
   } else {
     setPhoneError("");
+    handleShowPopup("Erro aleatório", "error");
   }
  };
 
@@ -78,6 +96,7 @@ export default function ContactPage() {
     <div className={style.buttonBlock}>
       <button type="submit" className={style.button}>Enviar</button>
     </div>
+    {showPopup && <PopUp message={popupMessage} type={popupType} />}
     </div>
     
   </form>

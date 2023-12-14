@@ -5,10 +5,13 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import styles from "../../pessoa/[id]/page.module.css"
+import Header from "@/app/components/header/page";
+import Footer from "@/app/components/footer/page";
 
 // Define a função do componente UpdateStudent
-export default function UpdateStudent({ params}) {
+export default function UpdateMembros({ params}) {
   // Define o estado inicial para os campos do formulário e a equipe
  const router = useRouter();
  const { id } = params;
@@ -32,16 +35,11 @@ export default function UpdateStudent({ params}) {
    }
 
    fetchEquipe();
- }, [id]);
-
- // Define a função para voltar para a página anterior
- const voltar = async () => {
-   router.push(`http://localhost:3000/pessoa`);
- };
+ }, []);
 
  // Define a função para atualizar um membro da equipe
  const atualizarPessoa = () => {
-   axios.put(`http://localhost:3000/${id}`, {
+   axios.put(`http://localhost:3000/api/equipe/${id}`, {
        nome: nome,
        idade: idade,
        email: email,
@@ -56,6 +54,14 @@ export default function UpdateStudent({ params}) {
   // Retorna o JSX do componente
  return (
    <div className={styles.container}>
+    <Header/>
+    <div className={styles.actions}>
+        <Link href="/pessoa">
+          <button className={`${styles.button} ${styles.primaryButton}`}>
+            Voltar para Equipe
+          </button>
+        </Link>
+      </div>
      <div className={styles.editarContainer}>
        <h1 className={styles.mainText}>Atualizar Membro</h1>
        {equipe ? (
@@ -81,13 +87,8 @@ export default function UpdateStudent({ params}) {
                <label className={styles.label} htmlFor="imagem">Imagem:</label>
                <input className={styles.input} type="url" id="img" value={img} onChange={(e) => setImg(e.target.value)} required />
              </div>
-             <div className={styles.lado}>
-               <div>
+               <div className={styles.button}>
                 <button onClick={() => atualizarPessoa()} className={`${styles.button} ${styles.submitButton}`}>Atualizar</button>
-               </div>
-               <div>
-                <button onClick={() => voltar()} className={`${styles.button} ${styles.primaryButton}`}>Voltar</button>
-               </div>
              </div>
            </form>
          </div>
@@ -95,6 +96,7 @@ export default function UpdateStudent({ params}) {
          <p>Carregando...</p>
        )}
      </div>
+     <Footer />
    </div>
  );
 }
