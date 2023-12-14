@@ -26,7 +26,13 @@
     transition: background-color 0.3s ease;
     justify-content: center;
     align-items: center;
-    margin-left: 2rem;
+    text-align: center;
+}
+
+.button2{
+  justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /* Estilos para o botão primário */
@@ -81,7 +87,8 @@
   .submitButton {
     background-color: #2ecc71;
     color: #fff;
-    margin-left: 22rem;
+    text-align: center;
+    justify-content: center;
   }
 
   /* Estilos para o lado */

@@ -21,3 +21,15 @@
     text-align: center;
     color: black;
 }
+
+.close_button {
+    background-color: #f44336;
+    color: black;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    align-items: center;
+    text-align: center;
+}

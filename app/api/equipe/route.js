@@ -9,12 +9,11 @@ const url = process.env.BASE_URL + "/equipe";
 //definindo uma função assíncrona para o método GET
 export async function GET() {
   try {
-    //fazendo uma solicitação GET
-    const resposta = await axios.get(url);
+    const response = await axios.get(url);
 
-    //retornando dados
-    return NextResponse.json(resposta.data);
+    return NextResponse.json(response.data);
   } catch (error) {
+    console.log("[ORDER_GET]", error);
     return new NextResponse("Erro interno do servidor!", { status: 500 });
   }
 }

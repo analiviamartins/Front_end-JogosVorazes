@@ -77,10 +77,10 @@ function page() {
   // Hook useEffect que é executado quando o componente é montado.
   // Faz uma requisição GET para a API e armazena os dados no estado.
   useEffect(() => {
-    async function JogosFetch() {
+    async function JogosVorazesFetch() {
       try {
         const resposta = await axios.get("/api/vorazes");
-        const data = resposta.data.voraze;
+        const data = resposta.data.vorazes;
         const quantidadeVorazesData = quantidadeVorazes(data);
         const firstSixElements = quantidadeVorazesData.slice(0, 6);
         const lastSixElements = quantidadeVorazesData.slice(-6);
@@ -89,7 +89,7 @@ function page() {
         console.log("error fetching data:", error)
       }
     }
-    JogosFetch();
+    JogosVorazesFetch();
   }, []);
 
   // Hook useEffect que é executado quando os dados da API mudam.
@@ -204,7 +204,7 @@ function page() {
                 <div className={style.deckPlayers}>
                   {
                     apiData.slice(0, 6).map((vorazes) => (
-                      <div className={style.herois} key={vorazes.id}>
+                      <div className={style.vorazes} key={vorazes.id}>
                         <h2>{vorazes.nome}</h2>
                         <img className={style.imagem} onClick={() => selecionarPerso('player1', vorazes)} src={vorazes.imagem} alt={vorazes.nome} />
                         <p><strong>Ataque:</strong>{vorazes.dano}</p>
@@ -230,7 +230,7 @@ function page() {
                 <div className={style.deckPlayers}>
                   {
                     apiData.slice(-6).map((voraze) => (
-                      <div className={style.herois} key={voraze.id}>
+                      <div className={style.vorazes} key={voraze.id}>
                         <h2>{voraze.nome}</h2>
                         <img className={style.imagem} onClick={() => selecionarPerso('player2', voraze)} src={voraze.imagem} alt={voraze.nome} width={128} />
                         <p><strong>Ataque:</strong>{voraze.dano}</p>
@@ -247,14 +247,13 @@ function page() {
             )
           }
         </div>
-
       </div>
-      <div className={style.heroisSelecionados}>
-        <div>
-          <p><strong>Carta Selecionada Player 1</strong></p>
+      <div className={style.vorazesSelecionados}>
+        <div className={style.card}>
+          <p ><strong>Carta Selecionada Player 1</strong></p>
           {
             player1VorazeSelecionado ? (
-              <div className={style.herois} key={player1VorazeSelecionado.id}>
+              <div className={style.vorazes} key={player1VorazeSelecionado.id}>
                 <h2>{player1VorazeSelecionado.nome}</h2>
                 <img className={style.imagem} src={player1VorazeSelecionado.imagem} alt={player1VorazeSelecionado.nome} width={128} />
                 <p>Ataque: {player1VorazeSelecionado.dano}</p>
@@ -267,11 +266,11 @@ function page() {
             )
           }
         </div>
-        <div>
+        <div className={style.card}>
           <p><strong>Carta Selecionada Player 2</strong></p>
           {
             player2VorazeSelecionado ? (
-              <div className={style.herois} key={player2VorazeSelecionado.id}>
+              <div className={style.vorazes} key={player2VorazeSelecionado.id}>
                 <h2>{player2VorazeSelecionado.nome}</h2>
                 <img className={style.imagem} src={player2VorazeSelecionado.imagem} alt={player2VorazeSelecionado.nome} width={128} />
                 <p>Ataque: {player2VorazeSelecionado.dano}</p>
@@ -289,11 +288,11 @@ function page() {
         {
           player1VorazeSelecionado && player2VorazeSelecionado ? (
             <div className={style.botao}>
-              <button onClick={() => batalhar(player1VorazeSelecionado, player2VorazeSelecionado)}>Batalhar</button>
+              <button onClick={() => batalhar(player1VorazeSelecionado, player2VorazeSelecionado)}><strong>Batalhar</strong></button>
             </div>
           ) : (
-            <div>
-              <p className={style.selecionarHerois}><strong>Selecione os heróis para batalhar</strong></p>
+            <div className={style.texto}>
+              <p ><strong>Selecione os heróis para batalhar</strong></p>
             </div>
           )
         }
