@@ -1,9 +1,13 @@
-/*estilizando mensagem error*/
-.error{
-    background-color: rgb(215, 19, 19);
+.mainDiv {
+    left: 50%;
+    bottom: 0;
+    text-align: center;
 }
 
-/*estilizando mensagem sucess*/
+.error{
+    color:  rgb(215, 19, 19);
+}
+
 .success {
-    background-color: rgb(34, 182, 24);
+    color:  rgb(127, 252, 118);
 }
